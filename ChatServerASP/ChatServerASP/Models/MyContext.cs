@@ -20,4 +20,3 @@ namespace ChatServerASP.Models
         }
     }
 }
-}
