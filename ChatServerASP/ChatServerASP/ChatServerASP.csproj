@@ -208,6 +208,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CHATROOM.cs" />
+    <Compile Include="Models\ChatroomRepository.cs" />
     <Compile Include="Models\CHATROOM_MEMBERS.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

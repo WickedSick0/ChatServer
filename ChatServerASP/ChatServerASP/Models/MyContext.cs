@@ -13,6 +13,8 @@ namespace ChatServerASP.Models
 
         public DbSet<MESSAGE> Messages { get; set; }
 
+        public DbSet<CHATROOM> Chatrooms { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
