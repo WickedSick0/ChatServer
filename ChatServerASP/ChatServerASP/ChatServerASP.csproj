@@ -221,6 +221,7 @@
     <Compile Include="Models\USER.cs" />
     <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Models\USER_FRIENDS.cs" />
+    <Compile Include="Models\User_friendsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
