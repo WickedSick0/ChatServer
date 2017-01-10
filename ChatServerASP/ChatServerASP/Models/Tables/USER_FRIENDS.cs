@@ -7,10 +7,10 @@ namespace ChatServerASP.Models
 {
     public class USER_FRIENDS
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-        public int ID_Friend { get; set; }
+        public int Id_Friend { get; set; }
 
-        public int ID_Friendlist_Owner { get; set; }
+        public int Id_Friendlist_Owner { get; set; }
     }
 }

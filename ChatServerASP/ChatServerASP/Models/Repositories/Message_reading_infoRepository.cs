@@ -28,11 +28,11 @@ namespace ChatServerASP.Models
         /*
         public void UpdateMessage_reading_info(MESSAGE_READING_INFO mr)
         {
-            MESSAGE_READING_INFO mrtemp = this.FindById(mr.ID);
+            MESSAGE_READING_INFO mrtemp = this.FindById(mr.Id);
 
-            mrtemp.ID_Chatroom = mr.ID_Chatroom;
-            mrtemp.ID_Message = mr.ID_Message;
-            mrtemp.ID_Read_By_User = mr.ID_Read_By_User;
+            mrtemp.Id_Chatroom = mr.Id_Chatroom;
+            mrtemp.Id_Message = mr.Id_Message;
+            mrtemp.Id_Read_By_User = mr.Id_Read_By_User;
 
             this._context.SaveChanges();
         }

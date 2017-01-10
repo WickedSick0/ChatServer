@@ -7,11 +7,11 @@ namespace ChatServerASP.Models
 {
     public class MESSAGE
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-        public int ID_Chatroom { get; set; }
+        public int Id_Chatroom { get; set; }
 
-        public int ID_User_Post { get; set; }
+        public int Id_User_Post { get; set; }
 
         public string Message_text { get; set; }
 

@@ -8,6 +8,8 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     <button class="btn-danger">STRASA</button>
     WHAZAAP
+    <button class="btn btn-danger" id="xxx">xxx</button>
+    <div id="results"></div>
 </div>
 JEDE TO
 ALE FAKT s
@@ -33,3 +35,21 @@ ALE FAKT s
     </div>
     
 </div>
+
+@section scripts {
+    <script>
+    //document.getElementById("xxx")
+    $('#xxx').click(function () {
+        $.ajax({
+            url: '/api/USERs',
+            type: 'get'
+        }).success(function (response) {
+            //console.log(response);
+
+            $('#results').append(
+                $('<div />', { class: 'USER' , html: response.Nick })
+            );
+        });
+    });
+    </script>
+}

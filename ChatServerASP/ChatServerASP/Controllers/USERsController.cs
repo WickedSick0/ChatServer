@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatServerASP.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,16 +10,18 @@ namespace ChatServerASP.Controllers
 {
     public class USERsController : ApiController
     {
+        public UserRepository _rep = new UserRepository();
+
         // GET: api/USERs
         public IEnumerable<string> Get()
-        {
+        {          
             return new string[] { "value1", "value2" };
         }
 
         // GET: api/USERs/5
-        public string Get(int id)
+        public USER Get(int id)
         {
-            return "value";
+            return this._rep.FindById(id);
         }
 
         // POST: api/USERs

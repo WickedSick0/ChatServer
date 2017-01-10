@@ -27,10 +27,10 @@ namespace ChatServerASP.Models
 
         public void UpdateMessage(MESSAGE m)
         {
-            MESSAGE mtemp = this.FindById(m.ID);
+            MESSAGE mtemp = this.FindById(m.Id);
 
-            mtemp.ID_Chatroom = m.ID_Chatroom;
-            mtemp.ID_User_Post = m.ID_User_Post;
+            mtemp.Id_Chatroom = m.Id_Chatroom;
+            mtemp.Id_User_Post = m.Id_User_Post;
             mtemp.Message_text = m.Message_text;
 
             this._context.SaveChanges();

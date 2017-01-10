@@ -27,10 +27,10 @@ namespace ChatServerASP.Models
 
         public void UpdateUser_friends(USER_FRIENDS uf)
         {
-            USER_FRIENDS uftemp = this.FindById(uf.ID);
+            USER_FRIENDS uftemp = this.FindById(uf.Id);
 
-            uftemp.ID_Friend = uf.ID_Friend;
-            uftemp.ID_Friendlist_Owner = uf.ID_Friendlist_Owner;
+            uftemp.Id_Friend = uf.Id_Friend;
+            uftemp.Id_Friendlist_Owner = uf.Id_Friendlist_Owner;
 
             this._context.SaveChanges();
         }
