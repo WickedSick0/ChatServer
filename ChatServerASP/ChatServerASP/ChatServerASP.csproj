@@ -216,6 +216,7 @@
     <Compile Include="Models\MESSAGE.cs" />
     <Compile Include="Models\MessageRepository.cs" />
     <Compile Include="Models\MESSAGE_READING_INFO.cs" />
+    <Compile Include="Models\Message_reading_infoRepository.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Models\USER.cs" />
     <Compile Include="Models\UserRepository.cs" />

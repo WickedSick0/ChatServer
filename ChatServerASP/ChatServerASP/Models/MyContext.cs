@@ -13,9 +13,13 @@ namespace ChatServerASP.Models
 
         public DbSet<CHATROOM_MEMBERS> Chatroom_members { get; set; }
 
+        public DbSet<MESSAGE> Messages { get; set; }
+
+        public DbSet<MESSAGE_READING_INFO> Message_reading_infos { get; set; }
+
         public DbSet<USER> Users { get; set; }
 
-        public DbSet<MESSAGE> Messages { get; set; }
+
 
 
 
