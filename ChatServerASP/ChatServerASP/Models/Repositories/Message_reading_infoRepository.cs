@@ -25,7 +25,7 @@ namespace ChatServerASP.Models
             this._context.SaveChanges();
         }
 
-        /*
+        
         public void UpdateMessage_reading_info(MESSAGE_READING_INFO mr)
         {
             MESSAGE_READING_INFO mrtemp = this.FindById(mr.Id);
@@ -35,8 +35,7 @@ namespace ChatServerASP.Models
             mrtemp.Id_Read_By_User = mr.Id_Read_By_User;
 
             this._context.SaveChanges();
-        }
-        */
+        }      
         
         public void DeleteMessage_reading_info(int id)
         {

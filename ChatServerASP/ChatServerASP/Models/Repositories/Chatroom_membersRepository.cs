@@ -25,7 +25,6 @@ namespace ChatServerASP.Models
             this._context.SaveChanges();
         }
 
-        /*
         public void UpdateChatroom_members(CHATROOM_MEMBERS cm)
         {
             CHATROOM_MEMBERS cmtemp = this.FindById(cm.Id);
@@ -35,7 +34,7 @@ namespace ChatServerASP.Models
 
             this._context.SaveChanges();
         }
-        */
+
         public void DeleteChatroom_members(int id)
         {
             CHATROOM_MEMBERS cm = this.FindById(id);
