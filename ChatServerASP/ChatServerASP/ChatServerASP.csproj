@@ -212,6 +212,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MESSAGE.cs" />
+    <Compile Include="Models\MessageRepository.cs" />
     <Compile Include="Models\MESSAGE_READING_INFO.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Models\USER.cs" />

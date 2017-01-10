@@ -11,6 +11,8 @@ namespace ChatServerASP.Models
     {
         public DbSet<USER> Users { get; set; }
 
+        public DbSet<MESSAGE> Messages { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
