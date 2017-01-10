@@ -28,10 +28,10 @@ namespace ChatServerASP.Models
         /*
         public void UpdateChatroom_members(CHATROOM_MEMBERS cm)
         {
-            CHATROOM_MEMBERS cmtemp = this.FindById(cm.ID);
+            CHATROOM_MEMBERS cmtemp = this.FindById(cm.Id);
 
-            cmtemp.ID_Chatroom = cm.ID_Chatroom;
-            cmtemp.ID_User = cm.ID_User;
+            cmtemp.Id_Chatroom = cm.Id_Chatroom;
+            cmtemp.Id_User = cm.Id_User;
 
             this._context.SaveChanges();
         }
