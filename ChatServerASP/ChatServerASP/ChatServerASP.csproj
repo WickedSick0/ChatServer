@@ -207,8 +207,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CHATROOM.cs" />
+    <Compile Include="Models\CHATROOM_MEMBERS.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MESSAGE.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\USER.cs" />
