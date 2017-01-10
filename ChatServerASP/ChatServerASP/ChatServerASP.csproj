@@ -214,8 +214,8 @@
     <Compile Include="Models\MESSAGE.cs" />
     <Compile Include="Models\MESSAGE_READING_INFO.cs" />
     <Compile Include="Models\MyContext.cs" />
-    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\USER.cs" />
+    <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Models\USER_FRIENDS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

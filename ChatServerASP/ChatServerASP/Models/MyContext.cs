@@ -9,8 +9,7 @@ namespace ChatServerASP.Models
 {
     public class MyContext : DbContext
     {
-        public DbSet<Person> persons { get; set; }
-
+        public DbSet<USER> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
