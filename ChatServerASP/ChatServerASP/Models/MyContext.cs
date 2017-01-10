@@ -19,7 +19,9 @@ namespace ChatServerASP.Models
 
         public DbSet<USER> Users { get; set; }
 
-        public DbSet<USER_FRIENDS> User_friends { get; set; }
+
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
