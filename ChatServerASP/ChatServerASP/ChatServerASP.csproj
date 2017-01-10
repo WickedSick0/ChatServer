@@ -207,20 +207,20 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CHATROOM.cs" />
-    <Compile Include="Models\ChatroomRepository.cs" />
-    <Compile Include="Models\CHATROOM_MEMBERS.cs" />
-    <Compile Include="Models\Chatroom_membersRepository.cs" />
+    <Compile Include="Models\Tables\CHATROOM.cs" />
+    <Compile Include="Models\Repositories\ChatroomRepository.cs" />
+    <Compile Include="Models\Tables\CHATROOM_MEMBERS.cs" />
+    <Compile Include="Models\Repositories\Chatroom_membersRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MESSAGE.cs" />
-    <Compile Include="Models\MessageRepository.cs" />
-    <Compile Include="Models\MESSAGE_READING_INFO.cs" />
-    <Compile Include="Models\Message_reading_infoRepository.cs" />
+    <Compile Include="Models\Tables\MESSAGE.cs" />
+    <Compile Include="Models\Repositories\MessageRepository.cs" />
+    <Compile Include="Models\Tables\MESSAGE_READING_INFO.cs" />
+    <Compile Include="Models\Repositories\Message_reading_infoRepository.cs" />
     <Compile Include="Models\MyContext.cs" />
-    <Compile Include="Models\USER.cs" />
-    <Compile Include="Models\UserRepository.cs" />
-    <Compile Include="Models\USER_FRIENDS.cs" />
+    <Compile Include="Models\Tables\USER.cs" />
+    <Compile Include="Models\Repositories\UserRepository.cs" />
+    <Compile Include="Models\Tables\USER_FRIENDS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
