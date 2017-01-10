@@ -7,8 +7,8 @@ namespace ChatServerASP.Models
 {
     public class CHATROOM_MEMBERS
     {
-        public int ID_Chatroom { get; set; }
+        public int Id_Chatroom { get; set; }
 
-        public int ID_User { get; set; }
+        public int Id_User { get; set; }
     }
 }

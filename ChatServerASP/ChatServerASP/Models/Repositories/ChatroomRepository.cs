@@ -27,7 +27,7 @@ namespace ChatServerASP.Models
 
         public void UpdateChatroom(CHATROOM cr)
         {
-            CHATROOM crtemp = this.FindById(cr.ID);
+            CHATROOM crtemp = this.FindById(cr.Id);
 
             crtemp.Chatroom_Name = cr.Chatroom_Name;
 

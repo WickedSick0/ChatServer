@@ -27,7 +27,7 @@ namespace ChatServerASP.Models
 
         public void UpdateUser(USER u)
         {
-            USER utemp = this.FindById(u.ID);
+            USER utemp = this.FindById(u.Id);
 
             utemp.Login = u.Login;
             utemp.Nick = u.Nick;
