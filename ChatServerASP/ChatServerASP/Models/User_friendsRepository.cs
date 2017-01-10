@@ -7,6 +7,7 @@ namespace ChatServerASP.Models
 {
     public class User_friendsRepository
     {
+        //commet
         private MyContext _context = new MyContext();
 
         public List<USER_FRIENDS> FindAll()
