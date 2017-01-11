@@ -15,5 +15,6 @@ namespace ChatServerASP.Models
 
         public string Message_text { get; set; }
 
+        public DateTime Send_time { get; set; }
     }
 }

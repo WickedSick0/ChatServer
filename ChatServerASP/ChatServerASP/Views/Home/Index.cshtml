@@ -42,13 +42,13 @@ ALE FAKT s
     //document.getElementById("xxx")
     $('#xxx').click(function () {
         $.ajax({
-            url: '/api/USERs/1',
+            url: '/api/MESSAGEs/1',
             type: 'get'
         }).success(function (response) {
             //console.log(response);
 
             $('#results').append(
-                $('<div />', { class: 'USER' , html: response.Nick })
+                $('<div />', { class: 'MESSAGE' , html: response.Send_time })
             );
         });
     });
