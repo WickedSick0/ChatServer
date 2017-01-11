@@ -13,9 +13,9 @@ namespace ChatServerASP.Controllers
         public UserRepository _rep = new UserRepository();
 
         // GET: api/USERs
-        public IEnumerable<string> Get()
+        public List<USER> Get()
         {          
-            return new string[] { "value1", "value2" };
+            return _rep.FindAll();
         }
 
         // GET: api/USERs/5
