@@ -215,10 +215,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CHATROOMsController.cs" />
+    <Compile Include="Controllers\CHATROOM_MEMBERSsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MESSAGEsController.cs" />
     <Compile Include="Controllers\USERsController.cs" />
+    <Compile Include="Controllers\USER_FRIENDSController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
