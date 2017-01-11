@@ -10,6 +10,8 @@
     WHAZAAP
     <button class="btn btn-danger" id="xxx">xxx</button>
     <div id="results"></div>
+    <textarea id="textArea"></textarea>
+    <button class="btn-danger" id="btnPost"></button>
 </div>
 JEDE TO
 ALE FAKT s
@@ -60,6 +62,22 @@ ALE FAKT s
             $('#results').append(
                 $('<div />', { class: 'USER_FRIENDS' , html: response.Nick })
                 );
+        });
+    });
+
+
+    $('#btnPost').click(function () {
+        var dataF = { 'Nick': $("TEST").val(), 'Login': $('#textArea').val(), Password: $('#textArea').val(), Photo: $('#textArea').val() };
+        $.ajax({
+            url: '/api/USERs/',
+            type: 'post',
+            data: dataF
+        }).success(function (response) {
+            //console.log(response);
+
+            $('#results').append(
+                $('<div />', { class: 'USER', html: response.Nick})
+            );
         });
     });
     </script>
