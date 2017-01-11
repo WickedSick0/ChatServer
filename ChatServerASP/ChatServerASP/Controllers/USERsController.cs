@@ -37,6 +37,7 @@ namespace ChatServerASP.Controllers
         // DELETE: api/USERs/5
         public void Delete(int id)
         {
+            this._rep.DeleteUser(id);
         }
     }
 }
