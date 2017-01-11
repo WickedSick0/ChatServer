@@ -1,43 +1,119 @@
-﻿using ChatServerASP.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
+using ChatServerASP.Models;
 
 namespace ChatServerASP.Controllers
 {
     public class USERsController : ApiController
     {
-        public UserRepository rep = new UserRepository();
+        private MyContext db = new MyContext();
 
         // GET: api/USERs
-        public List<USER> Get()
-        {          
-            return this.rep.FindAll();
+        public IQueryable<USER> GetUsers()
+        {
+            return db.Users;
         }
 
         // GET: api/USERs/5
-        public USER Get(int id)
+        [ResponseType(typeof(USER))]
+        public async Task<IHttpActionResult> GetUSER(int id)
         {
-            return this.rep.FindById(id);
-        }
+            USER uSER = await db.Users.FindAsync(id);
+            if (uSER == null)
+            {
+                return NotFound();
+            }
 
-        // POST: api/USERs
-        public void Post([FromBody]string value)
-        {
+            return Ok(uSER);
         }
 
         // PUT: api/USERs/5
-        public void Put(int id, [FromBody]string value)
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> PutUSER(int id, USER uSER)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != uSER.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(uSER).State = EntityState.Modified;
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!USERExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/USERs
+        [ResponseType(typeof(USER))]
+        public async Task<IHttpActionResult> PostUSER(USER uSER)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Users.Add(uSER);
+            await db.SaveChangesAsync();
+
+            return CreatedAtRoute("DefaultApi", new { id = uSER.Id }, uSER);
         }
 
         // DELETE: api/USERs/5
-        public void Delete(int id)
+        [ResponseType(typeof(USER))]
+        public async Task<IHttpActionResult> DeleteUSER(int id)
         {
-            this.rep.DeleteUser(id);
+            USER uSER = await db.Users.FindAsync(id);
+            if (uSER == null)
+            {
+                return NotFound();
+            }
+
+            db.Users.Remove(uSER);
+            await db.SaveChangesAsync();
+
+            return Ok(uSER);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool USERExists(int id)
+        {
+            return db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }
