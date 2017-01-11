@@ -10,7 +10,6 @@
     WHAZAAP
     <button class="btn btn-danger" id="xxx">xxx</button>
     <div id="results"></div>
-    
 </div>
 JEDE TO
 ALE FAKT s
@@ -55,11 +54,11 @@ ALE FAKT s
 
     $('#strasa').click(function () {
         $.ajax({
-            url: '/api/USERs',
+            url: '/api/USER_FRIENDS',
             type: 'get'
         }).success(function (response) {
             $('#results').append(
-                $('<div />', { class: 'USER', html: response.Nick })
+                $('<div />', { class: 'USER_FRIENDS' , html: response.Nick })
                 );
         });
     });
