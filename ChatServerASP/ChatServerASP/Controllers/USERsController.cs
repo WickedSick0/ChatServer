@@ -10,18 +10,18 @@ namespace ChatServerASP.Controllers
 {
     public class USERsController : ApiController
     {
-        public UserRepository _rep = new UserRepository();
+        public UserRepository rep = new UserRepository();
 
         // GET: api/USERs
         public List<USER> Get()
         {          
-            return _rep.FindAll();
+            return this.rep.FindAll();
         }
 
         // GET: api/USERs/5
         public USER Get(int id)
         {
-            return this._rep.FindById(id);
+            return this.rep.FindById(id);
         }
 
         // POST: api/USERs
@@ -37,7 +37,7 @@ namespace ChatServerASP.Controllers
         // DELETE: api/USERs/5
         public void Delete(int id)
         {
-            this._rep.DeleteUser(id);
+            this.rep.DeleteUser(id);
         }
     }
 }
