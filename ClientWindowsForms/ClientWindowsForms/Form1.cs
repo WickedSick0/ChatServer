@@ -22,11 +22,9 @@ namespace ClientWindowsForms
         private void btn_send_Click(object sender, EventArgs e)
         {
 
-            MESSAGE msg = new MESSAGE() { Id_Chatroom = 1, Id_User_Post = 1, Message_text = this.msg.Text };
+            MESSAGE msg = new MESSAGE() { Id_Chatroom = 1, Id_User_Post = 1, Message_text = this.msg.Text, Send_time = DateTime.Now};
             HttpClient clint = new HttpClient();
             clint.BaseAddress = new Uri("http://localhost:53098/");
-            // var json = JsonConvert.SerializeObject(msg);
-            // var stringContent = new Http
             var myContent = JsonConvert.SerializeObject(msg);
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);
