@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatServerASP", "ChatServerASP\ChatServerASP.csproj", "{A2DB8EBD-7B47-48CA-8F2D-FF7B5138C63F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientAndroid", "ClientAndroid\ClientAndroid.csproj", "{F613638C-510C-4FF9-A6C2-20A99DA049BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A2DB8EBD-7B47-48CA-8F2D-FF7B5138C63F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2DB8EBD-7B47-48CA-8F2D-FF7B5138C63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2DB8EBD-7B47-48CA-8F2D-FF7B5138C63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2DB8EBD-7B47-48CA-8F2D-FF7B5138C63F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F613638C-510C-4FF9-A6C2-20A99DA049BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F613638C-510C-4FF9-A6C2-20A99DA049BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F613638C-510C-4FF9-A6C2-20A99DA049BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F613638C-510C-4FF9-A6C2-20A99DA049BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
