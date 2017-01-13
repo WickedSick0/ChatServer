@@ -17,6 +17,7 @@ namespace ClientConsole
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
+
         //GET
         public async Task<T> GetUserAsync(string path)
         {
@@ -29,16 +30,14 @@ namespace ClientConsole
             return var;
         }
 
-        ////GET ALL
-        //async Task<T> GetUsersAsync(string path)
-        //{
-        //    T var = null;
-        //    HttpResponseMessage response = await this.client.GetAsync(path);
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var = await response.Content.ReadAsAsync<T>();
-        //    }
-        //    return var;
-        //}
+        //POST
+        public async Task<Uri> CreateUserAsync(string path, T var)
+        {
+            HttpResponseMessage response = await this.client.PostAsJsonAsync(path, var);
+            response.EnsureSuccessStatusCode();
+
+            // return URI of the created resource.
+            return response.Headers.Location;
+        }
     }
 }

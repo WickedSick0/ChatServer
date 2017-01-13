@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ClientConsole
@@ -12,6 +13,7 @@ namespace ClientConsole
         static HttpClient client = new HttpClient();
 
         private static int Mod = 0; // Urcuje Mod
+        private static bool Back = false; // Urcuje Mod
         static ConsoleKey Tlacitko = ConsoleKey.F1; // Ukladani zmacknutych tlacitek do Tlacitko
 
         static void Main(string[] args)
@@ -24,15 +26,15 @@ namespace ClientConsole
                     Mod = MenuMod(); // Mod = MenuMod()
                 else if (Mod == 1) // Skoci do PlayMod 1
                     Mod = LogInMod(); // Mod = PlayMod()
-                //else if (Mod == 2) // Skoci do OptionMod 2
-                //    Mod = OptionsMod(); // Mod = OptionsMod()
+                else if (Mod == 2) // Skoci do OptionMod 2
+                    Mod = RegisterMod(); // Mod = OptionsMod()
                 else if (Mod == 3) // Exit 3
                     Mod = -1;
             } // Konec programu   
 
-            RunAsync().Wait();
+            //RunAsync().Wait();
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         static int MenuMod() // MenuMod kdyz Mod = 0
@@ -106,36 +108,163 @@ namespace ClientConsole
         static int LogInMod() // PlayMod = Mod 1
         {
             Console.Clear();
-            RunAsync().Wait();
+            Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
+            Console.CursorVisible = true;
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("                   LOG IN                   "); // Vypise HighScore fialove
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine();
+
+            USER user = new USER();
+            Console.Write("Enter your login: ");
+            user.Login = readLineWithCancel();
+            if (Back)
+                return 0;
+            Console.Write("Enter your password: ");
+            user.Password = readLineWithCancel();
+            if (Back)
+                return 0;
+
+            Console.WriteLine();
+
+            CheckLogin(user).Wait();
+
+            Console.WriteLine("Press ENTER and try it again...");
+            readLineWithCancel();
+
+            return 1; // Vrati se do MenuMod = Mod 0
+        } // LogInMod konec
+
+        static async Task CheckLogin(USER user)
+        {
+            bool IsValid = false;
+
+            GetTask<List<USER>> GetUsers = new GetTask<List<USER>>();
+            foreach (USER item in await GetUsers.GetUserAsync($"api/USERs/"))
+            {
+                if (item.Login == user.Login && item.Password == user.Password)
+                {
+                    IsValid = true;
+                    break;
+                }
+                else
+                    IsValid = false;
+            }
+
+            if (IsValid)
+                Console.WriteLine("Login successful");
+            else
+                Console.WriteLine("Login or password is incorect");
+        }
+
+        static int RegisterMod() // PlayMod = Mod 1
+        {
+            Console.Clear();
+            Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
+            Console.CursorVisible = true;
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("                REGISTRATION                "); // Vypise HighScore fialove
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine();
+
+            USER user = new USER() { Photo = "default.png" };
+            Console.Write("Enter your login: ");
+            user.Login = readLineWithCancel();
+            if (Back)
+                return 0;
+            Console.Write("Enter your password: ");
+            user.Password = readLineWithCancel();
+            if (Back)
+                return 0;
+            Console.Write("Enter your nick: ");
+            user.Nick = readLineWithCancel();
+            if (Back)
+                return 0;
+
+            Console.WriteLine();
+
+            try
+            {
+                GetTask<USER> GetUser = new GetTask<USER>();
+                GetUser.CreateUserAsync("api/USERs", user).Wait();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failure user was not created");
+                Console.WriteLine(e.Message);
+            }
+
+            Console.WriteLine("Success user was created");
+            Console.WriteLine("Press ENTER to continue...");
             Console.ReadLine();
-            //if (LogIn.SpustitHru() == true) // Spusti se hra a pokud vrati true spusti se znova PlayMod jinak se vrati do MenuMod
-            //    return 1; // Spusti se PlayMod = Mod 1
-            //else
+
             return 0; // Vrati se do MenuMod = Mod 0
-        } // PlayMod konec
+        } // RegisterMod konec
+
+        private static string readLineWithCancel()
+        {
+            string result = null;
+
+            StringBuilder buffer = new StringBuilder();
+
+            //The key is read passing true for the intercept argument to prevent
+            //any characters from displaying when the Escape key is pressed.
+            ConsoleKeyInfo info = Console.ReadKey(true);
+            while (info.Key != ConsoleKey.Enter && info.Key != ConsoleKey.Escape)
+            {
+                Console.Write(info.KeyChar);
+                buffer.Append(info.KeyChar);
+                info = Console.ReadKey(true);
+            }
+
+            if (info.Key == ConsoleKey.Enter)
+            {
+                result = buffer.ToString();
+            }
+
+            if (info.Key == ConsoleKey.Escape)
+                Back = true;
+            else
+            {
+                Back = false;
+                Console.WriteLine();
+            }
+
+            return result;
+        }
 
         static async Task RunAsync()
-        {         
-            /*
-            // Create a new user
-            USER user = new USER() { Nick = "test" };
+        {
 
-            var url = await CreateUserAsync(user);
-            Console.WriteLine($"Created at {url}");
-            */
+            // Create a new user
+            //USER user = new USER() { Nick = "test" };
+
+            //var url = await CreateUserAsync(user);
+            //Console.WriteLine($"Created at {url}");
+
 
             // Get the user
-            //GetTask<USER> GetUser = new GetTask<USER>();
-            //USER user = null;
-            //user = await GetUser.GetUserAsync($"api/USERs/1");
-            //Showuser(user);
+            GetTask<USER> GetUser = new GetTask<USER>();
+            USER user = await GetUser.GetUserAsync($"api/USERs/1");
+            Console.WriteLine("Id: " + user.Id);
+            Console.WriteLine("Login: " + user.Login);
+            Console.WriteLine("Nick: " + user.Nick);
+            Console.WriteLine("Password: " + user.Password);
+            Console.WriteLine("Photo: " + user.Photo);
+
+            Console.WriteLine();
 
             // Get users
             GetTask<List<USER>> GetUsers = new GetTask<List<USER>>();
-            List<USER> users = await GetUsers.GetUserAsync($"api/USERs/");
-            foreach (USER item in users)
+            foreach (USER item in await GetUsers.GetUserAsync($"api/USERs/"))
             {
-                Console.WriteLine(item.Nick + " ");
+                Console.WriteLine("Id: " + item.Id + ", Login: " + item.Login + ", Nick: " + item.Nick + ", Password: " + item.Password + ", Photo: " + item.Photo);
             }
 
             /*
@@ -154,12 +283,7 @@ namespace ClientConsole
             */
         }
 
-        static void Showuser(USER user)
-        {
-            Console.WriteLine($"Nick: {user.Nick}");
-        }
-
-        ////GET
+        //GET
         static async Task<USER> GetUserAsync2(string path)
         {
             USER user = null;
@@ -183,15 +307,15 @@ namespace ClientConsole
             return users;
         }
 
-        //POST
-        static async Task<Uri> CreateUserAsync(USER user)
-        {
-            HttpResponseMessage response = await client.PostAsJsonAsync("api/USERs", user);
-            response.EnsureSuccessStatusCode();
+        ////POST
+        //static async Task<Uri> CreateUserAsync(USER user)
+        //{
+        //    HttpResponseMessage response = await client.PostAsJsonAsync("api/USERs", user);
+        //    response.EnsureSuccessStatusCode();
 
-            // return URI of the created resource.
-            return response.Headers.Location;
-        }
+        //    // return URI of the created resource.
+        //    return response.Headers.Location;
+        //}
 
         //PUT
         static async Task<USER> UpdateuserAsync(USER user)
