@@ -31,5 +31,17 @@ namespace ClientWindowsForms
             byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = clint.PostAsync("/api/MESSAGEs/", byteContent).Result;
         }
+
+        private void btn_get_Click(object sender, EventArgs e)
+        {
+            
+            HttpClient clint = new HttpClient();
+            clint.BaseAddress = new Uri("http://localhost:53098/");
+            var response = clint.GetAsync("/api/MESSAGEs").Result;
+            var resp = response.Content.ReadAsStringAsync();
+            var model = JsonConvert.DeserializeObject<List<MESSAGE>>(resp.Result);
+
+            this.msg.Text = model.ToString();
+        }
     }
 }
