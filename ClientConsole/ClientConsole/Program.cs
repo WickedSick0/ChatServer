@@ -39,7 +39,7 @@ namespace ClientConsole
 
         static int MenuMod() // MenuMod kdyz Mod = 0
         {
-            string[] Polozky = new string[] { "                 Log in                    ", "                 Register                  ", "                 Exit                      " }; // Pole stringů položky v menu
+            string[] Polozky = new string[] { "                 Log in                   ", "                 Register                 ", "                 Exit                     " }; // Pole stringů položky v menu
             int Vybrana = 0; // Urcuje vybranou polozku v menu
 
             while (true) // Hlida tlacitka a vykresluje menu
@@ -77,7 +77,7 @@ namespace ClientConsole
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("                THUNDER CHAT                "); // Vypise HighScore fialove
+            Console.WriteLine("                THUNDER CHAT                 "); // Vypise HighScore fialove
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
@@ -113,7 +113,7 @@ namespace ClientConsole
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("                   LOG IN                   "); // Vypise HighScore fialove
+            Console.WriteLine("                   LOG IN                    "); // Vypise HighScore fialove
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
@@ -168,7 +168,7 @@ namespace ClientConsole
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("                REGISTRATION                "); // Vypise HighScore fialove
+            Console.WriteLine("                REGISTRATION                 "); // Vypise HighScore fialove
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
