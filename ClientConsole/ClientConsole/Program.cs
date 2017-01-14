@@ -15,6 +15,8 @@ namespace ClientConsole
         private static int Mod = 0; // Urcuje Mod
         private static bool Back = false; // Urcuje Mod
         static ConsoleKey Tlacitko = ConsoleKey.F1; // Ukladani zmacknutych tlacitek do Tlacitko
+        static bool IsLoginbValid = false;
+        static USER LoggedInUser = new USER();
 
         static void Main(string[] args)
         {
@@ -28,6 +30,8 @@ namespace ClientConsole
                     Mod = LogInMod(); // Mod = PlayMod()
                 else if (Mod == 2) // Skoci do OptionMod 2
                     Mod = RegisterMod(); // Mod = OptionsMod()
+                else if (Mod == 4) // Skoci do OptionMod 2
+                    Mod = UserMod(); // Mod = OptionsMod()
                 else if (Mod == 3) // Exit 3
                     Mod = -1;
             } // Konec programu   
@@ -118,46 +122,64 @@ namespace ClientConsole
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
 
-            USER user = new USER();
+            //USER user = new USER();
             Console.Write("Enter your login: ");
-            user.Login = readLineWithCancel();
+            LoggedInUser.Login = readLineWithCancel();
             if (Back)
                 return 0;
             Console.Write("Enter your password: ");
-            user.Password = readLineWithCancel();
+            LoggedInUser.Password = readLineWithCancel();
             if (Back)
                 return 0;
 
             Console.WriteLine();
 
-            CheckLogin(user).Wait();
+            CheckLogin().Wait();
 
-            Console.WriteLine("Press ENTER and try it again...");
-            readLineWithCancel();
+            if (IsLoginbValid)
+            { 
+                Console.WriteLine("Login successful");
+                System.Threading.Thread.Sleep(2000);
 
-            return 1; // Vrati se do MenuMod = Mod 0
+                return 4;
+                //todo
+            }
+            else
+            {
+                Console.WriteLine("Login or password is incorect");
+                Console.WriteLine("Press ENTER and try it again...");
+                Tlacitko = Console.ReadKey().Key;
+                if (Tlacitko == ConsoleKey.Escape)
+                    return 0;
+                else if (Tlacitko == ConsoleKey.Enter)
+                    return 1;
+            }
+
+
+
+            //readLineWithCancel();
+
+            return 0; // Vrati se do MenuMod = Mod 0
         } // LogInMod konec
 
-        static async Task CheckLogin(USER user)
+        static async Task CheckLogin()
         {
-            bool IsValid = false;
-
             GetTask<List<USER>> GetUsers = new GetTask<List<USER>>();
             foreach (USER item in await GetUsers.GetUserAsync($"api/USERs/"))
             {
-                if (item.Login == user.Login && item.Password == user.Password)
+                if (item.Login == LoggedInUser.Login && item.Password == LoggedInUser.Password)
                 {
-                    IsValid = true;
+                    LoggedInUser.Id = item.Id;
+                    LoggedInUser.Login = item.Login;
+                    LoggedInUser.Password = item.Password;
+                    LoggedInUser.Nick = item.Nick;
+                    LoggedInUser.Photo = item.Photo;
+                    IsLoginbValid = true;
                     break;
                 }
                 else
-                    IsValid = false;
+                    IsLoginbValid = false;
             }
-
-            if (IsValid)
-                Console.WriteLine("Login successful");
-            else
-                Console.WriteLine("Login or password is incorect");
         }
 
         static int RegisterMod() // PlayMod = Mod 1
@@ -206,6 +228,40 @@ namespace ClientConsole
 
             return 0; // Vrati se do MenuMod = Mod 0
         } // RegisterMod konec
+
+
+        static int UserMod()
+        {
+            Console.Clear();
+            Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
+            Console.CursorVisible = true;
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("              USER PROFILE               "); // Vypise HighScore fialove
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("Your nick: " + LoggedInUser.Nick + "    ");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine();
+
+            //Console.WriteLine("Id: " + LoggedInUser.Id);
+            //Console.WriteLine("Login: " + LoggedInUser.Login);
+            //Console.WriteLine("Nick: " + LoggedInUser.Nick);
+            //Console.WriteLine("Password: " + LoggedInUser.Password);
+            //Console.WriteLine("Photo: " + LoggedInUser.Photo);
+
+            Console.ReadLine();
+
+            return 0;
+        }
+
+        static int UserMenuMod()
+        {
+
+            return 0;
+        }
 
         private static string readLineWithCancel()
         {
