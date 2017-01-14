@@ -18,7 +18,7 @@ namespace ClientConsole
         static bool IsLoginbValid = false;
         static USER LoggedInUser = new USER();
         static List<USER> UserFriends = new List<USER>();
-
+        static USER Friend = new USER();
         static void Main(string[] args)
         {
             Console.BackgroundColor = ConsoleColor.White;
@@ -37,6 +37,8 @@ namespace ClientConsole
                     Mod = UserMenuMod(); // Mod = OptionsMod()
                 else if (Mod == 5) // Skoci do OptionMod 2
                     Mod = ContactMod(); // Mod = OptionsMod()
+                else if (Mod == 10) // Skoci do OptionMod 2
+                    Mod = MessageMod(); // Mod = OptionsMod()
             } // Konec programu   
 
             //RunAsync().Wait();
@@ -333,6 +335,60 @@ namespace ClientConsole
 
         static int ContactMod()
         {
+            GetFriends().Wait();
+
+            string[] Polozky = new string[UserFriends.Count];
+
+            int i = 0;
+            foreach (USER item in UserFriends)
+            {
+                Polozky[i] = item.Nick;
+                i++;
+            }
+           
+            int Vybrana = 0; // Urcuje vybranou polozku v menu
+
+            while (true) // Hlida tlacitka a vykresluje menu
+            {
+                VykresliContactMod(Polozky, Vybrana); // Vykresluje menu
+
+                Tlacitko = Console.ReadKey().Key; // Ceka na zmacknuti tlacitka
+
+                if (Tlacitko == ConsoleKey.UpArrow) // ↑
+                {
+                    Vybrana--; // Zmensi Vybrana o 1
+                    if (Vybrana < 0) // Pokud je Vybrana mensi nez 0
+                        Vybrana = Polozky.Length - 1; // Skoci na posledni polozku (Vybrana se precisluje)
+                }
+                else if (Tlacitko == ConsoleKey.DownArrow) // ↓
+                {
+                    Vybrana++; // Zvetsi Vybrana o 1
+                    if (Vybrana > Polozky.Length - 1) // Pokud je Vybrana vetsi nez index posleni polozky
+                        Vybrana = 0; // Skoci na prvni polozku (Vybrana se precisluje)
+                }
+                else if (Tlacitko == ConsoleKey.Enter) // Pokud se zmackne Enter
+                {
+                    Friend = new USER() { Nick = Polozky[Vybrana] };
+
+                    foreach (USER item in UserFriends)
+                    {
+                        if (item.Nick == Friend.Nick)
+                        {
+                            Friend.Id = item.Id;
+                            Friend.Login = item.Login;
+                            Friend.Password = item.Password;
+                            Friend.Nick = item.Nick;
+                            Friend.Photo = item.Photo;
+                        }
+                    }
+
+                    return 10; // Vrati hodnotu ktera se pouzije jako cislo modu (Vybrana = 0; - Enter -, vrati 1 jako Mod = 1)
+                }
+            }
+        }
+
+        static void VykresliContactMod(string[] Polozky, int Vybrana)
+        {
             Console.Clear(); // Vymaze konzoli
             Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
             Console.CursorVisible = false; // Kurzor neni videt
@@ -351,16 +407,60 @@ namespace ClientConsole
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
 
-            GetFriends().Wait();
-            foreach (USER item in UserFriends)
+            int Krok = 0; // Pomaha vykreslit vybranou polozku cervene
+
+            foreach (string polozka in Polozky) // Vypise pole stringu
             {
-                Console.WriteLine(item.Nick);
+                if (Krok == Vybrana) // Na zacatku bude prvni polozka cervena protoze Krok = 0 && Vybrana = 0
+                {
+                    Console.BackgroundColor = ConsoleColor.White; // Nastavi pozadi na cernou barvu
+                    Console.Write(" "); // Odsadí mezeru
+                    Console.ForegroundColor = ConsoleColor.White; // Nastavi vybranou polozku na cervenou barvu
+                    Console.BackgroundColor = ConsoleColor.DarkGray; // Nastavi pozadi vybrane polozky na zlutou barvu
+                    Console.WriteLine(polozka); // Vypise vsechny polozky
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Black; // Vse ostatni na zlutou barvu
+                    Console.WriteLine("  " + polozka); // Vypise vsechny polozky
+                }
+                Console.BackgroundColor = ConsoleColor.White; // Nastavi pozadi na cernou barvu
+
+                Krok++; // Zvetsi Krok o 1
             }
 
+            //return 4;
+        }
+
+        static int MessageMod()
+        {
+            Console.Clear(); // Vymaze konzoli
+            Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
+            Console.CursorVisible = false; // Kurzor neni videt
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+
+            //VykresleniNazvu(); // Vykresli Nadpis
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("             MESSAGE               "); // Vypise HighScore fialove
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("Your friend:   " + Friend.Nick + "   ");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine();
+
+            Console.WriteLine("Id: " + Friend.Id);
+            Console.WriteLine("Login: " + Friend.Login);
+            Console.WriteLine("Nick: " + Friend.Nick);
+            Console.WriteLine("Password: " + Friend.Password);
+            Console.WriteLine("Photo: " + Friend.Photo);
 
             Console.ReadLine();
 
-            return 4;
+            return 0;
         }
 
         static async Task GetFriends()
