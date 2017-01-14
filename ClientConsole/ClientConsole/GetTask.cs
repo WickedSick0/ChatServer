@@ -19,7 +19,7 @@ namespace ClientConsole
         }
 
         //GET
-        public async Task<T> GetUserAsync(string path)
+        public async Task<T> GetAsync(string path)
         {
             T var = null;
             HttpResponseMessage response = await this.client.GetAsync(path);

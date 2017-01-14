@@ -17,6 +17,7 @@ namespace ClientConsole
         static ConsoleKey Tlacitko = ConsoleKey.F1; // Ukladani zmacknutych tlacitek do Tlacitko
         static bool IsLoginbValid = false;
         static USER LoggedInUser = new USER();
+        static List<USER> UserFriends = new List<USER>();
 
         static void Main(string[] args)
         {
@@ -30,10 +31,12 @@ namespace ClientConsole
                     Mod = LogInMod(); // Mod = PlayMod()
                 else if (Mod == 2) // Skoci do OptionMod 2
                     Mod = RegisterMod(); // Mod = OptionsMod()
-                else if (Mod == 4) // Skoci do OptionMod 2
-                    Mod = UserMod(); // Mod = OptionsMod()
                 else if (Mod == 3) // Exit 3
                     Mod = -1;
+                else if (Mod == 4) // Skoci do OptionMod 2
+                    Mod = UserMenuMod(); // Mod = OptionsMod()
+                else if (Mod == 5) // Skoci do OptionMod 2
+                    Mod = ContactMod(); // Mod = OptionsMod()
             } // Konec programu   
 
             //RunAsync().Wait();
@@ -139,7 +142,7 @@ namespace ClientConsole
             if (IsLoginbValid)
             { 
                 Console.WriteLine("Login successful");
-                System.Threading.Thread.Sleep(2000);
+                //System.Threading.Thread.Sleep(2000);
 
                 return 4;
                 //todo
@@ -165,7 +168,7 @@ namespace ClientConsole
         static async Task CheckLogin()
         {
             GetTask<List<USER>> GetUsers = new GetTask<List<USER>>();
-            foreach (USER item in await GetUsers.GetUserAsync($"api/USERs/"))
+            foreach (USER item in await GetUsers.GetAsync($"api/USERs/"))
             {
                 if (item.Login == LoggedInUser.Login && item.Password == LoggedInUser.Password)
                 {
@@ -230,39 +233,157 @@ namespace ClientConsole
         } // RegisterMod konec
 
 
-        static int UserMod()
+        //static int UserMod()
+        //{
+        //    Console.Clear();
+        //    Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
+        //    Console.CursorVisible = true;
+
+        //    Console.ForegroundColor = ConsoleColor.White;
+        //    Console.BackgroundColor = ConsoleColor.DarkYellow;
+        //    Console.WriteLine("              USER PROFILE               "); // Vypise HighScore fialove
+        //    Console.ForegroundColor = ConsoleColor.White;
+        //    Console.BackgroundColor = ConsoleColor.DarkGray;
+        //    Console.WriteLine("Your nick: " + LoggedInUser.Nick + "    ");
+        //    Console.BackgroundColor = ConsoleColor.White;
+        //    Console.ForegroundColor = ConsoleColor.Black;
+        //    Console.WriteLine();
+
+        //    //Console.WriteLine("Id: " + LoggedInUser.Id);
+        //    //Console.WriteLine("Login: " + LoggedInUser.Login);
+        //    //Console.WriteLine("Nick: " + LoggedInUser.Nick);
+        //    //Console.WriteLine("Password: " + LoggedInUser.Password);
+        //    //Console.WriteLine("Photo: " + LoggedInUser.Photo);
+
+        //    Console.ReadLine();
+
+        //    return 0;
+        //}
+
+        static int UserMenuMod()
         {
-            Console.Clear();
+            string[] Polozky = new string[] { "              Contacts                     ", "              Add contact                  ", "              Chatrooms                    ", "              Add Chatroom                 " }; // Pole stringů položky v menu
+            int Vybrana = 0; // Urcuje vybranou polozku v menu
+
+            while (true) // Hlida tlacitka a vykresluje menu
+            {
+                VykresliUserMenu(Polozky, Vybrana); // Vykresluje menu
+
+                Tlacitko = Console.ReadKey().Key; // Ceka na zmacknuti tlacitka
+
+                if (Tlacitko == ConsoleKey.UpArrow) // ↑
+                {
+                    Vybrana--; // Zmensi Vybrana o 1
+                    if (Vybrana < 0) // Pokud je Vybrana mensi nez 0
+                        Vybrana = Polozky.Length - 1; // Skoci na posledni polozku (Vybrana se precisluje)
+                }
+                else if (Tlacitko == ConsoleKey.DownArrow) // ↓
+                {
+                    Vybrana++; // Zvetsi Vybrana o 1
+                    if (Vybrana > Polozky.Length - 1) // Pokud je Vybrana vetsi nez index posleni polozky
+                        Vybrana = 0; // Skoci na prvni polozku (Vybrana se precisluje)
+                }
+                else if (Tlacitko == ConsoleKey.Enter) // Pokud se zmackne Enter
+                    return Vybrana + 1 + 4; // Vrati hodnotu ktera se pouzije jako cislo modu (Vybrana = 0; - Enter -, vrati 1 jako Mod = 1)
+            }
+        }
+
+        static void VykresliUserMenu(string[] Polozky, int Vybrana) // Vykresluje menu
+        {
+            Console.Clear(); // Vymaze konzoli
             Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
-            Console.CursorVisible = true;
+            Console.CursorVisible = false; // Kurzor neni videt
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+
+            //VykresleniNazvu(); // Vykresli Nadpis
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("              USER PROFILE               "); // Vypise HighScore fialove
+            Console.WriteLine("                USER PROFILE                 "); // Vypise HighScore fialove
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("Your nick: " + LoggedInUser.Nick + "    ");
+            Console.WriteLine("Your nick:   " + LoggedInUser.Nick + "   ");
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
 
-            //Console.WriteLine("Id: " + LoggedInUser.Id);
-            //Console.WriteLine("Login: " + LoggedInUser.Login);
-            //Console.WriteLine("Nick: " + LoggedInUser.Nick);
-            //Console.WriteLine("Password: " + LoggedInUser.Password);
-            //Console.WriteLine("Photo: " + LoggedInUser.Photo);
+            int Krok = 0; // Pomaha vykreslit vybranou polozku cervene
+
+            foreach (string polozka in Polozky) // Vypise pole stringu
+            {
+                if (Krok == Vybrana) // Na zacatku bude prvni polozka cervena protoze Krok = 0 && Vybrana = 0
+                {
+                    Console.BackgroundColor = ConsoleColor.White; // Nastavi pozadi na cernou barvu
+                    Console.Write(" "); // Odsadí mezeru
+                    Console.ForegroundColor = ConsoleColor.White; // Nastavi vybranou polozku na cervenou barvu
+                    Console.BackgroundColor = ConsoleColor.DarkGray; // Nastavi pozadi vybrane polozky na zlutou barvu
+                    Console.WriteLine(polozka); // Vypise vsechny polozky
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Black; // Vse ostatni na zlutou barvu
+                    Console.WriteLine("  " + polozka); // Vypise vsechny polozky
+                }
+                Console.BackgroundColor = ConsoleColor.White; // Nastavi pozadi na cernou barvu
+
+                Krok++; // Zvetsi Krok o 1
+            }
+        } // VykresleniMenu konec
+
+        static int ContactMod()
+        {
+            Console.Clear(); // Vymaze konzoli
+            Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
+            Console.CursorVisible = false; // Kurzor neni videt
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+
+            //VykresleniNazvu(); // Vykresli Nadpis
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("             YOUR CONTACT LIST               "); // Vypise HighScore fialove
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("Your nick:   " + LoggedInUser.Nick + "   ");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine();
+
+            GetFriends().Wait();
+            foreach (USER item in UserFriends)
+            {
+                Console.WriteLine(item.Nick);
+            }
+
 
             Console.ReadLine();
 
-            return 0;
+            return 4;
         }
 
-        static int UserMenuMod()
+        static async Task GetFriends()
         {
+            GetTask<List<USER_FRIENDS>> GetUserFriends = new GetTask<List<USER_FRIENDS>>();
+            List<USER_FRIENDS> UserFriendsss = await GetUserFriends.GetAsync($"api/USER_FRIENDS");
+            List<int> temp = new List<int>();
+            foreach (USER_FRIENDS item in UserFriendsss)
+            {
+                if (item.Id_Friendlist_Owner == LoggedInUser.Id)
+                    temp.Add(item.Id_Friend);
+            }
 
-            return 0;
+            GetTask<USER> GetUser = new GetTask<USER>();
+            List<USER> GetUsers = new List<USER>();
+            foreach (int item in temp)
+            {
+                GetUsers.Add(await GetUser.GetAsync($"api/USERs/" + item));
+            }
+
+            UserFriends = GetUsers;
         }
-
+        
         private static string readLineWithCancel()
         {
             string result = null;
@@ -307,7 +428,7 @@ namespace ClientConsole
 
             // Get the user
             GetTask<USER> GetUser = new GetTask<USER>();
-            USER user = await GetUser.GetUserAsync($"api/USERs/1");
+            USER user = await GetUser.GetAsync($"api/USERs/1");
             Console.WriteLine("Id: " + user.Id);
             Console.WriteLine("Login: " + user.Login);
             Console.WriteLine("Nick: " + user.Nick);
@@ -318,7 +439,7 @@ namespace ClientConsole
 
             // Get users
             GetTask<List<USER>> GetUsers = new GetTask<List<USER>>();
-            foreach (USER item in await GetUsers.GetUserAsync($"api/USERs/"))
+            foreach (USER item in await GetUsers.GetAsync($"api/USERs/"))
             {
                 Console.WriteLine("Id: " + item.Id + ", Login: " + item.Login + ", Nick: " + item.Nick + ", Password: " + item.Password + ", Photo: " + item.Photo);
             }
