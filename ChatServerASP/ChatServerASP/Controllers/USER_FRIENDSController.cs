@@ -38,6 +38,7 @@ namespace ChatServerASP.Controllers
         }
 
         /*
+        //test
         // GET: api/USER_FRIENDS/5
         //[ResponseType(typeof(USER_FRIENDS))]
         public ActionResult GetUSER_FRIENDSbyUser(int id_Owner)
