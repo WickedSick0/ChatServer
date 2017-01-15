@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatServerASP.Models.Tables;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -20,6 +21,7 @@ namespace ChatServerASP.Models
         public DbSet<USER> Users { get; set; }
 
         public DbSet<USER_FRIENDS> User_friends { get; set; }
+        public DbSet<USER_TOKENS> User_tokens { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
