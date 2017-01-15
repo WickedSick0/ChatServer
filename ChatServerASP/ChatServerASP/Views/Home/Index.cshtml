@@ -11,7 +11,9 @@
     <button class="btn btn-danger" id="xxx">xxx</button>
     <div id="results"></div>
     <textarea id="textArea"></textarea>
-    <button class="btn btn-danger" id="btnPost">SEND</button>
+    <button class="btn btn-danger" id="btnPost">SEND</button></br>
+    <input type="number" id="numberchatroomtodelete"/>
+    <button class="btn btn-danger" id="btndeletechatroom">DELETE CHATROOMS</button>
     <div id="msg"></div>
 </div>
 JEDE TO
@@ -85,5 +87,18 @@ ALE FAKT s
         });
     });
         /*TOKEN(FOOXXX) <-AUTH(POST,DELETE) ->/api/auth/username,passw*/
+        $('#btndeletechatroom').click(function () {
+            var numberofchatroom = $('#numberchatroomtodelete').val();
+        $.ajax({
+            url: '/api/CHATROOMs/' + numberofchatroom,
+            type: 'delete',
+        }).success(function (response) {
+            //console.log(response);
+
+            $('#msg').append(
+                $('<div />', { class: 'MESSAGE', html:" POVEDLO SE" })
+            );
+        });
+    });
     </script>
 }
