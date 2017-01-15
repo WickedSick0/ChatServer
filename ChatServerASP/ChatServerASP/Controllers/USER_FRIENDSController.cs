@@ -26,8 +26,14 @@ namespace ChatServerASP.Controllers
 
         // GET: api/USER_FRIENDS/5
         [ResponseType(typeof(USER_FRIENDS))]
-        public async Task<IHttpActionResult> GetUSER_FRIENDS(int id)
+        public async Task<List<USER>> GetUSER_FRIENDS(int id)
         {
+            User_friendsRepository rep = new User_friendsRepository();
+
+            return rep.FindFriendsByOwner(id).ToList();
+
+            //original
+            /*
             USER_FRIENDS uSER_FRIENDS = await db.User_friends.FindAsync(id);
             if (uSER_FRIENDS == null)
             {
@@ -35,47 +41,8 @@ namespace ChatServerASP.Controllers
             }
 
             return Ok(uSER_FRIENDS);
+            */
         }
-
-        /*
-        //test
-        // GET: api/USER_FRIENDS/5
-        //[ResponseType(typeof(USER_FRIENDS))]
-        public ActionResult GetUSER_FRIENDSbyUser(int id_Owner)
-        {
-            //USER_FRIENDS uSER_FRIENDS = await db.User_friends;
-
-            //GetTask<List<USER_FRIENDS>> GetUserFriends = new GetTask<List<USER_FRIENDS>>();
-            List<USER_FRIENDS> UserFriendsss = GetUser_friends().ToList();
-            List<int> temp = new List<int>();
-
-            foreach (USER_FRIENDS item in UserFriendsss)
-            {
-                if (item.Id_Friendlist_Owner == id_Owner)
-                    temp.Add(item.Id_Friend);
-            }
-
-            //GetTask<USER> GetUser = new GetTask<USER>();
-            List<USER> GetUsers = new List<USER>();
-            USERsController u = new USERsController();
-            foreach (int item in temp)
-            {
-                //GetUsers.Add(await GetUser.GetAsync($"api/USERs/" + item));
-                GetUsers.Add(RedirectToAction("GetUSER", "USERs", item));
-            }
-
-            UserFriends = GetUsers;
-
-
-
-            if (uSER_FRIENDS == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(uSER_FRIENDS);
-        }
-        */
 
         // PUT: api/USER_FRIENDS/5
         [ResponseType(typeof(void))]

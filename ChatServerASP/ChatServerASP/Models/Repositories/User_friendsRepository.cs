@@ -11,7 +11,26 @@ namespace ChatServerASP.Models
 
         public List<USER_FRIENDS> FindAll()
         {
+
             return this._context.User_friends.ToList<USER_FRIENDS>();
+        }
+
+        public List<USER> FindFriendsByOwner(int id_Owner)
+        {
+            UserRepository rep = new UserRepository();
+            List<USER> friends = new List<USER>();
+            List<int> temp = new List<int>();
+             
+            foreach (USER_FRIENDS item in this.FindAll())
+            {
+                if (item.Id_Friendlist_Owner == id_Owner)
+                    temp.Add(item.Id_Friend);
+            }
+
+            foreach (int item in temp)
+                friends.Add(rep.FindById(item));
+
+            return friends;
         }
 
         public USER_FRIENDS FindById(int id)

@@ -465,6 +465,11 @@ namespace ClientConsole
 
         static async Task GetFriends()
         {
+            GetTask<List<USER>> GetUserFriends = new GetTask<List<USER>>();
+            List<USER> UserFriendsss = await GetUserFriends.GetAsync($"api/USER_FRIENDS/" + LoggedInUser.Id);
+
+            UserFriends = UserFriendsss;
+            /*
             GetTask<List<USER_FRIENDS>> GetUserFriends = new GetTask<List<USER_FRIENDS>>();
             List<USER_FRIENDS> UserFriendsss = await GetUserFriends.GetAsync($"api/USER_FRIENDS");
             List<int> temp = new List<int>();
@@ -482,6 +487,7 @@ namespace ClientConsole
             }
 
             UserFriends = GetUsers;
+            */
         }
         
         private static string readLineWithCancel()
