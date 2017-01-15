@@ -31,13 +31,20 @@ namespace ClientConsole
         }
 
         //POST
-        public async Task<Uri> CreateUserAsync(string path, T var)
+        public async Task<Uri> CreateAsync(string path, T var)
         {
             HttpResponseMessage response = await this.client.PostAsJsonAsync(path, var);
             response.EnsureSuccessStatusCode();
 
             // return URI of the created resource.
             return response.Headers.Location;
+        }
+
+        //DELETE
+        public async Task<HttpStatusCode> DeleteAsync(string path)
+        {
+            HttpResponseMessage response = await this.client.DeleteAsync(path);
+            return response.StatusCode;
         }
     }
 }

@@ -23,6 +23,12 @@ namespace ClientConsole
         {
             Console.BackgroundColor = ConsoleColor.White;
 
+            //GetTask<USER> DeleteUser = new GetTask<USER>();
+            //DeleteUser.DeleteAsync("api/USERs/15").Wait();
+
+            //GetTask<CHATROOM> DeleteChatroom = new GetTask<CHATROOM>();
+            //DeleteChatroom.DeleteAsync("api/CHATROOMs/4").Wait();
+
             while (Mod != -1) // Pokud se Mod = -1 program se ukonci
             {
                 if (Mod == 0) // Skoci do MenuMod 0
@@ -125,7 +131,7 @@ namespace ClientConsole
 
         static async Task RunAsync()
         {
-
+            /*
             // Create a new user
             //USER user = new USER() { Nick = "test" };
 
@@ -150,6 +156,7 @@ namespace ClientConsole
             {
                 Console.WriteLine("Id: " + item.Id + ", Login: " + item.Login + ", Nick: " + item.Nick + ", Password: " + item.Password + ", Photo: " + item.Photo);
             }
+            */
 
             /*
             // Update the user
@@ -161,10 +168,12 @@ namespace ClientConsole
             user = await GetUserAsync(url.PathAndQuery);
             Showuser(user);
 
-            // Delete the user
-            var statusCode = await DeleteUserAsync(user.Id.ToString());
-            Console.WriteLine($"Deleted (HTTP Status = {(int)statusCode})");
             */
+
+            // Delete the user
+            //var statusCode = await DeleteUserAsync("16");
+            //Console.WriteLine($"Deleted (HTTP Status = {(int)statusCode})");
+            
         }
 
         //GET
