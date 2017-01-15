@@ -10,6 +10,9 @@
     WHAZAAP
     <button class="btn btn-danger" id="xxx">xxx</button>
     <div id="results"></div>
+    <textarea id="textArea"></textarea>
+    <button class="btn btn-danger" id="btnPost">SEND</button>
+    <div id="msg"></div>
 </div>
 JEDE TO
 ALE FAKT s
@@ -38,6 +41,10 @@ ALE FAKT s
 
 @section scripts {
     <script>
+        /*
+        window.basePath = 'http://localhost:1324/xxx/';
+        */
+
     //document.getElementById("xxx")
     $('#xxx').click(function () {
         $.ajax({
@@ -47,7 +54,7 @@ ALE FAKT s
             //console.log(response);
 
             $('#results').append(
-                $('<div />', { class: 'MESSAGE' , html: response.Send_time })
+                $('<div />', { class: 'MESSAGE' , html: response.Send_time + " POVEDLO SE" })
             );
         });
     });
@@ -62,5 +69,21 @@ ALE FAKT s
                 );
         });
     });
+
+    $('#btnPost').click(function () {
+        var message = { 'Message_text': $("#textArea").val(), 'Id_Chatroom': (/*THIS.ROOM*/"1"), 'Id_User_Post': (/*THIS.SENDER*/ "1") };
+        $.ajax({
+            url: '/api/MESSAGEs/',
+            type: 'post',
+            data: message
+        }).success(function (response) {
+            //console.log(response);
+
+            $('#msg').append(
+                $('<div />', { class: 'MESSAGE', html: "Message sent" })
+            );
+        });
+    });
+        /*TOKEN(FOOXXX) <-AUTH(POST,DELETE) ->/api/auth/username,passw*/
     </script>
 }
