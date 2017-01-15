@@ -25,8 +25,14 @@ namespace ChatServerASP.Controllers
 
         // GET: api/CHATROOM_MEMBERS/5
         [ResponseType(typeof(CHATROOM_MEMBERS))]
-        public async Task<IHttpActionResult> GetCHATROOM_MEMBERS(int id)
+        public async Task<List<CHATROOM>> GetCHATROOM_MEMBERS(int id)
         {
+            Chatroom_membersRepository rep = new Chatroom_membersRepository();
+
+            return rep.FindChatroomByUser(id).ToList();
+
+            //original
+            /*
             CHATROOM_MEMBERS cHATROOM_MEMBERS = await db.Chatroom_members.FindAsync(id);
             if (cHATROOM_MEMBERS == null)
             {
@@ -34,6 +40,7 @@ namespace ChatServerASP.Controllers
             }
 
             return Ok(cHATROOM_MEMBERS);
+            */
         }
 
         // PUT: api/CHATROOM_MEMBERS/5
