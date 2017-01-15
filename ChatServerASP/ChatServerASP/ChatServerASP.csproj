@@ -222,10 +222,12 @@
     <Compile Include="Controllers\MESSAGE_READING_INFOController.cs" />
     <Compile Include="Controllers\USERsController.cs" />
     <Compile Include="Controllers\USER_FRIENDSController.cs" />
+    <Compile Include="Controllers\USER_TOKENSController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Repositories\User_tokensRepository.cs" />
     <Compile Include="Models\Tables\CHATROOM.cs" />
     <Compile Include="Models\Repositories\ChatroomRepository.cs" />
     <Compile Include="Models\Tables\CHATROOM_MEMBERS.cs" />
@@ -241,6 +243,7 @@
     <Compile Include="Models\Repositories\UserRepository.cs" />
     <Compile Include="Models\Tables\USER_FRIENDS.cs" />
     <Compile Include="Models\Repositories\User_friendsRepository.cs" />
+    <Compile Include="Models\Tables\USER_TOKENS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
