@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,12 +29,48 @@ namespace ClientConsole
             //USER user = new USER();
             Console.Write("Enter your login: ");
 
-            Program.LoggedInUser.Login = readLineWithCancel();
-            if (Back)
+            //Program.LoggedInUser.Login = readLineWithCancel();
+            //StringBuilder sb = new StringBuilder();
+
+            //string result = null;
+            //ConsoleKeyInfo info = Console.ReadKey(true);
+            //while (info.Key != ConsoleKey.Enter && info.Key != ConsoleKey.Escape)
+            //{
+            //    if (info.Key != ConsoleKey.Backspace)
+            //    {
+            //        Console.Write(info.KeyChar);
+            //        sb.Append(info.KeyChar);
+            //    }
+            //    else if (sb.Length >= 1)
+            //    {
+            //        Console.Write("\b ");
+            //        sb.Length--;
+            //        Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+            //    }
+            //    info = Console.ReadKey(true);
+            //}
+
+            //if (info.Key == ConsoleKey.Enter)
+            //{
+            //    Console.WriteLine();
+            //    result = sb.ToString();
+            //}
+
+            //if (info.Key == ConsoleKey.Escape)
+            //{
+            //    return 0;
+            //}
+
+            //Program.LoggedInUser.Login = result;
+
+            //ReadWithESC r = new ReadWithESC();
+            Program.LoggedInUser.Login = ReadWithESC.ReadLineWithESC();
+            if (ReadWithESC.GoBack)
                 return 0;
+
             Console.Write("Enter your password: ");
-            Program.LoggedInUser.Password = readLineWithCancel();
-            if (Back)
+            Program.LoggedInUser.Password = ReadWithESC.ReadLineWithESC();
+            if (ReadWithESC.GoBack)
                 return 0;
 
             Console.WriteLine();
@@ -98,25 +135,59 @@ namespace ClientConsole
             return result;
         }
 
-
+        public static HttpClient client = new HttpClient();
         static async Task CheckLogin()
         {
-            GetTask<List<USER>> GetUsers = new GetTask<List<USER>>();
-            foreach (USER item in await GetUsers.GetAsync($"api/USERs/"))
+            USER u = new USER()
             {
-                if (item.Login == Program.LoggedInUser.Login && item.Password == Program.LoggedInUser.Password)
-                {
-                    Program.LoggedInUser.Id = item.Id;
-                    Program.LoggedInUser.Login = item.Login;
-                    Program.LoggedInUser.Password = item.Password;
-                    Program.LoggedInUser.Nick = item.Nick;
-                    Program.LoggedInUser.Photo = item.Photo;
-                    IsLoginbValid = true;
-                    break;
-                }
-                else
-                    IsLoginbValid = false;
-            }
+                Login = Program.LoggedInUser.Login,
+                Password = Program.LoggedInUser.Password
+            };
+
+            //Program.LoggedInUser = await CreateUserAsync(u);
+
+            //Program.LoggedInUser = CreateUserAsync(u);
+            var url = await CreateUserAsync();
+
+            Console.WriteLine(url);
+            Console.ReadLine();
+
+
+            //GetTask<string> GetUser = new GetTask<string>();
+            //USER u = GetUser.CreateAsync("/Account/login/", Program.LoggedInUser.Login + ":" + Program.LoggedInUser.Password);
+
+            //HttpResponseMessage response = await client.PostAsJsonAsync("/Account/login/", Program.LoggedInUser.Login + ":" + Program.LoggedInUser.Password);
+            //response.EnsureSuccessStatusCode();
+
+            //// return URI of the created resource.
+            //return response.Headers.Location;
+
+            //GetTask<List<USER>> GetUsers = new GetTask<List<USER>>();
+            //foreach (USER item in await GetUsers.GetAsync($"api/USERs/"))
+            //{
+            //    if (item.Login == Program.LoggedInUser.Login && item.Password == Program.LoggedInUser.Password)
+            //    {
+            //        Program.LoggedInUser.Id = item.Id;
+            //        Program.LoggedInUser.Login = item.Login;
+            //        Program.LoggedInUser.Password = item.Password;
+            //        Program.LoggedInUser.Nick = item.Nick;
+            //        Program.LoggedInUser.Photo = item.Photo;
+            //        IsLoginbValid = true;
+            //        break;
+            //    }
+            //    else
+            //        IsLoginbValid = false;
+            //}
+        }
+
+        //POST
+        static async Task<Uri> CreateUserAsync()
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync("/Account/Login", Program.LoggedInUser);
+            response.EnsureSuccessStatusCode();
+
+            // return URI of the created resource.
+            return response.Headers.Location;
         }
     }
 }

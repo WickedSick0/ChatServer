@@ -66,29 +66,28 @@ namespace ChatServerASP.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<USER> Logins(USER u)
         {
-            if (!ModelState.IsValid)
+            UserRepository rep = new UserRepository();
+            //string[] pole = new string[2];
+            //pole = s.Split(':');
+            //USER u = new USER();
+
+            foreach (USER item in rep.FindAll())
             {
-                return View(model);
+                if (item.Login == u.Login && item.Password == u.Password)
+                {
+                    u.Id = item.Id;
+                    u.Login = item.Login;
+                    u.Password = item.Password;
+                    u.Nick = item.Nick;
+                    u.Photo = item.Photo;
+
+                    break;
+                }
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
+            return u;
         }
 
         //
