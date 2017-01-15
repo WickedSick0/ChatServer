@@ -9,6 +9,7 @@
     <button class="btn-danger" id="strasa">STRASA</button>
     WHAZAAP
     <button class="btn btn-danger" id="xxx">xxx</button>
+    <button class="btn btn-default" id="gimme">Gimme</button>
     <div id="results"></div>
 </div>
 JEDE TO
@@ -62,5 +63,17 @@ ALE FAKT s
                 );
         });
     });
+
+    $('#gimme').click(function () {
+        $.ajax({
+            url: '/api/Users',
+            type: 'get'
+        }).success(function (data) {
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].Login);
+                $('#results').append("<div>" + data[i].Login + "</div>")
+            }
+        })
+    })
     </script>
 }
