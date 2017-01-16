@@ -1,13 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace ChatServerASP.Models
 {
-    public class UserRepository
+    public class UserRepository : IDisposable
     {
         private MyContext _context = new MyContext();
+
+        private UserManager<IdentityUser> _userManager;
 
         public List<USER> FindAll()
         {
@@ -42,6 +47,18 @@ namespace ChatServerASP.Models
             USER u = this.FindById(id);
             this._context.Users.Remove(u);
             this._context.SaveChanges();
+        }
+
+        public async Task<IdentityUser> FindUser(string userName, string password)
+        {
+            IdentityUser user = await _userManager.FindAsync(userName, password);
+
+            return user;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

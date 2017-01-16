@@ -31,6 +31,8 @@
             this.btn_send = new System.Windows.Forms.Button();
             this.msg = new System.Windows.Forms.TextBox();
             this.btn_get = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_send
@@ -61,16 +63,26 @@
             this.btn_get.UseVisualStyleBackColor = true;
             this.btn_get.Click += new System.EventHandler(this.btn_get_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(198, 330);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 492);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_get);
             this.Controls.Add(this.msg);
             this.Controls.Add(this.btn_send);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,6 +93,7 @@
         private System.Windows.Forms.Button btn_send;
         private System.Windows.Forms.TextBox msg;
         private System.Windows.Forms.Button btn_get;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
