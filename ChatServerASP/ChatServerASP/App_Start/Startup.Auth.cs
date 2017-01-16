@@ -6,7 +6,6 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using ChatServerASP.Models;
-using Microsoft.Owin.Security.OAuth;
 
 namespace ChatServerASP
 {
@@ -64,21 +63,6 @@ namespace ChatServerASP
             //    ClientId = "",
             //    ClientSecret = ""
             //});
-
-
-            /*     ?      */
-            /*
-            var oAuthOptions = new OAuthAuthorizationServerOptions
-            {
-                TokenEndpointPath = new PathString("/Token"),
-                Provider = new ApplicationOAuthProvider("self"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-                // https
-                AllowInsecureHttp = false
-            };
-            // Enable the application to use bearer tokens to authenticate users
-            app.UseOAuthBearerTokens(oAuthOptions);
-            */
         }
     }
 }
