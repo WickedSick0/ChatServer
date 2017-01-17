@@ -30,11 +30,15 @@ namespace ClientConsole
             return var;
         }
 
+        public HttpResponseMessage res = new HttpResponseMessage();
+
         //POST
         public async Task<Uri> CreateAsync(string path, T var)
         {
             HttpResponseMessage response = await this.client.PostAsJsonAsync(path, var);
             response.EnsureSuccessStatusCode();
+
+            res = response;
 
             // return URI of the created resource.
             return response.Headers.Location;

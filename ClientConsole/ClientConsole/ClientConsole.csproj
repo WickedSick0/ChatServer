@@ -66,6 +66,7 @@
     <Compile Include="USER.cs" />
     <Compile Include="UserMenu.cs" />
     <Compile Include="USER_FRIENDS.cs" />
+    <Compile Include="USER_TOKENS.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

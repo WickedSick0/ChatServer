@@ -28,26 +28,13 @@ namespace ChatServerASP.Controllers
         //[ResponseType(typeof(USER_TOKENS))]
         public async Task<IHttpActionResult> GetUSER_TOKENS(int id)
         {
-            USER_TOKENS token = new USER_TOKENS();
-
-            char[] chars = "$%#@!*abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ^&".ToCharArray();
-            Random r = new Random();
-
-            string timestring = DateTime.Now.ToString("{0}{1}yyyy{2}{3}MM{4}dd{5}{6}T{7}{8}HH{9}mm{10}{11}ss{12}ffff{13}");
-            string hash = string.Format(timestring,
-                chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
-                chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
-                chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
-                chars[r.Next(chars.Length)], chars[r.Next(chars.Length)]
-                );
-            return Ok(hash);
-            /*USER_TOKENS user_tokens = await db.User_tokens.FindAsync(id);
+            USER_TOKENS user_tokens = await db.User_tokens.FindAsync(id);
             if (user_tokens == null)
             {
                 return NotFound();
             }
 
-            return Ok(user_tokens);*/
+            return Ok(user_tokens);
         }
 
         // PUT api/USER_TOKENS/5
@@ -121,6 +108,7 @@ namespace ChatServerASP.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = token.Id }, token);
             //return Ok(token.Token);
+            //return await GetUSER_TOKENS(token.Id);
         }
 
         // DELETE api/USER_TOKENS/5
