@@ -13,7 +13,8 @@
     <textarea id="textArea"></textarea>
     <button class="btn btn-danger" id="btnPost">SEND</button></br>
     <input type="number" id="numberchatroomtodelete"/>
-    <button class="btn btn-danger" id="btndeletechatroom">DELETE CHATROOMS</button>
+    <button class="btn btn-danger" id="btndeletechatroom">DELETE CHATROOMS</button><br />
+    <button class="btn btn-danger" id="testkoren">TEST</button>
     <div id="msg"></div>
 </div>
 JEDE TO
@@ -99,6 +100,24 @@ ALE FAKT s
                 $('<div />', { class: 'MESSAGE', html:" POVEDLO SE" })
             );
         });
-    });
+        });
+
+        $('#testkoren').click(
+            function () {
+                $.ajax({
+                    url: '/api/User_Tokens/1',
+                    type: 'get'
+                }).success(
+                function (response) {
+                    $('#msg').append(
+                $('<div />', { html: response })
+            );
+
+                }
+                )
+
+            }
+            )
+
     </script>
 }
