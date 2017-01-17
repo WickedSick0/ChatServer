@@ -22,6 +22,15 @@ namespace ClientWindowsForms
             client.BaseAddress = new Uri("http://localhost:53098/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            /*client.DefaultRequestHeaders.Authorization =
+           new AuthenticationHeaderValue(
+                "Basic", 
+                 Convert.ToBase64String(
+                     System.Text.ASCIIEncoding.ASCII.GetBytes(
+                 string.Format("{0}:{1}", "admin", "admin"))));*/
+           // HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:53098/token");
+          //  request.Content = new StringContent("{\"UserName\":\"admin\",\"PassWord\":admin}");
+          //  client.SendAsync(request);
             InitializeComponent();
         }
 
@@ -47,9 +56,19 @@ namespace ClientWindowsForms
 
         private void btn_get_Click(object sender, EventArgs e)
         {
+            /*var pairs = new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>( "grant_type", "password" ),
+                        new KeyValuePair<string, string>( "UserName", "admin" ),
+                        new KeyValuePair<string, string> ( "Password", "admin" )
+                    };
+            var content = new FormUrlEncodedContent(pairs);
+
+             var token = client.PostAsync("http://localhost:53098/token", content);*/
 
 
-            
+
+
             HttpResponseMessage response = client.GetAsync("/api/MESSAGEs/").Result;
             //Client<MESSAGE> clnt = new Client<MESSAGE>();
             //var emp = clnt.GetAsync("/api/MESSAGEs/1");
