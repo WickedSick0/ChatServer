@@ -6,8 +6,8 @@ using ChatServerASP.Providers;
 using Microsoft.Owin.Security.OAuth;
 using System.Web.Http;
 
-//OLD
-/*[assembly: OwinStartupAttribute(typeof(ChatServerASP.Startup))]
+
+[assembly: OwinStartupAttribute(typeof(ChatServerASP.Startup))]
 namespace ChatServerASP
 {
     public partial class Startup
@@ -17,11 +17,10 @@ namespace ChatServerASP
             ConfigureAuth(app);
         }
     }
-}*/
+}
 
 
-
-
+/*
 [assembly: OwinStartup(typeof(ChatServerASP.Startup))]
 
 namespace ChatServerASP
@@ -50,4 +49,5 @@ namespace ChatServerASP
 
     }
 }
+*/
 
