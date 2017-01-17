@@ -28,10 +28,12 @@ namespace ClientWindowsForms
                  Convert.ToBase64String(
                      System.Text.ASCIIEncoding.ASCII.GetBytes(
                  string.Format("{0}:{1}", "admin", "admin"))));*/
-           // HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:53098/token");
-          //  request.Content = new StringContent("{\"UserName\":\"admin\",\"PassWord\":admin}");
-          //  client.SendAsync(request);
+            // HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:53098/token");
+            //  request.Content = new StringContent("{\"UserName\":\"admin\",\"PassWord\":admin}");
+            //  client.SendAsync(request);
+           
             InitializeComponent();
+
         }
 
         private void btn_send_Click(object sender, EventArgs e)
