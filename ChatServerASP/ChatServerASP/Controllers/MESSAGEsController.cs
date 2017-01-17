@@ -18,7 +18,7 @@ namespace ChatServerASP.Controllers
         private MyContext db = new MyContext();
 
         // GET: api/MESSAGEs
-        [Authorize]
+        //[Authorize]
         public IQueryable<MESSAGE> GetMessages()
         {
             return db.Messages;

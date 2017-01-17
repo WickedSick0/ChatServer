@@ -1,4 +1,4 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿/*using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,4 +28,4 @@ namespace ChatServerASP.Providers
         }
 
     }
-}
+}*/

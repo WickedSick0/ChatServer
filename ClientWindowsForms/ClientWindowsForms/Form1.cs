@@ -28,10 +28,12 @@ namespace ClientWindowsForms
                  Convert.ToBase64String(
                      System.Text.ASCIIEncoding.ASCII.GetBytes(
                  string.Format("{0}:{1}", "admin", "admin"))));*/
-           // HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:53098/token");
-          //  request.Content = new StringContent("{\"UserName\":\"admin\",\"PassWord\":admin}");
-          //  client.SendAsync(request);
+            // HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:53098/token");
+            //  request.Content = new StringContent("{\"UserName\":\"admin\",\"PassWord\":admin}");
+            //  client.SendAsync(request);
+           
             InitializeComponent();
+
         }
 
         private void btn_send_Click(object sender, EventArgs e)
@@ -56,7 +58,7 @@ namespace ClientWindowsForms
 
         private void btn_get_Click(object sender, EventArgs e)
         {
-            /*var pairs = new List<KeyValuePair<string, string>>
+            var pairs = new List<KeyValuePair<string, string>>
                     {
                         new KeyValuePair<string, string>( "grant_type", "password" ),
                         new KeyValuePair<string, string>( "UserName", "admin" ),
@@ -64,10 +66,29 @@ namespace ClientWindowsForms
                     };
             var content = new FormUrlEncodedContent(pairs);
 
-             var token = client.PostAsync("http://localhost:53098/token", content);*/
+             var token = client.PostAsync("http://localhost:53098/token", content).Result;
 
 
+           /* var request = WebRequest.Create("http://localhost:53098/token") as HttpWebRequest;
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.CookieContainer = new CookieContainer();
+            var authCredentials = "grant_type=password&userName=admin" + user + "&password=admin" + password;
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(authCredentials);
+            request.ContentLength = bytes.Length;
+            using (var requestStream = request.GetRequestStream())
+            {
+                requestStream.Write(bytes, 0, bytes.Length);
+            }
 
+            using (var response2 = request.GetResponse() as HttpWebResponse)
+            {
+                authCookie = response2.Cookies["access_token"];
+            }
+            */
+
+
+            
 
             HttpResponseMessage response = client.GetAsync("/api/MESSAGEs/").Result;
             //Client<MESSAGE> clnt = new Client<MESSAGE>();
