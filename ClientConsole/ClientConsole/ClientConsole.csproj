@@ -54,6 +54,7 @@
     <Compile Include="CHATROOM.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="LogIn.cs" />
+    <Compile Include="LoginModel.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MESSAGE.cs" />
     <Compile Include="Program.cs" />

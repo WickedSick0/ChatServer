@@ -85,18 +85,42 @@ namespace ChatServerASP.Controllers
         }
 
         // POST api/USER_TOKENS
-        [ResponseType(typeof(USER_TOKENS))]
-        public async Task<IHttpActionResult> PostUSER_TOKENS(USER_TOKENS user_tokens)
+        [ResponseType(typeof(LoginModel))]
+        public async Task<IHttpActionResult> PostUSER_TOKENS(LoginModel lmodel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.User_tokens.Add(user_tokens);
-            await db.SaveChangesAsync();
+            USER_TOKENS token = new USER_TOKENS();
 
-            return CreatedAtRoute("DefaultApi", new { id = user_tokens.Id }, user_tokens);
+            UserRepository rep = new UserRepository();
+            foreach (USER item in rep.FindAll())
+            {
+                if (lmodel.Username == item.Login && lmodel.Password == item.Password)
+                {
+                    char[] chars = "$%#@!*abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ^&".ToCharArray();
+                    Random r = new Random();
+
+                    string timestring = DateTime.Now.ToString("{0}{1}yyyy{2}{3}MM{4}dd{5}{6}T{7}{8}HH{9}mm{10}{11}ss{12}ffff{13}");
+                    string hash = string.Format(timestring,
+                        chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
+                        chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
+                        chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
+                        chars[r.Next(chars.Length)], chars[r.Next(chars.Length)]
+                        );
+
+                    token.Id_User = item.Id;
+                    token.Token = hash;
+
+                    db.User_tokens.Add(token);
+                    await db.SaveChangesAsync();
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = token.Id }, token);
+            //return Ok(token.Token);
         }
 
         // DELETE api/USER_TOKENS/5

@@ -230,6 +230,7 @@
     <Compile Include="Controllers\CHATROOMsController.cs" />
     <Compile Include="Controllers\CHATROOM_MEMBERSController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MESSAGEsController.cs" />
     <Compile Include="Controllers\MESSAGE_READING_INFOController.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Models\Repositories\Chatroom_membersRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Tables\LoginModel.cs" />
     <Compile Include="Models\Tables\MESSAGE.cs" />
     <Compile Include="Models\Repositories\MessageRepository.cs" />
     <Compile Include="Models\Tables\MESSAGE_READING_INFO.cs" />
