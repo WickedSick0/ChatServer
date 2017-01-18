@@ -62,7 +62,7 @@
     <Compile Include="GetTask.cs" />
     <Compile Include="ReadWithCancel.cs" />
     <Compile Include="ReadWithESC.cs" />
-    <Compile Include="Register.cs" />
+    <Compile Include="Registration.cs" />
     <Compile Include="USER.cs" />
     <Compile Include="UserMenu.cs" />
     <Compile Include="USER_FRIENDS.cs" />
