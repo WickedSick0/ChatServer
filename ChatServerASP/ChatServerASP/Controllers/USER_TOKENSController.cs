@@ -87,15 +87,15 @@ namespace ChatServerASP.Controllers
             {
                 if (lmodel.Username == item.Login && lmodel.Password == item.Password)
                 {
-                    char[] chars = "$%#@!*abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ^&".ToCharArray();
+                    char[] chars = "$-+!*abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
                     Random r = new Random();
 
-                    string timestring = DateTime.Now.ToString("{0}{1}yyyy{2}{3}MM{4}dd{5}{6}T{7}{8}HH{9}mm{10}{11}ss{12}ffff{13}");
+                    string timestring = DateTime.Now.ToString("{0}{17}{1}yyyy{2}{16}{3}MM{4}dd{5}{6}T{7}{15}{8}HH{9}mm{10}{11}ss{12}ffff{13}{14}");
                     string hash = string.Format(timestring,
                         chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
                         chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
                         chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
-                        chars[r.Next(chars.Length)], chars[r.Next(chars.Length)]
+                        chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], r.Next(1000, 9999), r.Next(1000, 9999), r.Next(1000, 9999), r.Next(1000, 9999)
                         );
 
                     token.Id_User = item.Id;

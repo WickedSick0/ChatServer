@@ -12,6 +12,7 @@ using System.Web.Http.Description;
 using ChatServerASP.Models;
 using System.Web.Mvc;
 using ChatServerASP.Models.Tables;
+using System.Web;
 
 namespace ChatServerASP.Controllers
 {
@@ -29,7 +30,6 @@ namespace ChatServerASP.Controllers
         [ResponseType(typeof(USER_FRIENDS))]
         public async Task<List<USER>> GetUSER_FRIENDS(int id, string token)
         {
-            ///dodelat-nefunguje
             List<USER_TOKENS> Uts = db.User_tokens.Where(x => x.Id_User == id).ToList();
             foreach (var item in Uts)
             {
@@ -40,10 +40,10 @@ namespace ChatServerASP.Controllers
                     return rep.FindFriendsByOwner(id).ToList();
                 }
             }
-
             var response = new HttpResponseMessage(HttpStatusCode.NotFound)
             { Content = new StringContent("Unable to find any results") };
             throw new HttpResponseException(response);
+            //throw new HttpException(404, "Not found");
 
 
 
