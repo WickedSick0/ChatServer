@@ -10,75 +10,75 @@ namespace ClientConsole
 {
     public class Program
     {
-        static HttpClient client = new HttpClient();
+        public static HttpClient client = new HttpClient();
 
-        private static int Mod = 0; // Urcuje Mod
-        static ConsoleKey Tlacitko = ConsoleKey.F1; // Ukladani zmacknutych tlacitek do Tlacitko
-        //static bool IsLoginbValid = false;
+        public static int Mod = 0;
+        public ConsoleKey Key = ConsoleKey.F1;
         public static USER LoggedInUser = new USER();
-        //static List<USER> UserFriends = new List<USER>();
         public static USER Friend = new USER();
         public static List<CHATROOM> Chatrooms = new List<CHATROOM>();
+        public static USER_TOKENS Token = null;
         static void Main(string[] args)
         {
             Console.BackgroundColor = ConsoleColor.White;
 
-            //GetTask<USER> DeleteUser = new GetTask<USER>();
-            //DeleteUser.DeleteAsync("api/USERs/15").Wait();
-
-            //GetTask<CHATROOM> DeleteChatroom = new GetTask<CHATROOM>();
-            //DeleteChatroom.DeleteAsync("api/CHATROOMs/4").Wait();
-
-            while (Mod != -1) // Pokud se Mod = -1 program se ukonci
+            while (Mod != -1)
             {
-                if (Mod == 0) // Skoci do MenuMod 0
-                    Mod = Menu.MenuMod(); // Mod = MenuMod()
-                else if (Mod == 1) // Skoci do PlayMod 1
-                    Mod = LogIn.LogInMod(); // Mod = PlayMod()
-                else if (Mod == 2) // Skoci do OptionMod 2
-                    Mod = Register.RegisterMod(); // Mod = OptionsMod()
-                else if (Mod == 3) // Exit 3
+                if (Mod == 0)
+                {
+                    Menu menu = new Menu();
+                    Mod = menu.MenuMod();
+                }
+                else if (Mod == 1)
+                {
+                    LogIn login = new LogIn();
+                    Mod = login.LogInMod();
+                }
+                else if (Mod == 2)
+                {
+                    Registration register = new Registration();
+                    Mod = register.RegisterMod();
+                }
+                else if (Mod == 3) // Exit
                     Mod = -1;
-                else if (Mod == 4) // Skoci do OptionMod 2
-                    Mod = UserMenu.UserMenuMod(); // Mod = OptionsMod()
-                else if (Mod == 5) // Skoci do OptionMod 2
-                    Mod = Contact.ContactMod(); // Mod = OptionsMod()
-                else if (Mod == 7) // Skoci do OptionMod 2
-                    Mod = ChatroomMod(); // Mod = OptionsMod()
-                else if (Mod == 10) // Skoci do OptionMod 2
-                    Mod = MessageMod(); // Mod = OptionsMod()
-            } // Konec programu   
-
-            //RunAsync().Wait();
-
-            //Console.ReadLine();
+                else if (Mod == 4)
+                {
+                    UserMenu usermenu = new UserMenu();
+                    Mod = usermenu.UserMenuMod();
+                }
+                else if (Mod == 5)
+                {
+                    Contact contact = new Contact();
+                    Mod = contact.ContactMod();
+                }
+                else if (Mod == 7)
+                {
+                    Mod = ChatroomMod();
+                }
+                else if (Mod == 10)
+                {
+                    Mod = MessageMod();
+                }
+            }   
         }
 
         static int ChatroomMod()
         {
-            Console.Clear(); // Vymaze konzoli
-            Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
-            Console.CursorVisible = false; // Kurzor neni videt
+            Console.Clear();
+            Console.SetWindowSize(45, 15);
+            Console.CursorVisible = false;
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
 
-            //VykresleniNazvu(); // Vykresli Nadpis
-
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("             CHATROOMS               "); // Vypise HighScore fialove
+            Console.WriteLine("             CHATROOMS               ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("Your friend:   " + Friend.Nick + "   ");
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
-
-            //Console.WriteLine("Id: " + Friend.Id);
-            //Console.WriteLine("Login: " + Friend.Login);
-            //Console.WriteLine("Nick: " + Friend.Nick);
-            //Console.WriteLine("Password: " + Friend.Password);
-            //Console.WriteLine("Photo: " + Friend.Photo);
 
             GetChatrooms().Wait();
 
@@ -91,6 +91,7 @@ namespace ClientConsole
 
             return 0;
         }
+
         static async Task GetChatrooms()
         {
             GetTask<List<CHATROOM>> GetChatroomsByUser = new GetTask<List<CHATROOM>>();
@@ -99,17 +100,15 @@ namespace ClientConsole
 
         static int MessageMod()
         {
-            Console.Clear(); // Vymaze konzoli
-            Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
-            Console.CursorVisible = false; // Kurzor neni videt
+            Console.Clear(); 
+            Console.SetWindowSize(45, 15);
+            Console.CursorVisible = false;
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
 
-            //VykresleniNazvu(); // Vykresli Nadpis
-
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("             MESSAGE               "); // Vypise HighScore fialove
+            Console.WriteLine("             MESSAGE               ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("Your friend:   " + Friend.Nick + "   ");

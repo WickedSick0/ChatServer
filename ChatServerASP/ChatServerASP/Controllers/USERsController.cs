@@ -87,7 +87,7 @@ namespace ChatServerASP.Controllers
 
         // POST: api/USERs
         [ResponseType(typeof(USER))]
-        [Route("api/Register")]
+        //[Route("api/Register")]
         public async Task<IHttpActionResult> PostUSER(USER uSER)
         {
             UserRepository uRep = new UserRepository();
