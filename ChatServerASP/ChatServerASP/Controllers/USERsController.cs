@@ -25,8 +25,7 @@ namespace ChatServerASP.Controllers
             return db.Users;
         }
 
-        // GET: api/USERs/5
-        [Route("api/USERs/{id}/{token}")]
+        // GET: api/USERs/5?token=fdafgfsfs
         [ResponseType(typeof(USER))]
         public async Task<IHttpActionResult> GetUSER(int id, string token)
         {
