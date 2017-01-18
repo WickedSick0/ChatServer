@@ -24,9 +24,9 @@ namespace ChatServerASP.Controllers
             return db.User_friends;
         }
 
-        // GET: api/USER_FRIENDS/5
+        // GET: api/USER_FRIENDS/5?token=AASDFASDF
         [ResponseType(typeof(USER_FRIENDS))]
-        public async Task<List<USER>> GetUSER_FRIENDS(int id)
+        public async Task<List<USER>> GetUSER_FRIENDS(int id, string token)
         {
             User_friendsRepository rep = new User_friendsRepository();
 
