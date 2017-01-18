@@ -87,7 +87,7 @@ namespace ChatServerASP.Controllers
 
         // POST: api/USERs
         [ResponseType(typeof(USER))]
-        //[Route("api/Register")]
+       // [Route("api/USERs/Register")]
         public async Task<IHttpActionResult> PostUSER(USER uSER)
         {
             UserRepository uRep = new UserRepository();
@@ -97,13 +97,15 @@ namespace ChatServerASP.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (uSER.Login == null || uSER.Password == null) return BadRequest(ModelState);
+            if (uSER.Login == "" || uSER.Password == "")
+                return BadRequest(ModelState);
 
             if (uSER.Photo == null) uSER.Photo = @"\Content\Photos\profilePic.png";
 
             foreach (USER item in uRep.FindAll())
             {
-                if (item.Login == uSER.Login) return BadRequest("Username already in use"); 
+                if (item.Login == uSER.Login)
+                    return BadRequest(ModelState);
             }
 
             db.Users.Add(uSER);
