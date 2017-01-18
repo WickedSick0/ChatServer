@@ -31,7 +31,7 @@ namespace ClientWindowsForms
                     
             USER usr = new USER() { Login = txt_username.Text, Nick = txt_nick.Text, Password = txt_passwd.Text, Photo = this.imgPath };
 
-            HttpResponseMessage response = client.PostAsJsonAsync("api/Register/", usr).Result;
+            HttpResponseMessage response = client.PostAsJsonAsync("api/USERs/Register/", usr).Result;
             if (!response.IsSuccessStatusCode)
             {
                 MessageBox.Show("Invalid data");
