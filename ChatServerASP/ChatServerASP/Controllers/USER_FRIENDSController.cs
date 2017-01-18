@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models;
 using System.Web.Mvc;
+using ChatServerASP.Models.Tables;
 
 namespace ChatServerASP.Controllers
 {
@@ -19,18 +20,32 @@ namespace ChatServerASP.Controllers
         private MyContext db = new MyContext();
 
         // GET: api/USER_FRIENDS
-        public IQueryable<USER_FRIENDS> GetUser_friends()
+        /*public IQueryable<USER_FRIENDS> GetUser_friends()
         {
             return db.User_friends;
-        }
+        }*/
 
         // GET: api/USER_FRIENDS/5?token=AASDFASDF
         [ResponseType(typeof(USER_FRIENDS))]
         public async Task<List<USER>> GetUSER_FRIENDS(int id, string token)
         {
-            User_friendsRepository rep = new User_friendsRepository();
+            ///dodelat-nefunguje
+            List<USER_TOKENS> Uts = db.User_tokens.Where(x => x.Id_User == id).ToList();
+            foreach (var item in Uts)
+            {
+                if (item.Token == token)
+                {
+                    User_friendsRepository rep = new User_friendsRepository();
 
-            return rep.FindFriendsByOwner(id).ToList();
+                    return rep.FindFriendsByOwner(id).ToList();
+                }
+            }
+
+            var response = new HttpResponseMessage(HttpStatusCode.NotFound)
+            { Content = new StringContent("Unable to find any results") };
+            throw new HttpResponseException(response);
+
+
 
             //original
             /*
