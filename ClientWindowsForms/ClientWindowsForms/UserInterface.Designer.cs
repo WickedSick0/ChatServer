@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.profilePic = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -38,7 +38,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -55,13 +55,15 @@
             this.label1.Text = "NAME";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // pictureBox1
+            // profilePic
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 93);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.profilePic.Cursor = System.Windows.Forms.Cursors.Default;
+            this.profilePic.Location = new System.Drawing.Point(12, 6);
+            this.profilePic.Name = "profilePic";
+            this.profilePic.Size = new System.Drawing.Size(100, 109);
+            this.profilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.profilePic.TabIndex = 1;
+            this.profilePic.TabStop = false;
             // 
             // button1
             // 
@@ -125,9 +127,9 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(13, 121);
+            this.textBox2.Location = new System.Drawing.Point(12, 135);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(169, 22);
+            this.textBox2.Size = new System.Drawing.Size(170, 22);
             this.textBox2.TabIndex = 9;
             // 
             // UserInterface
@@ -143,13 +145,13 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.profilePic);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UserInterface";
             this.Text = "Thunder Chat";
             this.Load += new System.EventHandler(this.UserInterface_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
@@ -160,7 +162,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox profilePic;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView1;

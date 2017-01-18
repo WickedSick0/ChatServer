@@ -19,7 +19,7 @@ namespace ClientWindowsForms
 
         private void UserInterface_Load(object sender, EventArgs e)
         {
-
+            this.profilePic.Load(@"\Resources\profilePic.png");
         }
     }
 }
