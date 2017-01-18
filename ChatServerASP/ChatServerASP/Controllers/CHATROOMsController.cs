@@ -96,6 +96,35 @@ namespace ChatServerASP.Controllers
                 return NotFound();
             }
 
+            //db.Chatroom_members.RemoveRange(db.Chatroom_members.Where(x => x.Id_Chatroom == id));
+            List<CHATROOM_MEMBERS> chrMembers = db.Chatroom_members.Where(x => x.Id_Chatroom == id).ToList<CHATROOM_MEMBERS>();
+            //db.Chatroom_members.RemoveRange(chrMembers);
+            
+
+            Chatroom_membersRepository chmR = new Chatroom_membersRepository();
+            foreach (var item in chrMembers)
+            {
+                chmR.DeleteChatroom_members(item.Id);
+            }
+
+            List<MESSAGE_READING_INFO> msgRDinfo = db.Message_reading_infos.Where(x => x.Id_Chatroom == id).ToList<MESSAGE_READING_INFO>();
+
+            Message_reading_infoRepository mreadINFOrepository = new Message_reading_infoRepository();
+            foreach (var item in msgRDinfo)
+            {
+                mreadINFOrepository.DeleteMessage_reading_info(item.Id);
+            }
+
+            List<MESSAGE> msges = db.Messages.Where(x => x.Id_Chatroom == id).ToList<MESSAGE>();
+            MessageRepository mesR = new MessageRepository();
+            foreach (var item in msges)
+            {
+                mesR.DeleteMessage(item.Id);
+            }
+
+
+
+
             db.Chatrooms.Remove(cHATROOM);
             await db.SaveChangesAsync();
 
