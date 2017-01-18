@@ -27,6 +27,7 @@ namespace ChatServerASP.Controllers
 
         // GET: api/USERs/5?token=fdafgfsfs
         [ResponseType(typeof(USER))]
+        [Route("api/USERs/{id}")]
         public async Task<IHttpActionResult> GetUSER(int id, string token)
         {
             User_tokensRepository rep = new User_tokensRepository();
