@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models;
+using ChatServerASP.Models.Repositories;
+using ChatServerASP.Models.Tables;
 
 namespace ChatServerASP.Controllers
 {
@@ -24,14 +26,27 @@ namespace ChatServerASP.Controllers
         }
 
         // GET: api/USERs/5
+        [Route("api/USERs/{id}/{token}")]
         [ResponseType(typeof(USER))]
-        public async Task<IHttpActionResult> GetUSER(int id)
+        public async Task<IHttpActionResult> GetUSER(int id, string token)
         {
-            USER uSER = await db.Users.FindAsync(id);
+            User_tokensRepository rep = new User_tokensRepository();
+            USER uSER = null;
+
+            foreach (USER_TOKENS item in rep.FindAll())
+            {
+                if (item.Token == token && item.Id_User == id)
+                {
+                    uSER = await db.Users.FindAsync(id);
+                }
+            }
+
+            //USER uSER = await db.Users.FindAsync(id);
+
             if (uSER == null)
             {
                 return NotFound();
-            }
+            }            
 
             return Ok(uSER);
         }

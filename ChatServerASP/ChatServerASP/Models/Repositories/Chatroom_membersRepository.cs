@@ -14,6 +14,24 @@ namespace ChatServerASP.Models
             return this._context.Chatroom_members.ToList<CHATROOM_MEMBERS>();
         }
 
+        public List<CHATROOM> FindChatroomByUser(int id_User)
+        {
+            ChatroomRepository rep = new ChatroomRepository();
+            List<CHATROOM> chatrooms = new List<CHATROOM>();
+            List<int> temp = new List<int>();
+
+            foreach (CHATROOM_MEMBERS item in this.FindAll())
+            {
+                if (item.Id_User == id_User)
+                    temp.Add(item.Id_Chatroom);
+            }
+
+            foreach (int item in temp)
+                chatrooms.Add(rep.FindById(item));
+
+            return chatrooms;
+        }
+
         public CHATROOM_MEMBERS FindById(int id)
         {
             return this._context.Chatroom_members.Find(id);
