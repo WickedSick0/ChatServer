@@ -38,5 +38,11 @@ namespace ClientWindowsForms
                 MessageBox.Show("Invalid Username / Password");
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Register frm = new Register();
+            frm.Show();
+        }
     }
 }

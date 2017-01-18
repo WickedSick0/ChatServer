@@ -96,6 +96,10 @@ namespace ChatServerASP.Controllers
                 return BadRequest(ModelState);
             }
 
+            if (uSER.Login == null || uSER.Password == null) return BadRequest(ModelState);
+
+            if (uSER.Photo == null) uSER.Photo = @"\Content\Photos\profilePic.png";
+
             db.Users.Add(uSER);
             await db.SaveChangesAsync();
 
