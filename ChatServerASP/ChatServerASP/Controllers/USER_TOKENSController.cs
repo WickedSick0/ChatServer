@@ -103,11 +103,13 @@ namespace ChatServerASP.Controllers
 
                     db.User_tokens.Add(token);
                     await db.SaveChangesAsync();
+                    return CreatedAtRoute("DefaultApi", new { id = token.Id }, token);
                 }
-                else return BadRequest(ModelState);
+                
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = token.Id }, token);
+            return BadRequest(ModelState);
+            //return CreatedAtRoute("DefaultApi", new { id = token.Id }, token);
             //return Ok(token.Token);
             //return await GetUSER_TOKENS(token.Id);
         }
