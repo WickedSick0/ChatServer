@@ -38,7 +38,7 @@ namespace ClientConsole
             HttpResponseMessage response = await this.client.PostAsJsonAsync(path, var);
             response.EnsureSuccessStatusCode();
 
-            res = response;
+            LogIn.resp = response;
 
             // return URI of the created resource.
             return response.Headers.Location;

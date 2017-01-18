@@ -15,6 +15,8 @@ namespace ClientConsole
 
         public static int LogInMod()
         {
+            Program.LoggedInUser = new USER();
+
             Console.Clear();
             Console.SetWindowSize(45, 15);
             Console.CursorVisible = true;
@@ -85,10 +87,17 @@ namespace ClientConsole
 
         public static USER_TOKENS Token { get; set; }
 
+        public static HttpResponseMessage resp { get; set; }
+
+
         static async Task CheckLogin()
         {
             IsLoginValid = false;
-            USER user = new USER();
+
+            //Console.WriteLine(Program.LoggedInUser.Login);
+            //Console.WriteLine(Program.LoggedInUser.Password);
+
+            //USER user = new USER();
             LoginModel lmodel = new LoginModel();
             lmodel.Username = Program.LoggedInUser.Login;
             lmodel.Password = Program.LoggedInUser.Password;
@@ -97,24 +106,41 @@ namespace ClientConsole
             {
                 GetTask<LoginModel> CreateToken = new GetTask<LoginModel>();
                 CreateToken.CreateAsync($"api/USER_TOKENS", lmodel).Wait();
-                USER_TOKENS tok = CreateToken.res.Content.ReadAsAsync<USER_TOKENS>().Result;
+
+                Token = await resp.Content.ReadAsAsync<USER_TOKENS>();
+
+                //Console.WriteLine(Token.Token);
+                //Console.WriteLine(Token.Id_User);
+                //System.Threading.Thread.Sleep(500);
+
+
                 GetTask<USER> GetUsers = new GetTask<USER>();
-                user = await GetUsers.GetAsync($"api/USERs/" + tok.Id_User + "/" + tok.Token);
-                IsLoginValid = true;
+                Program.LoggedInUser = await GetUsers.GetAsync($"api/USERs/" + Token.Id_User + "?token=" + Token.Token);
+
+                //Console.WriteLine(Program.LoggedInUser.Id);
+                //Console.WriteLine(Program.LoggedInUser.Login);
+                //Console.WriteLine(Program.LoggedInUser.Password);
+                //Console.WriteLine(Program.LoggedInUser.Photo);
+                //Console.WriteLine(Program.LoggedInUser.Nick);
+                //System.Threading.Thread.Sleep(500);
+
+                if (Program.LoggedInUser != null)
+                    IsLoginValid = true;
             }
             catch (Exception e)
             {
+                Program.LoggedInUser = null;
                 IsLoginValid = false;
             }
 
-            if (IsLoginValid)
-            {
-                Program.LoggedInUser.Id = user.Id;
-                Program.LoggedInUser.Login = user.Login;
-                Program.LoggedInUser.Password = user.Password;
-                Program.LoggedInUser.Photo= user.Photo;
-                Program.LoggedInUser.Nick = user.Nick;
-            }
+            //if (IsLoginValid)
+            //{
+            //    Program.LoggedInUser.Id = user.Id;
+            //    Program.LoggedInUser.Login = user.Login;
+            //    Program.LoggedInUser.Password = user.Password;
+            //    Program.LoggedInUser.Photo= user.Photo;
+            //    Program.LoggedInUser.Nick = user.Nick;
+            //}
 
             //Console.WriteLine(tok.Token);
             //Console.WriteLine(user.Nick);
