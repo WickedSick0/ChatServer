@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -77,14 +79,28 @@ namespace ClientConsole
 
         async Task CreateUser()
         {
+            //HttpClient client = new HttpClient();
+
+            //client.BaseAddress = new Uri("http://localhost:53098/");
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            //USER usr = new USER() { Login = this.User.Login, Nick = this.User.Nick, Password = this.User.Password };
+
+            //HttpResponseMessage response = client.PostAsJsonAsync("api/USERs", this.User).Result;
+            //if (!response.IsSuccessStatusCode)
+            //{
+            //    Console.WriteLine("Invalid data");
+            //}
+
             try
             {
-                //Console.WriteLine(this.User.Id);
-                //Console.WriteLine(this.User.Login);
-                //Console.WriteLine(this.User.Password);
-                //Console.WriteLine(this.User.Nick);
-                //Console.WriteLine(this.User.Photo);
-                //Console.ReadLine();
+                Console.WriteLine(this.User.Id);
+                Console.WriteLine(this.User.Login);
+                Console.WriteLine(this.User.Password);
+                Console.WriteLine(this.User.Nick);
+                Console.WriteLine(this.User.Photo);
+                Console.ReadLine();
 
                 GetTask<USER> CreateUser = new GetTask<USER>();
                 CreateUser.CreateAsync($"api/USERs", this.User).Wait();

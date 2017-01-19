@@ -10,6 +10,7 @@ namespace ClientConsole
     {
         public ConsoleKey Tlacitko = ConsoleKey.F1;
         static List<USER> UserFriends = new List<USER>();
+
         public int ContactMod()
         {
             GetFriends().Wait();
@@ -112,7 +113,7 @@ namespace ClientConsole
         async Task GetFriends()
         {
             GetTask<List<USER>> GetUserFriends = new GetTask<List<USER>>();
-            UserFriends = await GetUserFriends.GetAsync($"api/USER_FRIENDS/" + Program.LoggedInUser.Id);
+            UserFriends = await GetUserFriends.GetAsync($"api/USER_FRIENDS/" + Program.LoggedInUser.Id + "?token=" + Program.Token.Token);
 
             //UserFriends = UserFriendsss;
             /*
