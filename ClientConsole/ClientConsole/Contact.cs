@@ -8,45 +8,45 @@ namespace ClientConsole
 {
     public class Contact
     {
-        public ConsoleKey Tlacitko = ConsoleKey.F1;
-        static List<USER> UserFriends = new List<USER>();
+        public ConsoleKey Key = ConsoleKey.F1;
+        public List<USER> UserFriends = new List<USER>();
 
         public int ContactMod()
         {
             GetFriends().Wait();
 
-            string[] Polozky = new string[UserFriends.Count];
+            string[] items = new string[UserFriends.Count];
 
             int i = 0;
             foreach (USER item in UserFriends)
             {
-                Polozky[i] = item.Nick;
+                items[i] = item.Nick;
                 i++;
             }
 
-            int Vybrana = 0; // Urcuje vybranou polozku v menu
+            int selected = 0;
 
-            while (true) // Hlida tlacitka a vykresluje menu
+            while (true)
             {
-                VykresliContactMod(Polozky, Vybrana); // Vykresluje menu
+                this.RenderContactMod(items, selected);
 
-                Tlacitko = Console.ReadKey().Key; // Ceka na zmacknuti tlacitka
+                Key = Console.ReadKey().Key;
 
-                if (Tlacitko == ConsoleKey.UpArrow) // ↑
+                if (Key == ConsoleKey.UpArrow)
                 {
-                    Vybrana--; // Zmensi Vybrana o 1
-                    if (Vybrana < 0) // Pokud je Vybrana mensi nez 0
-                        Vybrana = Polozky.Length - 1; // Skoci na posledni polozku (Vybrana se precisluje)
+                    selected--;
+                    if (selected < 0)
+                        selected = items.Length - 1;
                 }
-                else if (Tlacitko == ConsoleKey.DownArrow) // ↓
+                else if (Key == ConsoleKey.DownArrow)
                 {
-                    Vybrana++; // Zvetsi Vybrana o 1
-                    if (Vybrana > Polozky.Length - 1) // Pokud je Vybrana vetsi nez index posleni polozky
-                        Vybrana = 0; // Skoci na prvni polozku (Vybrana se precisluje)
+                    selected++;
+                    if (selected > items.Length - 1)
+                        selected = 0;
                 }
-                else if (Tlacitko == ConsoleKey.Enter) // Pokud se zmackne Enter
+                else if (Key == ConsoleKey.Enter)
                 {
-                    Program.Friend = new USER() { Nick = Polozky[Vybrana] };
+                    Program.Friend = new USER() { Nick = items[selected] };
 
                     foreach (USER item in UserFriends)
                     {
@@ -60,24 +60,22 @@ namespace ClientConsole
                         }
                     }
 
-                    return 10; // Vrati hodnotu ktera se pouzije jako cislo modu (Vybrana = 0; - Enter -, vrati 1 jako Mod = 1)
+                    return 10;
                 }
             }
         }
 
-        public void VykresliContactMod(string[] Polozky, int Vybrana)
+        public void RenderContactMod(string[] items, int selected)
         {
-            Console.Clear(); // Vymaze konzoli
-            Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
-            Console.CursorVisible = false; // Kurzor neni videt
+            Console.Clear();
+            Console.SetWindowSize(45, 15);
+            Console.CursorVisible = false;
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
 
-            //VykresleniNazvu(); // Vykresli Nadpis
-
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("             YOUR CONTACT LIST               "); // Vypise HighScore fialove
+            Console.WriteLine("             YOUR CONTACT LIST               ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("Your nick:   " + Program.LoggedInUser.Nick + "   ");
@@ -85,35 +83,33 @@ namespace ClientConsole
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
 
-            int Krok = 0; // Pomaha vykreslit vybranou polozku cervene
+            int step = 0;
 
-            foreach (string polozka in Polozky) // Vypise pole stringu
+            foreach (string item in items)
             {
-                if (Krok == Vybrana) // Na zacatku bude prvni polozka cervena protoze Krok = 0 && Vybrana = 0
+                if (step == selected)
                 {
-                    Console.BackgroundColor = ConsoleColor.White; // Nastavi pozadi na cernou barvu
-                    Console.Write(" "); // Odsadí mezeru
-                    Console.ForegroundColor = ConsoleColor.White; // Nastavi vybranou polozku na cervenou barvu
-                    Console.BackgroundColor = ConsoleColor.DarkGray; // Nastavi pozadi vybrane polozky na zlutou barvu
-                    Console.WriteLine(polozka); // Vypise vsechny polozky
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.Write(" ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine(item);
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Black; // Vse ostatni na zlutou barvu
-                    Console.WriteLine("  " + polozka); // Vypise vsechny polozky
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("  " + item);
                 }
-                Console.BackgroundColor = ConsoleColor.White; // Nastavi pozadi na cernou barvu
+                Console.BackgroundColor = ConsoleColor.White;
 
-                Krok++; // Zvetsi Krok o 1
+                step++;
             }
-
-            //return 4;
         }
 
         async Task GetFriends()
         {
             GetTask<List<USER>> GetUserFriends = new GetTask<List<USER>>();
-            UserFriends = await GetUserFriends.GetAsync($"api/USER_FRIENDS/" + Program.LoggedInUser.Id + "?token=" + Program.Token.Token);
+            this.UserFriends = await GetUserFriends.GetAsync($"api/USER_FRIENDS/" + Program.LoggedInUser.Id + "?token=" + Program.Token.Token);
 
             //UserFriends = UserFriendsss;
             /*
@@ -136,6 +132,5 @@ namespace ClientConsole
             UserFriends = GetUsers;
             */
         }
-
     }
 }

@@ -16,7 +16,8 @@ namespace ClientConsole
         public ConsoleKey Key = ConsoleKey.F1;
         public static USER LoggedInUser = new USER();
         public static USER Friend = new USER();
-        public static List<CHATROOM> Chatrooms = new List<CHATROOM>();
+        //public static List<CHATROOM> Chatrooms = new List<CHATROOM>();
+        public static CHATROOM Chatroom = new CHATROOM();
         public static USER_TOKENS Token = null;
         static void Main(string[] args)
         {
@@ -53,50 +54,22 @@ namespace ClientConsole
                 }
                 else if (Mod == 7)
                 {
-                    Mod = ChatroomMod();
+                    Chatrooms chatrooms = new Chatrooms();
+                    Mod = chatrooms.ChatroomMod();
                 }
                 else if (Mod == 10)
                 {
                     Mod = MessageMod();
                 }
+                else if (Mod == 11)
+                {
+                    Chat chat = new Chat();
+                    Mod = chat.ChatMod();
+                }
             }   
         }
 
-        static int ChatroomMod()
-        {
-            Console.Clear();
-            Console.SetWindowSize(45, 15);
-            Console.CursorVisible = false;
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("             CHATROOMS               ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("Your friend:   " + Friend.Nick + "   ");
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine();
-
-            GetChatrooms().Wait();
-
-            foreach (CHATROOM item in Chatrooms)
-            { 
-                Console.WriteLine("Chatroom_Name: " + item.Chatroom_Name);
-            }
-
-            Console.ReadLine();
-
-            return 0;
-        }
-
-        static async Task GetChatrooms()
-        {
-            GetTask<List<CHATROOM>> GetChatroomsByUser = new GetTask<List<CHATROOM>>();
-            Chatrooms = await GetChatroomsByUser.GetAsync($"api/CHATROOM_MEMBERS/" + Program.LoggedInUser.Id);
-        }
 
         static int MessageMod()
         {
