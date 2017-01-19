@@ -13,12 +13,12 @@ namespace ClientConsole
 
         public int ContactMod()
         {
-            GetFriends().Wait();
+            this.GetFriends().Wait();
 
-            string[] items = new string[UserFriends.Count];
+            string[] items = new string[this.UserFriends.Count];
 
             int i = 0;
-            foreach (USER item in UserFriends)
+            foreach (USER item in this.UserFriends)
             {
                 items[i] = item.Nick;
                 i++;
@@ -30,25 +30,25 @@ namespace ClientConsole
             {
                 this.RenderContactMod(items, selected);
 
-                Key = Console.ReadKey().Key;
+                this.Key = Console.ReadKey().Key;
 
-                if (Key == ConsoleKey.UpArrow)
+                if (this.Key == ConsoleKey.UpArrow)
                 {
                     selected--;
                     if (selected < 0)
                         selected = items.Length - 1;
                 }
-                else if (Key == ConsoleKey.DownArrow)
+                else if (this.Key == ConsoleKey.DownArrow)
                 {
                     selected++;
                     if (selected > items.Length - 1)
                         selected = 0;
                 }
-                else if (Key == ConsoleKey.Enter)
+                else if (this.Key == ConsoleKey.Enter)
                 {
                     Program.Friend = new USER() { Nick = items[selected] };
 
-                    foreach (USER item in UserFriends)
+                    foreach (USER item in this.UserFriends)
                     {
                         if (item.Nick == Program.Friend.Nick)
                         {
