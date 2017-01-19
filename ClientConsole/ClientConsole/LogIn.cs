@@ -9,11 +9,12 @@ namespace ClientConsole
 {
     public class LogIn
     {
-        public static ConsoleKey Tlacitko = ConsoleKey.F1; // Ukladani zmacknutych tlacitek do Tlacitko
-        public static bool Back = false;
-        public static bool IsLoginValid = false;
+        public ConsoleKey Key = ConsoleKey.F1;
+        public bool IsLoginValid = false;
 
-        public static int LogInMod()
+        public static HttpResponseMessage resp { get; set; }
+
+        public int LogInMod()
         {
             Program.LoggedInUser = new USER();
 
@@ -22,48 +23,108 @@ namespace ClientConsole
             Console.CursorVisible = true;
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("                   LOG IN                    ");
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine("                THUNDER CHAT                 ");
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("                   Log In                    ");
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
 
-            Console.Write("Enter your login: ");
+            Console.Write(" Enter your login: ");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
             Program.LoggedInUser.Login = ReadWithESC.ReadLineWithESC();
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
             if (ReadWithESC.GoBack)
                 return 0;
 
-            Console.Write("Enter your password: ");
+            Console.Write(" Enter your password: ");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
             Program.LoggedInUser.Password = ReadWithESC.ReadLineWithESC();
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
             if (ReadWithESC.GoBack)
                 return 0;
 
             Console.WriteLine();
 
-
             CheckLogin().Wait();
 
-            if (IsLoginValid)
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.ForegroundColor = ConsoleColor.White;
+            if (this.IsLoginValid)
             {
                 Console.WriteLine("Login successful");
-                //System.Threading.Thread.Sleep(2000);
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
                 return 4;
             }
             else
             {
-                Console.WriteLine("Login or password is incorect");
+                Console.BackgroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine(" Login or password is incorect               ");
                 Console.WriteLine();
-                Console.WriteLine("Press ENTER and try it again...");
-                Console.WriteLine("Press ESC to go back to menu...");
-                Tlacitko = Console.ReadKey().Key;
-                if (Tlacitko == ConsoleKey.Escape)
+                Console.BackgroundColor = ConsoleColor.DarkGray;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(" Press ENTER and try it again...             ");
+                Console.WriteLine(" Press ESC to go back to menu...             ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+                this.Key = Console.ReadKey().Key;
+                if (this.Key == ConsoleKey.Escape)
                     return 0;
-                else if (Tlacitko == ConsoleKey.Enter)
+                else if (this.Key == ConsoleKey.Enter)
                     return 1;
             }
 
             return 0;
-        } // LogInMod konec
+        }
+
+        async Task CheckLogin()
+        {
+            this.IsLoginValid = false;
+
+            //Console.WriteLine(Program.LoggedInUser.Login);
+            //Console.WriteLine(Program.LoggedInUser.Password);
+
+            //USER user = new USER();
+            LoginModel lmodel = new LoginModel();
+            lmodel.Username = Program.LoggedInUser.Login;
+            lmodel.Password = Program.LoggedInUser.Password;
+
+            try
+            {
+                GetTask<LoginModel> CreateToken = new GetTask<LoginModel>();
+                CreateToken.CreateAsync($"api/USER_TOKENS", lmodel).Wait();
+
+                Program.Token = await resp.Content.ReadAsAsync<USER_TOKENS>();
+
+                //Console.WriteLine(Token.Token);
+                //Console.WriteLine(Token.Id_User);
+                //System.Threading.Thread.Sleep(500);
+
+                GetTask<USER> GetUsers = new GetTask<USER>();
+                Program.LoggedInUser = await GetUsers.GetAsync($"api/USERs/" + Program.Token.Id_User + "?token=" + Program.Token.Token);
+
+                //Console.WriteLine(Program.LoggedInUser.Id);
+                //Console.WriteLine(Program.LoggedInUser.Login);
+                //Console.WriteLine(Program.LoggedInUser.Password);
+                //Console.WriteLine(Program.LoggedInUser.Photo);
+                //Console.WriteLine(Program.LoggedInUser.Nick);
+                //System.Threading.Thread.Sleep(500);
+
+                if (Program.LoggedInUser != null)
+                    this.IsLoginValid = true;
+            }
+            catch
+            {
+                Program.LoggedInUser = null;
+                this.IsLoginValid = false;
+            }
+        }
 
         //static async Task CheckLogin()
         //{
@@ -84,73 +145,5 @@ namespace ClientConsole
         //            IsLoginValid = false;
         //    }
         //}
-
-        public static USER_TOKENS Token { get; set; }
-
-        public static HttpResponseMessage resp { get; set; }
-
-
-        static async Task CheckLogin()
-        {
-            IsLoginValid = false;
-
-            //Console.WriteLine(Program.LoggedInUser.Login);
-            //Console.WriteLine(Program.LoggedInUser.Password);
-
-            //USER user = new USER();
-            LoginModel lmodel = new LoginModel();
-            lmodel.Username = Program.LoggedInUser.Login;
-            lmodel.Password = Program.LoggedInUser.Password;
-
-            try
-            {
-                GetTask<LoginModel> CreateToken = new GetTask<LoginModel>();
-                CreateToken.CreateAsync($"api/USER_TOKENS", lmodel).Wait();
-
-                Token = await resp.Content.ReadAsAsync<USER_TOKENS>();
-
-                //Console.WriteLine(Token.Token);
-                //Console.WriteLine(Token.Id_User);
-                //System.Threading.Thread.Sleep(500);
-
-
-                GetTask<USER> GetUsers = new GetTask<USER>();
-                Program.LoggedInUser = await GetUsers.GetAsync($"api/USERs/" + Token.Id_User + "?token=" + Token.Token);
-
-                //Console.WriteLine(Program.LoggedInUser.Id);
-                //Console.WriteLine(Program.LoggedInUser.Login);
-                //Console.WriteLine(Program.LoggedInUser.Password);
-                //Console.WriteLine(Program.LoggedInUser.Photo);
-                //Console.WriteLine(Program.LoggedInUser.Nick);
-                //System.Threading.Thread.Sleep(500);
-
-                if (Program.LoggedInUser != null)
-                    IsLoginValid = true;
-            }
-            catch (Exception e)
-            {
-                Program.LoggedInUser = null;
-                IsLoginValid = false;
-            }
-
-            //if (IsLoginValid)
-            //{
-            //    Program.LoggedInUser.Id = user.Id;
-            //    Program.LoggedInUser.Login = user.Login;
-            //    Program.LoggedInUser.Password = user.Password;
-            //    Program.LoggedInUser.Photo= user.Photo;
-            //    Program.LoggedInUser.Nick = user.Nick;
-            //}
-
-            //Console.WriteLine(tok.Token);
-            //Console.WriteLine(user.Nick);
-
-            //Console.ReadLine();
-            //Program.LoggedInUser = user;
-            //if (Program.LoggedInUser == null)
-            //    IsLoginValid = false;
-            //else
-            //    IsLoginValid = true;
-        }
     }
 }

@@ -30,7 +30,7 @@ namespace ClientWindowsForms
             USER_TOKENS tok = response.Content.ReadAsAsync<USER_TOKENS>().Result;
             if (response.IsSuccessStatusCode)
             {
-                UserInterface frm = new UserInterface();
+                UserInterface frm = new UserInterface(tok);
                 frm.Show();
             }
             else

@@ -8,9 +8,10 @@ namespace ClientConsole
 {
     public class Contact
     {
-        public static ConsoleKey Tlacitko = ConsoleKey.F1; // Ukladani zmacknutych tlacitek do Tlacitko
+        public ConsoleKey Tlacitko = ConsoleKey.F1;
         static List<USER> UserFriends = new List<USER>();
-        public static int ContactMod()
+
+        public int ContactMod()
         {
             GetFriends().Wait();
 
@@ -64,7 +65,7 @@ namespace ClientConsole
             }
         }
 
-        public static void VykresliContactMod(string[] Polozky, int Vybrana)
+        public void VykresliContactMod(string[] Polozky, int Vybrana)
         {
             Console.Clear(); // Vymaze konzoli
             Console.SetWindowSize(45, 15); // Nastavi rozmery konzole (41 + 3, 21 - 6)
@@ -109,10 +110,10 @@ namespace ClientConsole
             //return 4;
         }
 
-        static async Task GetFriends()
+        async Task GetFriends()
         {
             GetTask<List<USER>> GetUserFriends = new GetTask<List<USER>>();
-            UserFriends = await GetUserFriends.GetAsync($"api/USER_FRIENDS/" + Program.LoggedInUser.Id);
+            UserFriends = await GetUserFriends.GetAsync($"api/USER_FRIENDS/" + Program.LoggedInUser.Id + "?token=" + Program.Token.Token);
 
             //UserFriends = UserFriendsss;
             /*
