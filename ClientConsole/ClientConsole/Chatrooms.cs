@@ -46,12 +46,13 @@ namespace ClientConsole
                 }
                 else if (this.Key == ConsoleKey.Enter)
                 {
-                    Program.Chatroom = new CHATROOM() { Chatroom_Name = items[selected] };
+                    CHATROOM c = new CHATROOM() { Chatroom_Name = items[selected] };
 
                     foreach (CHATROOM item in this.Chat_room)
                     {
-                        if (item.Chatroom_Name == Program.Friend.Nick)
+                        if (item.Chatroom_Name == c.Chatroom_Name)
                         {
+                            Program.Chatroom.Id = item.Id;
                             Program.Chatroom.Chatroom_Name = item.Chatroom_Name;
                         }
                     }
