@@ -26,8 +26,9 @@ namespace ClientWindowsForms
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             response = client.GetAsync("api/USERs/" +  tok.Id_User + "?token=" + tok.Token).Result;
             usr = response.Content.ReadAsAsync<USER>().Result;
-            responseFriends = client.GetAsync("api/USER_FRIENDS/" + tok.Id_User + "?token=" + tok.Token).Result;
-            
+            //responseFriends = client.GetAsync("api/USER_FRIENDS/" + tok.Id_User + "?token=" + tok.Token).Result;
+            //var emp = responseFriends.Content.ReadAsAsync<IEnumerable<USER>>().Result;
+            //List<USER> friends = emp.ToList<MESSAGE>();
             if (!response.IsSuccessStatusCode) Close();
             
 
