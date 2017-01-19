@@ -26,14 +26,13 @@ namespace ChatServerASP.Controllers
 
         // GET: api/MESSAGEs/5
         [ResponseType(typeof(List<MESSAGE>))]
-        public async Task<IHttpActionResult> GetMESSAGE(/*string token,*/ int id_chatroom)
+        public async Task<IHttpActionResult> GetMESSAGE(int id/*string token, int id_chatroom*/)
         {
-            List<MESSAGE> msglist = db.Messages.Where(x => x.Id_Chatroom == id_chatroom).ToList();
+            List<MESSAGE> msglist = db.Messages.Where(x => x.Id_Chatroom == id).ToList();
             if (msglist == null)
             {
                 return NotFound();
             }
-
 
             return Ok(msglist);
         }
