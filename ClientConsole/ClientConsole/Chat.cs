@@ -9,6 +9,7 @@ namespace ClientConsole
     public class Chat
     {
         public List<MESSAGE> Messages = new List<MESSAGE>();
+        public List<USER> UsersInChatroom = new List<USER>();
 
         public int ChatMod()
         {
@@ -30,15 +31,29 @@ namespace ClientConsole
 
             this.GetMessages().Wait();
 
+            foreach (MESSAGE item in this.Messages)
+            {
+                Console.WriteLine(item.Id_User_Post + " " + item.Message_text);
+            }
+
+
             Console.ReadLine();
 
             return 0;
         }
 
-        async Task GetMessages()
+        public async Task GetMessages()
         {
             GetTask<List<MESSAGE>> GetUserFriends = new GetTask<List<MESSAGE>>();
-            this.Messages = await GetUserFriends.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id + "?token=" + Program.Token.Token);
+            //this.Messages = await GetUserFriends.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id + "?token=" + Program.Token.Token);
+            this.Messages = await GetUserFriends.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id);
+        }
+
+        public async Task GetUsersInChatroom()
+        {
+            GetTask<USER> GetUsersInChat = new GetTask<USER>();
+            //this.Messages = await GetUserFriends.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id + "?token=" + Program.Token.Token);
+            //this.Messages = await GetUsersInChat.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id);
         }
     }
 }
