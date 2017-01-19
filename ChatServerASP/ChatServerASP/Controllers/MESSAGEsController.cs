@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models;
+using ChatServerASP.Models.Tables;
 
 namespace ChatServerASP.Controllers
 {
@@ -19,22 +20,35 @@ namespace ChatServerASP.Controllers
 
         // GET: api/MESSAGEs
         //[Authorize]
-        public IQueryable<MESSAGE> GetMessages()
+        /*public IQueryable<MESSAGE> GetMessages()
         {
             return db.Messages;
-        }
+        }*/
 
         // GET: api/MESSAGEs/5
         [ResponseType(typeof(List<MESSAGE>))]
-        public async Task<IHttpActionResult> GetMESSAGE(int id/*string token, int id_chatroom*/)
+        public async Task<IHttpActionResult> GetMESSAGE (int id,string token)
         {
-            List<MESSAGE> msglist = db.Messages.Where(x => x.Id_Chatroom == id).ToList();
-            if (msglist == null)
+            USER_TOKENS Ut = db.User_tokens.Where(x => x.Token == token).FirstOrDefault();
+            if (Ut.Token != token || Ut == null)
             {
                 return NotFound();
             }
 
-            return Ok(msglist);
+            CHATROOM_MEMBERS chmember = db.Chatroom_members.Where(x => x.Id_Chatroom == id &&  x.Id_User == Ut.Id_User ).FirstOrDefault();
+            if (chmember != null)
+            {
+                List<MESSAGE> msglist = db.Messages.Where(x => x.Id_Chatroom == id).ToList();
+                if (msglist == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(msglist);
+            }
+            return NotFound();
+
+            
         }
 
         // PUT: api/MESSAGEs/5
