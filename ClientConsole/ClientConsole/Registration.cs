@@ -56,8 +56,7 @@ namespace ClientConsole
 
             Console.WriteLine();
 
-            CreateUser().Wait();
-
+            this.CreateUser().Wait();
 
             Console.BackgroundColor = ConsoleColor.DarkYellow;
             Console.ForegroundColor = ConsoleColor.White;
