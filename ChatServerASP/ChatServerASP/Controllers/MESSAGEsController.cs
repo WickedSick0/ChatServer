@@ -29,14 +29,21 @@ namespace ChatServerASP.Controllers
         [ResponseType(typeof(List<MESSAGE>))]
         public async Task<IHttpActionResult> GetMESSAGE (int id,string token)
         {
-            USER_TOKENS Ut = db.User_tokens.Where(x => x.Token == token).FirstOrDefault();
-            if (Ut.Token != token || Ut == null)
+            if(CheckToken(token) == false)
             {
                 return NotFound();
             }
+            /*USER_TOKENS Ut = db.User_tokens.Where(x => x.Token == token).FirstOrDefault();
+            if (Ut.Token != token || Ut == null)
+            {
+                return NotFound();
+            }*/
 
-            CHATROOM_MEMBERS chmember = db.Chatroom_members.Where(x => x.Id_Chatroom == id &&  x.Id_User == Ut.Id_User ).FirstOrDefault();
-            if (chmember != null)
+            //CHATROOM_MEMBERS chmember = db.Chatroom_members.Where(x => x.Id_Chatroom == id && x.Id_User == db.User_tokens.Where(y => y.Token == token).FirstOrDefault().Id_User).FirstOrDefault();
+            
+            //if (chmember != null)
+
+            if(CheckChatroomMembership(id, token))
             {
                 List<MESSAGE> msglist = db.Messages.Where(x => x.Id_Chatroom == id).ToList();
                 if (msglist == null)
@@ -88,8 +95,10 @@ namespace ChatServerASP.Controllers
 
         // POST: api/MESSAGEs
         [ResponseType(typeof(MESSAGE))]
-        public async Task<IHttpActionResult> PostMESSAGE(MESSAGE mESSAGE)
+        public async Task<IHttpActionResult> PostMESSAGE(MESSAGE mESSAGE,string token,int id_chatroom)
         {
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -129,6 +138,24 @@ namespace ChatServerASP.Controllers
         private bool MESSAGEExists(int id)
         {
             return db.Messages.Count(e => e.Id == id) > 0;
+        }
+        private bool CheckToken(string token)
+        {
+            USER_TOKENS Ut = db.User_tokens.Where(x => x.Token == token).FirstOrDefault();
+            if (Ut.Token != token || Ut == null)
+            {
+                return false;
+            }
+            return true;
+        }
+        private bool CheckChatroomMembership(int id_chatroom, string token)
+        {
+            CHATROOM_MEMBERS chmember = db.Chatroom_members.Where(x => x.Id_Chatroom == id_chatroom && x.Id_User == db.User_tokens.Where(y => y.Token == token).FirstOrDefault().Id_User).FirstOrDefault();
+            if (chmember == null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
