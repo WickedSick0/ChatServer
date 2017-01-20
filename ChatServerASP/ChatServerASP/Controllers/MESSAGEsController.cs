@@ -14,23 +14,12 @@ using System.Web.Http.Description;
 
 namespace ChatServerASP.Controllers
 {
-    /*public abstract class MessageAutorization
-    {
-        public string token { get; set; }
-        public int Id_Chatroom { get; set; }
-
-        public int Id_User_Post { get; set; }
-
-        public string Message_text { get; set; }
-
-        public DateTime Send_time { get; set; }
-    }*/
     public class MESSAGEsController : ApiController
     {
         private MyContext db = new MyContext();
 
         // GET: api/MESSAGEs
-        /*public IQueryable<MESSAGE> GetMessages()
+        /*public IQueryable<MESSAGE> GetMessages() //nechat zakomentovane jinak uniknou data
         {
             return db.Messages;
         }*/
@@ -43,16 +32,6 @@ namespace ChatServerASP.Controllers
             {
                 return NotFound();
             }
-            /*USER_TOKENS Ut = db.User_tokens.Where(x => x.Token == token).FirstOrDefault();
-            if (Ut.Token != token || Ut == null)
-            {
-                return NotFound();
-            }*/
-
-            //CHATROOM_MEMBERS chmember = db.Chatroom_members.Where(x => x.Id_Chatroom == id && x.Id_User == db.User_tokens.Where(y => y.Token == token).FirstOrDefault().Id_User).FirstOrDefault();
-
-            //if (chmember != null)
-
             if (CheckChatroomMembership(id, token))
             {
                 List<MESSAGE> msglist = db.Messages.Where(x => x.Id_Chatroom == id).ToList();
@@ -103,7 +82,7 @@ namespace ChatServerASP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        public class MessageAutorization
+        public class MessageAutorization // nutno vytvorit, jinak neni mozne vubec vyhledat metodu POST, pokud ma vice jak jeden parameter (PICOVINA ASP!)
         {
             public string token { get; set; }
             public int Id_Chatroom { get; set; }
@@ -120,12 +99,12 @@ namespace ChatServerASP.Controllers
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PostMESSAGE(MessageAutorization mAutorization)
         {
-            if (CheckToken(mAutorization.token) == false)
+            if (CheckToken(mAutorization.token) == false)// overeni tokenu
             {
                 return BadRequest();
             }
 
-            if (CheckChatroomMembership(mAutorization.Id_Chatroom, mAutorization.token))
+            if (CheckChatroomMembership(mAutorization.Id_Chatroom, mAutorization.token)) // overeni pravomoci postovat do dane roomky
             {
                
                 if (!ModelState.IsValid)
@@ -179,7 +158,7 @@ namespace ChatServerASP.Controllers
         {
             return db.Messages.Count(e => e.Id == id) > 0;
         }
-        private bool CheckToken(string token)
+        private bool CheckToken(string token) //kontroluje spravnost tokenu
         {
             USER_TOKENS Ut = db.User_tokens.Where(x => x.Token == token).FirstOrDefault();
             if (Ut == null || Ut.Token != token)
@@ -188,7 +167,7 @@ namespace ChatServerASP.Controllers
             }
             return true;
         }
-        private bool CheckChatroomMembership(int id_chatroom, string token)
+        private bool CheckChatroomMembership(int id_chatroom, string token) // kontroluje zdali je uzivatel co vykonava(neco[POST,GET atd.]) v chatroomu
         {
             CHATROOM_MEMBERS chmember = db.Chatroom_members.Where(x => x.Id_Chatroom == id_chatroom && x.Id_User == db.User_tokens.Where(y => y.Token == token).FirstOrDefault().Id_User).FirstOrDefault();
             if (chmember == null)
