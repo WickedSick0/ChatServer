@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChatServerASP.Models;
+using ChatServerASP.Models.Tables;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,8 +11,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using ChatServerASP.Models;
-using ChatServerASP.Models.Tables;
 
 namespace ChatServerASP.Controllers
 {
@@ -19,17 +19,16 @@ namespace ChatServerASP.Controllers
         private MyContext db = new MyContext();
 
         // GET: api/MESSAGEs
-        //[Authorize]
-        /*public IQueryable<MESSAGE> GetMessages()
+        public IQueryable<MESSAGE> GetMessages()
         {
             return db.Messages;
-        }*/
-
+        }
+        
         // GET: api/MESSAGEs/5
         [ResponseType(typeof(List<MESSAGE>))]
-        public async Task<IHttpActionResult> GetMESSAGE (int id,string token)
+        public async Task<IHttpActionResult> GetMESSAGE(int id, string token)
         {
-            if(CheckToken(token) == false)
+            if (CheckToken(token) == false)
             {
                 return NotFound();
             }
@@ -40,10 +39,10 @@ namespace ChatServerASP.Controllers
             }*/
 
             //CHATROOM_MEMBERS chmember = db.Chatroom_members.Where(x => x.Id_Chatroom == id && x.Id_User == db.User_tokens.Where(y => y.Token == token).FirstOrDefault().Id_User).FirstOrDefault();
-            
+
             //if (chmember != null)
 
-            if(CheckChatroomMembership(id, token))
+            if (CheckChatroomMembership(id, token))
             {
                 List<MESSAGE> msglist = db.Messages.Where(x => x.Id_Chatroom == id).ToList();
                 if (msglist == null)
@@ -55,7 +54,7 @@ namespace ChatServerASP.Controllers
             }
             return NotFound();
 
-            
+
         }
 
         // PUT: api/MESSAGEs/5
@@ -94,20 +93,29 @@ namespace ChatServerASP.Controllers
         }
 
         // POST: api/MESSAGEs
-        [ResponseType(typeof(MESSAGE))]
-        public async Task<IHttpActionResult> PostMESSAGE(MESSAGE mESSAGE,string token,int id_chatroom)
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> PostMESSAGE(MESSAGE mESSAGE, string token)
         {
-
-
-            if (!ModelState.IsValid)
+            if (CheckToken(token) == false)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
-            db.Messages.Add(mESSAGE);
-            await db.SaveChangesAsync();
+            if (CheckChatroomMembership(mESSAGE.Id_Chatroom, token))
+            {
+               
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
 
-            return CreatedAtRoute("DefaultApi", new { id = mESSAGE.Id }, mESSAGE);
+                db.Messages.Add(mESSAGE);
+                await db.SaveChangesAsync();
+
+                return CreatedAtRoute("DefaultApi", new { id = mESSAGE.Id }, mESSAGE);
+
+            }
+            return BadRequest();
         }
 
         // DELETE: api/MESSAGEs/5
