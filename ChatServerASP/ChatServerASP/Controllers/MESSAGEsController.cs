@@ -14,15 +14,26 @@ using System.Web.Http.Description;
 
 namespace ChatServerASP.Controllers
 {
+    /*public abstract class MessageAutorization
+    {
+        public string token { get; set; }
+        public int Id_Chatroom { get; set; }
+
+        public int Id_User_Post { get; set; }
+
+        public string Message_text { get; set; }
+
+        public DateTime Send_time { get; set; }
+    }*/
     public class MESSAGEsController : ApiController
     {
         private MyContext db = new MyContext();
 
         // GET: api/MESSAGEs
-        public IQueryable<MESSAGE> GetMessages()
+        /*public IQueryable<MESSAGE> GetMessages()
         {
             return db.Messages;
-        }
+        }*/
         
         // GET: api/MESSAGEs/5
         [ResponseType(typeof(List<MESSAGE>))]
@@ -92,22 +103,43 @@ namespace ChatServerASP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        public class MessageAutorization
+        {
+            public string token { get; set; }
+            public int Id_Chatroom { get; set; }
+
+            public int Id_User_Post { get; set; }
+
+            public string Message_text { get; set; }
+
+            public DateTime Send_time { get; set; }
+        }
+
+
         // POST: api/MESSAGEs
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PostMESSAGE(MESSAGE mESSAGE, string token)
+        public async Task<IHttpActionResult> PostMESSAGE(MessageAutorization mAutorization)
         {
-            if (CheckToken(token) == false)
+            if (CheckToken(mAutorization.token) == false)
             {
                 return BadRequest();
             }
 
-            if (CheckChatroomMembership(mESSAGE.Id_Chatroom, token))
+            if (CheckChatroomMembership(mAutorization.Id_Chatroom, mAutorization.token))
             {
                
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
+
+                MESSAGE mESSAGE = new MESSAGE();
+                mESSAGE.Id_Chatroom = mAutorization.Id_Chatroom;
+                mESSAGE.Id_User_Post = mAutorization.Id_User_Post;
+                mESSAGE.Message_text = mAutorization.Message_text;
+                mESSAGE.Send_time = mAutorization.Send_time;
+                
+
 
                 db.Messages.Add(mESSAGE);
                 await db.SaveChangesAsync();
@@ -134,7 +166,7 @@ namespace ChatServerASP.Controllers
             return Ok(mESSAGE);
         }
 
-        protected override void Dispose(bool disposing)
+       protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -150,7 +182,7 @@ namespace ChatServerASP.Controllers
         private bool CheckToken(string token)
         {
             USER_TOKENS Ut = db.User_tokens.Where(x => x.Token == token).FirstOrDefault();
-            if (Ut.Token != token || Ut == null)
+            if (Ut == null || Ut.Token != token)
             {
                 return false;
             }
