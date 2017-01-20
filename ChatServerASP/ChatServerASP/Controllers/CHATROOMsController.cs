@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models;
+using ChatServerASP.Models.Tables;
 
 namespace ChatServerASP.Controllers
 {
@@ -24,16 +25,31 @@ namespace ChatServerASP.Controllers
         }
 
         // GET: api/CHATROOMs/5
-        [ResponseType(typeof(CHATROOM))]
-        public async Task<IHttpActionResult> GetCHATROOM(int id)
+        [ResponseType(typeof(List<CHATROOM>))]
+        public async Task<List<CHATROOM>> GetCHATROOM(int id, string token)
         {
-            CHATROOM cHATROOM = await db.Chatrooms.FindAsync(id);
+
+            List<USER_TOKENS> Uts = db.User_tokens.Where(x => x.Id_User == id).ToList();
+            foreach (var item in Uts)
+            {
+                if (item.Token == token)
+                {
+                    Chatroom_membersRepository rep = new Chatroom_membersRepository();
+
+                    return rep.FindChatroomByUser(id).ToList();
+                }
+            }
+            var response = new HttpResponseMessage(HttpStatusCode.NotFound) { Content = new StringContent("Unable to find any results") };
+            throw new HttpResponseException(response);
+
+            //original
+            /*CHATROOM cHATROOM = await db.Chatrooms.FindAsync(id);
             if (cHATROOM == null)
             {
                 return NotFound();
             }
 
-            return Ok(cHATROOM);
+            return Ok(cHATROOM);*/
         }
 
         // PUT: api/CHATROOMs/5

@@ -25,7 +25,7 @@ namespace ChatServerASP.Controllers
         }
 
         // GET api/USER_TOKENS/5
-        //[ResponseType(typeof(USER_TOKENS))]
+        [ResponseType(typeof(USER_TOKENS))]
         public async Task<IHttpActionResult> GetUSER_TOKENS(int id)
         {
             USER_TOKENS user_tokens = await db.User_tokens.FindAsync(id);

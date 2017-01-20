@@ -26,24 +26,9 @@ namespace ChatServerASP.Controllers
 
         // GET: api/CHATROOM_MEMBERS/5?token=fdsakfjl
         [ResponseType(typeof(CHATROOM_MEMBERS))]
-        public async Task<List<CHATROOM>> GetCHATROOM_MEMBERS(int id, string token)
+        public async Task<IHttpActionResult> GetCHATROOM_MEMBERS(int id)
         {
-            List<USER_TOKENS> Uts = db.User_tokens.Where(x => x.Id_User == id).ToList();
-            foreach (var item in Uts)
-            {
-                if (item.Token == token)
-                {
-                    Chatroom_membersRepository rep = new Chatroom_membersRepository();
-
-                    return rep.FindChatroomByUser(id).ToList();
-                }
-            }
-            var response = new HttpResponseMessage(HttpStatusCode.NotFound)
-            { Content = new StringContent("Unable to find any results") };
-            throw new HttpResponseException(response);
-
             //original
-            /*
             CHATROOM_MEMBERS cHATROOM_MEMBERS = await db.Chatroom_members.FindAsync(id);
             if (cHATROOM_MEMBERS == null)
             {
@@ -51,7 +36,6 @@ namespace ChatServerASP.Controllers
             }
 
             return Ok(cHATROOM_MEMBERS);
-            */
         }
 
         // PUT: api/CHATROOM_MEMBERS/5
