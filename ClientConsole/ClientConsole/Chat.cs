@@ -55,8 +55,8 @@ namespace ClientConsole
         public async Task GetMessages()
         {
             GetTask<List<MESSAGE>> GetMessage = new GetTask<List<MESSAGE>>();
-            //this.Messages = await GetUserFriends.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id + "?token=" + Program.Token.Token);
-            this.Messages = await GetMessage.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id);
+            this.Messages = await GetMessage.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id + "?token=" + Program.Token.Token);
+            //this.Messages = await GetMessage.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id);
         }
 
         public async Task GetUsersInChatroom(int id)
