@@ -1,4 +1,5 @@
 ﻿using ChatServerASP.Models;
+using ChatServerASP.Models.Repositories;
 using ChatServerASP.Models.Tables;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace ChatServerASP.Controllers
     public class MESSAGEsController : ApiController
     {
         private MyContext db = new MyContext();
+        private User_tokensRepository utRepository = new User_tokensRepository();
+        private Chatroom_membersRepository chMRepository = new Chatroom_membersRepository();
 
         // GET: api/MESSAGEs
         /*public IQueryable<MESSAGE> GetMessages() //nechat zakomentovane jinak uniknou data
@@ -28,11 +31,11 @@ namespace ChatServerASP.Controllers
         [ResponseType(typeof(List<MESSAGE>))]
         public async Task<IHttpActionResult> GetMESSAGE(int id, string token)
         {
-            if (CheckToken(token) == false)
+            if (utRepository.CheckToken(token,db.User_tokens.Where(x => x.Token == token).Select(x => x.Id_User).FirstOrDefault()) == false)
             {
                 return NotFound();
             }
-            if (CheckChatroomMembership(id, token))
+            if (chMRepository.CheckChatroomMembership(id, token))
             {
                 List<MESSAGE> msglist = db.Messages.Where(x => x.Id_Chatroom == id).ToList();
                 if (msglist == null)
@@ -99,12 +102,11 @@ namespace ChatServerASP.Controllers
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PostMESSAGE(MessageAutorization mAutorization)
         {
-            if (CheckToken(mAutorization.token) == false)// overeni tokenu
+            if (utRepository.CheckToken(mAutorization.token,mAutorization.Id_User_Post) == false)// overeni tokenu
             {
                 return BadRequest();
             }
-
-            if (CheckChatroomMembership(mAutorization.Id_Chatroom, mAutorization.token)) // overeni pravomoci postovat do dane roomky
+            if (chMRepository.CheckChatroomMembership(mAutorization.Id_Chatroom, mAutorization.token)) // overeni pravomoci postovat do dane roomky
             {
                
                 if (!ModelState.IsValid)
@@ -157,24 +159,6 @@ namespace ChatServerASP.Controllers
         private bool MESSAGEExists(int id)
         {
             return db.Messages.Count(e => e.Id == id) > 0;
-        }
-        private bool CheckToken(string token) //kontroluje spravnost tokenu
-        {
-            USER_TOKENS Ut = db.User_tokens.Where(x => x.Token == token).FirstOrDefault();
-            if (Ut == null || Ut.Token != token)
-            {
-                return false;
-            }
-            return true;
-        }
-        private bool CheckChatroomMembership(int id_chatroom, string token) // kontroluje zdali je uzivatel co vykonava(neco[POST,GET atd.]) v chatroomu
-        {
-            CHATROOM_MEMBERS chmember = db.Chatroom_members.Where(x => x.Id_Chatroom == id_chatroom && x.Id_User == db.User_tokens.Where(y => y.Token == token).FirstOrDefault().Id_User).FirstOrDefault();
-            if (chmember == null)
-            {
-                return false;
-            }
-            return true;
         }
     }
 }

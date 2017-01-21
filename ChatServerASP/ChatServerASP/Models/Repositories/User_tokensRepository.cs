@@ -38,6 +38,19 @@ namespace ChatServerASP.Models.Repositories
             this._context.User_tokens.Remove(ut);
             this._context.SaveChanges();
         }
+        public bool CheckToken(string token, int id_user) //kontroluje spravnost tokenu
+        {
+            USER_TOKENS Ut = _context.User_tokens.Where(x => x.Token == token).FirstOrDefault();
+            if (Ut == null || Ut.Token != token)
+            {
+                return false;
+            }
+            if (id_user != Ut.Id_User)
+            {
+                return false;
+            }
+            return true;
+        }
 
 
     }

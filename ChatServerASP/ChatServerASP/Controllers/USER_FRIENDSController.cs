@@ -13,13 +13,15 @@ using ChatServerASP.Models;
 using System.Web.Mvc;
 using ChatServerASP.Models.Tables;
 using System.Web;
+using ChatServerASP.Models.Repositories;
 
 namespace ChatServerASP.Controllers
 {
     public class USER_FRIENDSController : ApiController
     {
         private MyContext db = new MyContext();
-
+        private User_tokensRepository utRepository = new User_tokensRepository();
+        private Chatroom_membersRepository chMRepository = new Chatroom_membersRepository();
         // GET: api/USER_FRIENDS
         /*public IQueryable<USER_FRIENDS> GetUser_friends()
         {
@@ -27,23 +29,16 @@ namespace ChatServerASP.Controllers
         }*/
 
         // GET: api/USER_FRIENDS/5?token=AASDFASDF
-        [ResponseType(typeof(USER_FRIENDS))]
-        public async Task<List<USER>> GetUSER_FRIENDS(int id, string token)
+        [ResponseType(typeof(List<USER>))]
+        public async Task<IHttpActionResult> GetUSER_FRIENDS(int id, string token)
         {
-            List<USER_TOKENS> Uts = db.User_tokens.Where(x => x.Id_User == id).ToList();
-            foreach (var item in Uts)
+            if (utRepository.CheckToken(token, id) == false)
             {
-                if (item.Token == token)
-                {
-                    User_friendsRepository rep = new User_friendsRepository();
-
-                    return rep.FindFriendsByOwner(id).ToList();
-                }
+                return NotFound();
             }
-            var response = new HttpResponseMessage(HttpStatusCode.NotFound)
-            { Content = new StringContent("Unable to find any results") };
-            throw new HttpResponseException(response);
-            //throw new HttpException(404, "Not found");
+            User_friendsRepository rep = new User_friendsRepository();
+
+            return Ok(rep.FindFriendsByOwner(id).ToList());
 
 
 

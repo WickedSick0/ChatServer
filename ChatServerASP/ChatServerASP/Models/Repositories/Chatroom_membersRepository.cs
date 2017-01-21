@@ -59,5 +59,14 @@ namespace ChatServerASP.Models
             this._context.Chatroom_members.Remove(cm);
             this._context.SaveChanges();
         }
+        public bool CheckChatroomMembership(int id_chatroom, string token) // kontroluje zdali je uzivatel co vykonava(neco[POST,GET atd.]) v chatroomu
+        {
+            CHATROOM_MEMBERS chmember = _context.Chatroom_members.Where(x => x.Id_Chatroom == id_chatroom && x.Id_User == _context.User_tokens.Where(y => y.Token == token).FirstOrDefault().Id_User).FirstOrDefault();
+            if (chmember == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

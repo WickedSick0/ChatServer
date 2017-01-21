@@ -11,12 +11,15 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models;
 using ChatServerASP.Models.Tables;
+using ChatServerASP.Models.Repositories;
 
 namespace ChatServerASP.Controllers
 {
     public class CHATROOMsController : ApiController
     {
         private MyContext db = new MyContext();
+        private User_tokensRepository utRepository = new User_tokensRepository();
+        private Chatroom_membersRepository chMRepository = new Chatroom_membersRepository();
 
         // GET: api/CHATROOMs
         public IQueryable<CHATROOM> GetChatrooms()
@@ -26,21 +29,14 @@ namespace ChatServerASP.Controllers
 
         // GET: api/CHATROOMs/5
         [ResponseType(typeof(List<CHATROOM>))]
-        public async Task<List<CHATROOM>> GetCHATROOM(int id, string token)
+        public async Task<IHttpActionResult> GetCHATROOM(int id, string token)
         {
-
-            List<USER_TOKENS> Uts = db.User_tokens.Where(x => x.Id_User == id).ToList();
-            foreach (var item in Uts)
+            if (utRepository.CheckToken(token,id) == false)
             {
-                if (item.Token == token)
-                {
-                    Chatroom_membersRepository rep = new Chatroom_membersRepository();
-
-                    return rep.FindChatroomByUser(id).ToList();
-                }
+                return NotFound();
             }
-            var response = new HttpResponseMessage(HttpStatusCode.NotFound) { Content = new StringContent("Unable to find any results") };
-            throw new HttpResponseException(response);
+            return Ok(chMRepository.FindChatroomByUser(id).ToList());
+
 
             //original
             /*CHATROOM cHATROOM = await db.Chatrooms.FindAsync(id);
