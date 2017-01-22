@@ -77,7 +77,7 @@ namespace ChatServerASP.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             USER_TOKENS token = new USER_TOKENS();
@@ -107,8 +107,7 @@ namespace ChatServerASP.Controllers
                 }
                 
             }
-
-            return BadRequest(ModelState);
+            return BadRequest();
             //return CreatedAtRoute("DefaultApi", new { id = token.Id }, token);
             //return Ok(token.Token);
             //return await GetUSER_TOKENS(token.Id);

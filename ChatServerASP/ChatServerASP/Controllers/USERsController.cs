@@ -31,6 +31,17 @@ namespace ChatServerASP.Controllers
         public async Task<IHttpActionResult> GetUSER(int id, string token)
         {
             User_tokensRepository rep = new User_tokensRepository();
+            if (rep.CheckToken(token,id) == false)
+            {
+                return BadRequest("Token is not valid! Please log in again!");
+            }
+
+
+            USER u = await db.Users.FindAsync(id);
+
+            return Ok(u);
+            /*
+            User_tokensRepository rep = new User_tokensRepository();
             USER uSER = null;
 
             foreach (USER_TOKENS item in rep.FindAll())
@@ -48,7 +59,7 @@ namespace ChatServerASP.Controllers
                 return NotFound();
             }            
 
-            return Ok(uSER);
+            return Ok(uSER);*/
         }
 
         // PUT: api/USERs/5
@@ -95,18 +106,18 @@ namespace ChatServerASP.Controllers
 
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
-            if (uSER.Login == "" || uSER.Password == "")
-                return BadRequest(ModelState);
+            if (uSER.Login == "" || uSER.Password == "" || uSER.Login == "" && uSER.Password == "" || uSER.Login == null || uSER.Password == null || uSER.Login == null && uSER.Password == null)
+                return BadRequest();
 
             if (uSER.Photo == null) uSER.Photo = @"\Content\Photos\profilePic.png";
 
             foreach (USER item in uRep.FindAll())
             {
                 if (item.Login == uSER.Login)
-                    return BadRequest(ModelState);
+                    return BadRequest();
             }
 
             db.Users.Add(uSER);
