@@ -37,7 +37,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_Friends)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -129,19 +129,20 @@
             this.dataGridView2.Size = new System.Drawing.Size(418, 387);
             this.dataGridView2.TabIndex = 8;
             // 
-            // textBox2
+            // txtSearch
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 135);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(170, 22);
-            this.textBox2.TabIndex = 9;
+            this.txtSearch.Location = new System.Drawing.Point(12, 135);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(170, 22);
+            this.txtSearch.TabIndex = 9;
+            this.txtSearch.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // UserInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 579);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox1);
@@ -174,6 +175,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }

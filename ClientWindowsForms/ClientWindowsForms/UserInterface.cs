@@ -64,5 +64,22 @@ namespace ClientWindowsForms
             frm.Closed += (s, args) => this.Close();
             frm.Show();
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+            foreach (System.Windows.Forms.DataGridViewRow r in datagrid_Friends.Rows)
+            {
+                if ((r.Cells[2].Value).ToString().ToUpper().Contains(txtSearch.Text.ToUpper()))
+                {
+                    datagrid_Friends.Rows[r.Index].Visible = true;
+                }
+                else
+                {
+                    datagrid_Friends.CurrentCell = null;
+                    datagrid_Friends.Rows[r.Index].Visible = false;
+                }
+            }
+        }
     }
 }
