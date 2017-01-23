@@ -16,6 +16,7 @@ namespace ClientWindowsForms
     {
         HttpClient client = new HttpClient();
         USER usr;
+        List<USER> friends;
         HttpResponseMessage response;
         HttpResponseMessage responseFriends;
 
@@ -24,11 +25,16 @@ namespace ClientWindowsForms
             client.BaseAddress = new Uri("http://localhost:53098/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+
             response = client.GetAsync("api/USERs/" +  tok.Id_User + "?token=" + tok.Token).Result;
             usr = response.Content.ReadAsAsync<USER>().Result;
-            //responseFriends = client.GetAsync("api/USER_FRIENDS/" + tok.Id_User + "?token=" + tok.Token).Result;
-            //var emp = responseFriends.Content.ReadAsAsync<IEnumerable<USER>>().Result;
-            //List<USER> friends = emp.ToList<MESSAGE>();
+
+
+            responseFriends = client.GetAsync("api/USER_FRIENDS/" + tok.Id_User + "?token=" + tok.Token).Result;
+            var emp = responseFriends.Content.ReadAsAsync<IEnumerable<USER>>().Result;
+            friends = emp.ToList<USER>();
+
             if (!response.IsSuccessStatusCode) Close();
             
 
@@ -39,12 +45,16 @@ namespace ClientWindowsForms
         {
             this.profilePic.Image = ClientWindowsForms.Properties.Resources.profilePic;
             this.label1.Text = usr.Nick;
+            this.datagrid_Friends.DataSource = friends;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             usr = null;
-            this.Close();
+            this.Hide();
+            Login frm = new Login();
+            frm.Closed += (s, args) => this.Close();
+            frm.Show();
         }
     }
 }
