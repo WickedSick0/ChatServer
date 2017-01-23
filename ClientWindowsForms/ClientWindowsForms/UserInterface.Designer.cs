@@ -86,9 +86,12 @@
             // 
             // datagrid_Friends
             // 
+            this.datagrid_Friends.AllowUserToAddRows = false;
+            this.datagrid_Friends.AllowUserToDeleteRows = false;
             this.datagrid_Friends.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagrid_Friends.Location = new System.Drawing.Point(13, 163);
             this.datagrid_Friends.Name = "datagrid_Friends";
+            this.datagrid_Friends.ReadOnly = true;
             this.datagrid_Friends.Size = new System.Drawing.Size(169, 351);
             this.datagrid_Friends.TabIndex = 4;
             // 

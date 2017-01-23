@@ -8,6 +8,7 @@ namespace ClientWindowsForms
 {
     public class USER
     {
+        
         public int Id { get; set; }
 
         public string Login { get; set; }
