@@ -118,7 +118,7 @@ namespace ChatServerASP.Controllers
                 mESSAGE.Id_Chatroom = mAutorization.Id_Chatroom;
                 mESSAGE.Id_User_Post = mAutorization.Id_User_Post;
                 mESSAGE.Message_text = mAutorization.Message_text;
-                mESSAGE.Send_time = mAutorization.Send_time;
+                mESSAGE.Send_time = DateTime.Now;
                 
 
 

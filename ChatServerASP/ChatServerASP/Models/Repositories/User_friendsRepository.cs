@@ -17,10 +17,11 @@ namespace ChatServerASP.Models
 
         public List<USER> FindFriendsByOwner(int id_Owner)
         {
+
             UserRepository rep = new UserRepository();
             List<USER> friends = new List<USER>();
             List<int> temp = new List<int>();
-             
+            USER u = new USER();
             foreach (USER_FRIENDS item in this.FindAll())
             {
                 if (item.Id_Friendlist_Owner == id_Owner)
@@ -28,7 +29,11 @@ namespace ChatServerASP.Models
             }
 
             foreach (int item in temp)
-                friends.Add(rep.FindById(item));
+            {
+                u = rep.FindById(item);
+                u.Password = null;
+                friends.Add(u);
+            }
 
             return friends;
         }

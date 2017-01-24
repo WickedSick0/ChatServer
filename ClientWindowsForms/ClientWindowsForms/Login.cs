@@ -21,28 +21,63 @@ namespace ClientWindowsForms
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             InitializeComponent();
+            txt_passwd.PasswordChar = '*';
+            btn_Close.TabStop = false;
+            btn_Close.FlatStyle = FlatStyle.Flat;
+            btn_Close.FlatAppearance.BorderSize = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             LoginModel usr = new LoginModel() { Username = txt_username.Text, Password = txt_passwd.Text };
-            HttpResponseMessage response = client.PostAsJsonAsync("api/USER_TOKENS", usr).Result;
+            try
+            {
+                HttpResponseMessage response = client.PostAsJsonAsync("api/USER_TOKENS", usr).Result;
+                USER_TOKENS tok = response.Content.ReadAsAsync<USER_TOKENS>().Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    UserInterface frm = new UserInterface(tok);
+                    this.Hide();
+                    frm.Closed += (s, args) => this.Close();
+                    frm.Show();
+                   // frm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Username / Password");
+                }
+            }
+            catch (Exception)
+            {
+
+                 MessageBox.Show("Server is down");
+            }
+
+            /*HttpResponseMessage response = client.PostAsJsonAsync("api/USER_TOKENS", usr).Result;
             USER_TOKENS tok = response.Content.ReadAsAsync<USER_TOKENS>().Result;
             if (response.IsSuccessStatusCode)
             {
                 UserInterface frm = new UserInterface(tok);
+                this.Close();
                 frm.Show();
             }
             else
             {
                 MessageBox.Show("Invalid Username / Password");
-            }
+            }*/
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Register frm = new Register();
+            this.Hide();
+            frm.Closed += (s, args) => this.Close();
             frm.Show();
+        }
+
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
