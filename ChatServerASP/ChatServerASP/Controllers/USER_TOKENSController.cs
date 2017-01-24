@@ -85,7 +85,7 @@ namespace ChatServerASP.Controllers
             UserRepository rep = new UserRepository();
             foreach (USER item in rep.FindAll())
             {
-                if (lmodel.Username == item.Login && lmodel.Password == item.Password)
+                if (lmodel.Username.ToLower() == item.Login.ToLower() && lmodel.Password == item.Password)
                 {
                     char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
                     Random r = new Random();
