@@ -22,6 +22,9 @@ namespace ClientWindowsForms
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             InitializeComponent();
             txt_passwd.PasswordChar = '*';
+            btn_Close.TabStop = false;
+            btn_Close.FlatStyle = FlatStyle.Flat;
+            btn_Close.FlatAppearance.BorderSize = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,6 +73,11 @@ namespace ClientWindowsForms
             this.Hide();
             frm.Closed += (s, args) => this.Close();
             frm.Show();
+        }
+
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
