@@ -138,6 +138,7 @@
     <Content Include="Resources\Register.png" />
     <Content Include="Resources\Rounded_Rectangle.png" />
     <Content Include="Resources\Sign in.png" />
+    <Content Include="Resources\UI - Background.png" />
     <Content Include="Resources\USERNAME.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

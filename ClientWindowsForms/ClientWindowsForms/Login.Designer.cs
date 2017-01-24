@@ -61,6 +61,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button1.Location = new System.Drawing.Point(146, 417);
@@ -74,6 +75,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button2.Location = new System.Drawing.Point(196, 471);
@@ -117,6 +119,7 @@
             // 
             this.btn_Close.BackColor = System.Drawing.Color.Transparent;
             this.btn_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Close.BackgroundImage")));
+            this.btn_Close.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_Close.Location = new System.Drawing.Point(415, 12);
             this.btn_Close.Name = "btn_Close";

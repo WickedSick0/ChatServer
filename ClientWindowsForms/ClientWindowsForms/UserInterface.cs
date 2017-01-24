@@ -52,7 +52,11 @@ namespace ClientWindowsForms
             this.tab = 0;
 
             InitializeComponent();
-           
+
+            btn_Close.TabStop = false;
+            btn_Close.FlatStyle = FlatStyle.Flat;
+            btn_Close.FlatAppearance.BorderSize = 0;
+
         }
         
         private void UserInterface_Load(object sender, EventArgs e)
@@ -180,13 +184,17 @@ namespace ClientWindowsForms
                         txt_MSGS.SelectionColor = Color.Blue;
                         txt_MSGS.Select(txt_MSGS.TextLength, 0);
                         txt_MSGS.SelectionColor = txt_MSGS.ForeColor;
-                    };
+                    }
                 }
 
 
             }
         }
 
-
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id);
+            this.Close();
+        }
     }
 }
