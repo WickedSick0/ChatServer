@@ -141,7 +141,18 @@ namespace ClientWindowsForms
 
         private void datagrid_Friends_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(this.tab == 1) //chatroom
+            
+        }
+
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id);
+            this.Close();
+        }
+
+        private void datagrid_Friends_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.tab == 1) //chatroom
             {
                 this.txt_MSGS.Clear();
 
@@ -166,10 +177,10 @@ namespace ClientWindowsForms
                         }
                         else if (item.Id_User_Post == this.usr.Id)
                         {
-                            this.txt_MSGS.Text += this.usr.Nick + ": " + item.Message_text + "\n\r";                 
+                            this.txt_MSGS.Text += this.usr.Nick + ": " + item.Message_text + "\n\r";
                             break;
                         }
-                        
+
                     }
 
                 }
@@ -186,15 +197,7 @@ namespace ClientWindowsForms
                         txt_MSGS.SelectionColor = txt_MSGS.ForeColor;
                     }
                 }
-
-
             }
-        }
-
-        private void btn_Close_Click(object sender, EventArgs e)
-        {
-            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id);
-            this.Close();
-        }
+        } //end
     }
 }

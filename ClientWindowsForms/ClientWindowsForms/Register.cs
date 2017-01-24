@@ -24,15 +24,22 @@ namespace ClientWindowsForms
             InitializeComponent();
             txt_passwd.PasswordChar = '*';
             txt_passwdConfirm.PasswordChar = '*';
+
             btn_Close.TabStop = false;
             btn_Close.FlatStyle = FlatStyle.Flat;
             btn_Close.FlatAppearance.BorderSize = 0;
+
+            btn_ok.FlatStyle = FlatStyle.Flat;
+            btn_ok.FlatAppearance.BorderSize = 0;
+
+            btn_Cancel.FlatStyle = FlatStyle.Flat;
+            btn_Cancel.FlatAppearance.BorderSize = 0;
         }
 
         private void btn_ok_Click(object sender, EventArgs e)
         {
-            if (this.txt_ImgPath.Text == "".Trim()) this.imgPath = null;
-            else this.imgPath = this.txt_ImgPath.Text;    
+            //if (this.txt_ImgPath.Text == "".Trim()) this.imgPath = null;
+            //else this.imgPath = this.txt_ImgPath.Text;    
                     
             USER usr = new USER() { Login = txt_username.Text, Nick = txt_nick.Text, Password = txt_passwd.Text, Photo = this.imgPath };
 
