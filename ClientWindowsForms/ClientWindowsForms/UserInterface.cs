@@ -51,7 +51,7 @@ namespace ClientWindowsForms
             this.datagrid_Friends.DataSource = friends;
             this.datagrid_Friends.Columns[0].Visible = false;
             this.datagrid_Friends.Columns[1].Visible = false;
-            this.datagrid_Friends.Columns[3].Visible = false;
+            //this.datagrid_Friends.Columns[3].Visible = false;
 
         }
 
@@ -80,6 +80,11 @@ namespace ClientWindowsForms
                     datagrid_Friends.Rows[r.Index].Visible = false;
                 }
             }
+        }
+
+        private void UserInterface_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id);
         }
     }
 }
