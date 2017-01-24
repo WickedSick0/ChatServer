@@ -16,7 +16,6 @@ namespace ClientConsole
                 "              Contacts                     ",
                 "              Add contact                  ",
                 "              Chatrooms                    ",
-                "              Add Chatroom                 ",
                 "              Logout                       "
             };
 
@@ -42,7 +41,7 @@ namespace ClientConsole
                 }
                 else if (this.Key == ConsoleKey.Enter)
                 {
-                    if (selected == 4)
+                    if (selected == 3)
                     {
                         Program.LoggedInUser = null;
                         Program.Token = null;

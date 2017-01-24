@@ -9,20 +9,20 @@ namespace ClientConsole
 {
     public class GetTask<T> where T : class
     {
-        public HttpClient client = new HttpClient();
+        public HttpClient Client = new HttpClient();
 
         public GetTask()
         {
-            client.BaseAddress = new Uri("http://localhost:53098/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Client.BaseAddress = new Uri("http://localhost:53098/");
+            Client.DefaultRequestHeaders.Accept.Clear();
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         //GET
         public async Task<T> GetAsync(string path)
         {
             T var = null;
-            HttpResponseMessage response = await this.client.GetAsync(path);
+            HttpResponseMessage response = await this.Client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
                 var = await response.Content.ReadAsAsync<T>();
@@ -35,11 +35,11 @@ namespace ClientConsole
         //POST
         public async Task<Uri> CreateAsync(string path, T var)
         {
-            HttpResponseMessage response = await this.client.PostAsJsonAsync(path, var);
+            HttpResponseMessage response = await this.Client.PostAsJsonAsync(path, var);
             response.EnsureSuccessStatusCode();
 
-            if (response != null)
-                LogIn.resp = response;
+            //if (response != null)
+            LogIn.resp = response;
 
             // return URI of the created resource.
             return response.Headers.Location;
@@ -48,7 +48,7 @@ namespace ClientConsole
         //DELETE
         public async Task<HttpStatusCode> DeleteAsync(string path)
         {
-            HttpResponseMessage response = await this.client.DeleteAsync(path);
+            HttpResponseMessage response = await this.Client.DeleteAsync(path);
             return response.StatusCode;
         }
     }

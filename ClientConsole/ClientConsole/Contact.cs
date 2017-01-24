@@ -8,45 +8,40 @@ namespace ClientConsole
 {
     public class Contact
     {
-        public ConsoleKey Key = ConsoleKey.F1;
         public List<USER> UserFriends = new List<USER>();
 
         public int ContactMod()
         {
             this.GetFriends().Wait();
 
-            string[] items = new string[this.UserFriends.Count];
-
-            int i = 0;
-            foreach (USER item in this.UserFriends)
-            {
-                items[i] = item.Nick;
-                i++;
-            }
-
             int selected = 0;
+            ConsoleKey key = new ConsoleKey();
 
             while (true)
             {
-                this.RenderContactMod(items, selected);
+                this.RenderContactMod(selected);
 
-                this.Key = Console.ReadKey().Key;
+                key = Console.ReadKey().Key;
 
-                if (this.Key == ConsoleKey.UpArrow)
+                if (key == ConsoleKey.UpArrow)
                 {
                     selected--;
                     if (selected < 0)
-                        selected = items.Length - 1;
+                        selected = this.UserFriends.Count - 1;
                 }
-                else if (this.Key == ConsoleKey.DownArrow)
+                else if (key == ConsoleKey.DownArrow)
                 {
                     selected++;
-                    if (selected > items.Length - 1)
+                    if (selected > this.UserFriends.Count - 1)
                         selected = 0;
                 }
-                else if (this.Key == ConsoleKey.Enter)
+                else if (key == ConsoleKey.Escape)
                 {
-                    Program.Friend = new USER() { Nick = items[selected] };
+                    return 4;
+                }
+                else if (key == ConsoleKey.Enter)
+                {
+                    Program.Friend = new USER() { Nick = this.UserFriends[selected].Nick };
 
                     foreach (USER item in this.UserFriends)
                     {
@@ -57,6 +52,7 @@ namespace ClientConsole
                             Program.Friend.Password = item.Password;
                             Program.Friend.Nick = item.Nick;
                             Program.Friend.Photo = item.Photo;
+                            return 8;
                         }
                     }
 
@@ -65,27 +61,27 @@ namespace ClientConsole
             }
         }
 
-        public void RenderContactMod(string[] items, int selected)
+        public void RenderContactMod(int selected)
         {
             Console.Clear();
             Console.SetWindowSize(45, 15);
             Console.CursorVisible = false;
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("             YOUR CONTACT LIST               ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("Your nick:   " + Program.LoggedInUser.Nick + "   ");
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine("                THUNDER CHAT                 ");
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("                Contact list                 ");
+            Console.WriteLine("                Your nick:                   ");
+            Console.SetCursorPosition(27, 2);
+            Console.WriteLine(Program.LoggedInUser.Nick);
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
 
             int step = 0;
 
-            foreach (string item in items)
+            foreach (USER item in this.UserFriends)
             {
                 if (step == selected)
                 {
@@ -93,44 +89,24 @@ namespace ClientConsole
                     Console.Write(" ");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.BackgroundColor = ConsoleColor.DarkGray;
-                    Console.WriteLine(item);
+                    Console.WriteLine(item.Login + " (" + item.Nick + ")");
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("  " + item);
+                    Console.WriteLine("  " + item.Login + " (" + item.Nick + ")");
                 }
+
                 Console.BackgroundColor = ConsoleColor.White;
 
                 step++;
             }
         }
 
-        async Task GetFriends()
+        public async Task GetFriends()
         {
             GetTask<List<USER>> GetUserFriends = new GetTask<List<USER>>();
             this.UserFriends = await GetUserFriends.GetAsync($"api/USER_FRIENDS/" + Program.LoggedInUser.Id + "?token=" + Program.Token.Token);
-
-            //UserFriends = UserFriendsss;
-            /*
-            GetTask<List<USER_FRIENDS>> GetUserFriends = new GetTask<List<USER_FRIENDS>>();
-            List<USER_FRIENDS> UserFriendsss = await GetUserFriends.GetAsync($"api/USER_FRIENDS");
-            List<int> temp = new List<int>();
-            foreach (USER_FRIENDS item in UserFriendsss)
-            {
-                if (item.Id_Friendlist_Owner == LoggedInUser.Id)
-                    temp.Add(item.Id_Friend);
-            }
-
-            GetTask<USER> GetUser = new GetTask<USER>();
-            List<USER> GetUsers = new List<USER>();
-            foreach (int item in temp)
-            {
-                GetUsers.Add(await GetUser.GetAsync($"api/USERs/" + item));
-            }
-
-            UserFriends = GetUsers;
-            */
         }
     }
 }

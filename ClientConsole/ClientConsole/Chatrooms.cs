@@ -8,45 +8,40 @@ namespace ClientConsole
 {
     public class Chatrooms
     {
-        public ConsoleKey Key = ConsoleKey.F1;
         public List<CHATROOM> Chat_room = new List<CHATROOM>();
 
         public int ChatroomMod()
         {
             this.GetChatrooms().Wait();
 
-            string[] items = new string[this.Chat_room.Count];
-
-            int i = 0;
-            foreach (CHATROOM item in this.Chat_room)
-            {
-                items[i] = item.Chatroom_Name;
-                i++;
-            }
-
             int selected = 0;
+            ConsoleKey key = new ConsoleKey();
 
             while (true)
             {
-                this.RenderChatroom(items, selected);
+                this.RenderChatroom(selected);
 
-                this.Key = Console.ReadKey().Key;
+                key = Console.ReadKey().Key;
 
-                if (this.Key == ConsoleKey.UpArrow)
+                if (key == ConsoleKey.UpArrow)
                 {
                     selected--;
                     if (selected < 0)
-                        selected = items.Length - 1;
+                        selected = this.Chat_room.Count - 1;
                 }
-                else if (this.Key == ConsoleKey.DownArrow)
+                else if (key == ConsoleKey.DownArrow)
                 {
                     selected++;
-                    if (selected > items.Length - 1)
+                    if (selected > this.Chat_room.Count - 1)
                         selected = 0;
                 }
-                else if (this.Key == ConsoleKey.Enter)
+                else if (key == ConsoleKey.Escape)
                 {
-                    CHATROOM c = new CHATROOM() { Chatroom_Name = items[selected] };
+                    return 4;
+                }
+                else if (key == ConsoleKey.Enter)
+                {
+                    CHATROOM c = new CHATROOM() { Chatroom_Name = Chat_room[selected].Chatroom_Name };
 
                     foreach (CHATROOM item in this.Chat_room)
                     {
@@ -62,7 +57,7 @@ namespace ClientConsole
             }
         }
 
-        public void RenderChatroom(string[] items, int selected)
+        public void RenderChatroom(int selected)
         {
             Console.Clear();
             Console.SetWindowSize(45, 15);
@@ -82,7 +77,7 @@ namespace ClientConsole
 
             int step = 0;
 
-            foreach (string item in items)
+            foreach (CHATROOM item in this.Chat_room)
             {
                 if (step == selected)
                 {
@@ -90,13 +85,14 @@ namespace ClientConsole
                     Console.Write(" ");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.BackgroundColor = ConsoleColor.DarkGray;
-                    Console.WriteLine(item);
+                    Console.WriteLine(item.Chatroom_Name);
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("  " + item);
+                    Console.WriteLine("  " + item.Chatroom_Name);
                 }
+
                 Console.BackgroundColor = ConsoleColor.White;
 
                 step++;
@@ -106,7 +102,7 @@ namespace ClientConsole
         public async Task GetChatrooms()
         {
             GetTask<List<CHATROOM>> GetChatroomsByUser = new GetTask<List<CHATROOM>>();
-            this.Chat_room = await GetChatroomsByUser.GetAsync($"api/CHATROOM_MEMBERS/" + Program.Token.Id_User + "?token=" + Program.Token.Token);
+            this.Chat_room = await GetChatroomsByUser.GetAsync($"api/CHATROOMs/" + Program.Token.Id_User + "?token=" + Program.Token.Token);
         }
     }
 }

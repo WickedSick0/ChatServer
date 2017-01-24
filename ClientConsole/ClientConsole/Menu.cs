@@ -8,42 +8,41 @@ namespace ClientConsole
 {
     public class Menu
     {
-        public ConsoleKey Key = ConsoleKey.F1;
-
         public int MenuMod()
         {
-            string[] items = new string[] {
-                "                 Log in                   "
-                , "             Registration                 "
-                , "                 Exit                     "
+            List<string> items = new List<string>() {
+                "                 Log in                   ",
+                "             Registration                 ",
+                "                 Exit                     "
             };
 
             int selected = 0;
+            ConsoleKey key = new ConsoleKey();
 
             while (true)
             {
                 this.RenderMenu(items, selected);
 
-                this.Key = Console.ReadKey().Key;
+                key = Console.ReadKey().Key;
 
-                if (this.Key == ConsoleKey.UpArrow)
+                if (key == ConsoleKey.UpArrow)
                 {
                     selected--;
                     if (selected < 0)
-                        selected = items.Length - 1;
+                        selected = items.Count - 1;
                 }
-                else if (this.Key == ConsoleKey.DownArrow)
+                else if (key == ConsoleKey.DownArrow)
                 {
                     selected++;
-                    if (selected > items.Length - 1)
-                        selected = 0; 
+                    if (selected > items.Count - 1)
+                        selected = 0;
                 }
-                else if (this.Key == ConsoleKey.Enter)
+                else if (key == ConsoleKey.Enter)
                     return selected + 1;
             }
         }
 
-        public void RenderMenu(string[] items, int selected)
+        public void RenderMenu(List<string> items, int selected)
         {
             Console.Clear();
             Console.SetWindowSize(45, 15);
@@ -72,13 +71,14 @@ namespace ClientConsole
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Black; 
-                    Console.WriteLine("  " + item); 
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("  " + item);
                 }
-                Console.BackgroundColor = ConsoleColor.White; 
 
-                step++; 
+                Console.BackgroundColor = ConsoleColor.White;
+
+                step++;
             }
-        } 
+        }
     }
 }
