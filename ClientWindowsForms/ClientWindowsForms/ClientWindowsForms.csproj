@@ -133,7 +133,10 @@
     <None Include="Resources\BG.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\ADD_FRIEND.png" />
     <Content Include="Resources\close_grey_192x192.png" />
+    <Content Include="Resources\LOGOUT.png" />
+    <Content Include="Resources\OPTIONS.png" />
     <Content Include="Resources\PASSWORD.png" />
     <Content Include="Resources\Register.png" />
     <Content Include="Resources\Rounded_Rectangle.png" />
