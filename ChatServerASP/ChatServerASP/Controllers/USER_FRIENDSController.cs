@@ -92,8 +92,12 @@ namespace ChatServerASP.Controllers
 
         // POST: api/USER_FRIENDS
         [ResponseType(typeof(USER_FRIENDS))]
-        public async Task<IHttpActionResult> PostUSER_FRIENDS(USER_FRIENDS uSER_FRIENDS)
+        public async Task<IHttpActionResult> PostUSER_FRIENDS(USER_FRIENDS uSER_FRIENDS, string token)
         {
+            if (utRepository.CheckToken(token, uSER_FRIENDS.Id_Friendlist_Owner) == false)
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
