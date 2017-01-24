@@ -51,7 +51,7 @@ namespace ClientWindowsForms
             this.datagrid_Friends.DataSource = friends;
             this.datagrid_Friends.Columns[0].Visible = false;
             this.datagrid_Friends.Columns[1].Visible = false;
-            //this.datagrid_Friends.Columns[3].Visible = false;
+            this.datagrid_Friends.Columns[3].Visible = false;
 
         }
 
