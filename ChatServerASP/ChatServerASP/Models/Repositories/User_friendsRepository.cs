@@ -38,6 +38,13 @@ namespace ChatServerASP.Models
             return friends;
         }
 
+        public bool duplicityfriend(int idowner, int idfriend)
+        {
+            if (_context.User_friends.Where(x => x.Id_Friendlist_Owner == idowner && x.Id_Friend == idfriend).FirstOrDefault() == null)
+                return false;
+            return true;
+        }
+
         public USER_FRIENDS FindById(int id)
         {
             return this._context.User_friends.Find(id);

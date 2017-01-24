@@ -22,6 +22,7 @@ namespace ChatServerASP.Controllers
         private MyContext db = new MyContext();
         private User_tokensRepository utRepository = new User_tokensRepository();
         private Chatroom_membersRepository chMRepository = new Chatroom_membersRepository();
+        private User_friendsRepository ufrepository = new User_friendsRepository();
         // GET: api/USER_FRIENDS
         /*public IQueryable<USER_FRIENDS> GetUser_friends()
         {
@@ -96,6 +97,10 @@ namespace ChatServerASP.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+            if (ufrepository.duplicityfriend(uSER_FRIENDS.Id_Friendlist_Owner, uSER_FRIENDS.Id_Friend))
+            {
+                return BadRequest("You have this user already in your friendlist!");
             }
 
             db.User_friends.Add(uSER_FRIENDS);
