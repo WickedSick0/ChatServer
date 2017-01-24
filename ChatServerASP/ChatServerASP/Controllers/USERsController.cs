@@ -20,7 +20,7 @@ namespace ChatServerASP.Controllers
         private MyContext db = new MyContext();
 
         // GET: api/USERs
-        public List<USER> GetUsers()
+        /*public List<USER> GetUsers()
         {
             List<USER> users = db.Users.ToList();
 
@@ -30,7 +30,7 @@ namespace ChatServerASP.Controllers
             }
 
             return users;
-        }
+        }*/
 
         // GET: api/USERs/5?token=fdafgfsfs
         [ResponseType(typeof(USER))]
