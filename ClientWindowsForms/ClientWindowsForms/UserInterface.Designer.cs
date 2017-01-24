@@ -177,6 +177,7 @@
             this.txt_MSGS.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_MSGS.Location = new System.Drawing.Point(189, 200);
             this.txt_MSGS.Name = "txt_MSGS";
+            this.txt_MSGS.ReadOnly = true;
             this.txt_MSGS.Size = new System.Drawing.Size(431, 486);
             this.txt_MSGS.TabIndex = 12;
             this.txt_MSGS.Text = "";
