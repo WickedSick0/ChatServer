@@ -94,12 +94,12 @@ namespace ClientConsole
 
             try
             {
-                Console.WriteLine(this.User.Id);
-                Console.WriteLine(this.User.Login);
-                Console.WriteLine(this.User.Password);
-                Console.WriteLine(this.User.Nick);
-                Console.WriteLine(this.User.Photo);
-                Console.ReadLine();
+                //Console.WriteLine(this.User.Id);
+                //Console.WriteLine(this.User.Login);
+                //Console.WriteLine(this.User.Password);
+                //Console.WriteLine(this.User.Nick);
+                //Console.WriteLine(this.User.Photo);
+                //Console.ReadLine();
 
                 GetTask<USER> CreateUser = new GetTask<USER>();
                 CreateUser.CreateAsync($"api/USERs", this.User).Wait();

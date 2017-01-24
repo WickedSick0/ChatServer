@@ -11,12 +11,14 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models;
 using ChatServerASP.Models.Tables;
+using ChatServerASP.Models.Repositories;
 
 namespace ChatServerASP.Controllers
 {
     public class CHATROOM_MEMBERSController : ApiController
     {
         private MyContext db = new MyContext();
+        private User_tokensRepository utRepository = new User_tokensRepository();
 
         // GET: api/CHATROOM_MEMBERS
         public IQueryable<CHATROOM_MEMBERS> GetChatroom_members()
@@ -25,17 +27,36 @@ namespace ChatServerASP.Controllers
         }
 
         // GET: api/CHATROOM_MEMBERS/5?token=fdsakfjl
-        [ResponseType(typeof(CHATROOM_MEMBERS))]
-        public async Task<IHttpActionResult> GetCHATROOM_MEMBERS(int id)
+        [ResponseType(typeof(List<USER>))]
+        public async Task<IHttpActionResult> GetCHATROOM_MEMBERS(int id, string token)
         {
-            //original
-            CHATROOM_MEMBERS cHATROOM_MEMBERS = await db.Chatroom_members.FindAsync(id);
-            if (cHATROOM_MEMBERS == null)
+            //if (utRepository.CheckToken(token, id) == false)
+            //{
+            //    return NotFound();
+            //}
+
+            UserRepository uRep = new UserRepository();
+            Chatroom_membersRepository ctRep = new Chatroom_membersRepository();
+            List<USER> UsersInChatroom = new List<USER>();
+
+            foreach (CHATROOM_MEMBERS item in ctRep.FindAll())
             {
-                return NotFound();
+                if (id == item.Id_Chatroom)
+                {
+                    UsersInChatroom.Add(uRep.FindById(item.Id_User));
+                }
             }
 
-            return Ok(cHATROOM_MEMBERS);
+            return Ok(UsersInChatroom);
+
+            //original
+            //CHATROOM_MEMBERS cHATROOM_MEMBERS = await db.Chatroom_members.FindAsync(id);
+            //if (cHATROOM_MEMBERS == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Ok(cHATROOM_MEMBERS);
         }
 
         // PUT: api/CHATROOM_MEMBERS/5

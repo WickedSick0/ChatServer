@@ -35,7 +35,7 @@
             this.datagrid_Friends = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_Send = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.profilePic = new System.Windows.Forms.PictureBox();
             this.btn_Friends = new System.Windows.Forms.Button();
@@ -96,6 +96,7 @@
             this.datagrid_Friends.ReadOnly = true;
             this.datagrid_Friends.Size = new System.Drawing.Size(142, 486);
             this.datagrid_Friends.TabIndex = 4;
+            this.datagrid_Friends.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagrid_Friends_CellClick);
             this.datagrid_Friends.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagrid_Friends_CellDoubleClick);
             // 
             // button3
@@ -119,15 +120,16 @@
             this.textBox1.Size = new System.Drawing.Size(431, 63);
             this.textBox1.TabIndex = 6;
             // 
-            // button4
+            // btn_Send
             // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Location = new System.Drawing.Point(629, 718);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(59, 29);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Send";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn_Send.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Send.BackgroundImage")));
+            this.btn_Send.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Send.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Send.Location = new System.Drawing.Point(636, 726);
+            this.btn_Send.Name = "btn_Send";
+            this.btn_Send.Size = new System.Drawing.Size(52, 39);
+            this.btn_Send.TabIndex = 7;
+            this.btn_Send.UseVisualStyleBackColor = true;
             // 
             // txtSearch
             // 
@@ -175,6 +177,7 @@
             this.txt_MSGS.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_MSGS.Location = new System.Drawing.Point(189, 200);
             this.txt_MSGS.Name = "txt_MSGS";
+            this.txt_MSGS.ReadOnly = true;
             this.txt_MSGS.Size = new System.Drawing.Size(431, 486);
             this.txt_MSGS.TabIndex = 12;
             this.txt_MSGS.Text = "";
@@ -203,7 +206,7 @@
             this.Controls.Add(this.btn_Chatrooms);
             this.Controls.Add(this.btn_Friends);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btn_Send);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.datagrid_Friends);
@@ -234,7 +237,7 @@
         private System.Windows.Forms.DataGridView datagrid_Friends;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_Send;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btn_Friends;
         private System.Windows.Forms.Button btn_Chatrooms;

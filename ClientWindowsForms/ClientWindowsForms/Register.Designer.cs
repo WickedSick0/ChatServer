@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             this.txt_username = new System.Windows.Forms.TextBox();
             this.txt_nick = new System.Windows.Forms.TextBox();
             this.txt_passwd = new System.Windows.Forms.TextBox();
@@ -38,126 +39,126 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
-            this.txt_ImgPath = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.btn_Close = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txt_username
             // 
-            this.txt_username.Location = new System.Drawing.Point(194, 99);
+            this.txt_username.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_username.Location = new System.Drawing.Point(240, 135);
             this.txt_username.Name = "txt_username";
-            this.txt_username.Size = new System.Drawing.Size(100, 22);
+            this.txt_username.Size = new System.Drawing.Size(116, 20);
             this.txt_username.TabIndex = 0;
             // 
             // txt_nick
             // 
-            this.txt_nick.Location = new System.Drawing.Point(43, 199);
+            this.txt_nick.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_nick.Location = new System.Drawing.Point(240, 200);
             this.txt_nick.Name = "txt_nick";
-            this.txt_nick.Size = new System.Drawing.Size(100, 22);
+            this.txt_nick.Size = new System.Drawing.Size(116, 20);
             this.txt_nick.TabIndex = 1;
             // 
             // txt_passwd
             // 
-            this.txt_passwd.Location = new System.Drawing.Point(70, 245);
+            this.txt_passwd.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_passwd.Location = new System.Drawing.Point(240, 265);
             this.txt_passwd.Name = "txt_passwd";
-            this.txt_passwd.Size = new System.Drawing.Size(100, 22);
+            this.txt_passwd.Size = new System.Drawing.Size(116, 20);
             this.txt_passwd.TabIndex = 2;
             // 
             // txt_passwdConfirm
             // 
-            this.txt_passwdConfirm.Location = new System.Drawing.Point(124, 262);
+            this.txt_passwdConfirm.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_passwdConfirm.Location = new System.Drawing.Point(240, 330);
             this.txt_passwdConfirm.Name = "txt_passwdConfirm";
-            this.txt_passwdConfirm.Size = new System.Drawing.Size(100, 22);
+            this.txt_passwdConfirm.Size = new System.Drawing.Size(116, 20);
             this.txt_passwdConfirm.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(208, 70);
+            this.label1.Location = new System.Drawing.Point(73, 137);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.Size = new System.Drawing.Size(95, 18);
             this.label1.TabIndex = 4;
             this.label1.Text = "Username:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(5, 199);
+            this.label2.Location = new System.Drawing.Point(76, 202);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.Size = new System.Drawing.Size(48, 18);
             this.label2.TabIndex = 5;
             this.label2.Text = "Nick:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(5, 248);
+            this.label3.Location = new System.Drawing.Point(76, 267);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.Size = new System.Drawing.Size(92, 18);
             this.label3.TabIndex = 6;
             this.label3.Text = "Password:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(1, 271);
+            this.label4.Location = new System.Drawing.Point(76, 332);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 13);
+            this.label4.Size = new System.Drawing.Size(157, 18);
             this.label4.TabIndex = 7;
             this.label4.Text = "Confirm password:";
             // 
             // btn_ok
             // 
-            this.btn_ok.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_ok.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_ok.Location = new System.Drawing.Point(194, 415);
+            this.btn_ok.BackColor = System.Drawing.Color.Transparent;
+            this.btn_ok.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_ok.BackgroundImage")));
+            this.btn_ok.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ok.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ok.ForeColor = System.Drawing.Color.Transparent;
+            this.btn_ok.Location = new System.Drawing.Point(132, 397);
             this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(75, 32);
+            this.btn_ok.Size = new System.Drawing.Size(169, 36);
             this.btn_ok.TabIndex = 8;
-            this.btn_ok.Text = "OK";
             this.btn_ok.UseVisualStyleBackColor = false;
             this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btn_Cancel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_Cancel.Location = new System.Drawing.Point(194, 474);
+            this.btn_Cancel.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Cancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.BackgroundImage")));
+            this.btn_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cancel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cancel.ForeColor = System.Drawing.Color.Transparent;
+            this.btn_Cancel.Location = new System.Drawing.Point(185, 448);
             this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(75, 32);
+            this.btn_Cancel.Size = new System.Drawing.Size(63, 18);
             this.btn_Cancel.TabIndex = 9;
-            this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = false;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
-            // 
-            // txt_ImgPath
-            // 
-            this.txt_ImgPath.Location = new System.Drawing.Point(109, 336);
-            this.txt_ImgPath.Name = "txt_ImgPath";
-            this.txt_ImgPath.Size = new System.Drawing.Size(100, 22);
-            this.txt_ImgPath.TabIndex = 10;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label5.Location = new System.Drawing.Point(62, 336);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Img:";
             // 
             // btn_Close
             // 
             this.btn_Close.BackColor = System.Drawing.Color.Transparent;
             this.btn_Close.BackgroundImage = global::ClientWindowsForms.Properties.Resources.close_grey_192x192;
+            this.btn_Close.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Close.Location = new System.Drawing.Point(415, 12);
+            this.btn_Close.Location = new System.Drawing.Point(378, 12);
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.Size = new System.Drawing.Size(30, 30);
             this.btn_Close.TabIndex = 12;
@@ -169,11 +170,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::ClientWindowsForms.Properties.Resources.BG;
-            this.ClientSize = new System.Drawing.Size(462, 535);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(420, 548);
             this.Controls.Add(this.btn_Close);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txt_ImgPath);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_ok);
             this.Controls.Add(this.label4);
@@ -206,8 +205,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btn_ok;
         private System.Windows.Forms.Button btn_Cancel;
-        private System.Windows.Forms.TextBox txt_ImgPath;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_Close;
     }
 }

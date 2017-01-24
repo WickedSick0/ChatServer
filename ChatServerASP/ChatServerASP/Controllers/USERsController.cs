@@ -20,9 +20,16 @@ namespace ChatServerASP.Controllers
         private MyContext db = new MyContext();
 
         // GET: api/USERs
-        public IQueryable<USER> GetUsers()
+        public List<USER> GetUsers()
         {
-            return db.Users;
+            List<USER> users = db.Users.ToList();
+
+            foreach (USER item in users)
+            {
+                item.Password = null;
+            }
+
+            return users;
         }
 
         // GET: api/USERs/5?token=fdafgfsfs

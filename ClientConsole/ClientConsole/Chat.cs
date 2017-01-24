@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Threading.Tasks;
+
 
 namespace ClientConsole
 {
@@ -14,7 +16,7 @@ namespace ClientConsole
         public int ChatMod()
         {
             Console.Clear();
-            Console.SetWindowSize(45, 15);
+            Console.SetWindowSize(45, 25);
             Console.CursorVisible = true;
 
             Console.ForegroundColor = ConsoleColor.White;
@@ -22,50 +24,78 @@ namespace ClientConsole
             Console.WriteLine("                THUNDER CHAT                 ");
             Console.BackgroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("                  Chatroom                   ");
-            Console.WriteLine("            Chatroom name:                   ");
+            Console.WriteLine("                Your nick:                   ");
             Console.SetCursorPosition(27, 2);
+            Console.WriteLine(Program.LoggedInUser.Nick);
+            Console.WriteLine("            Chatroom name:                   ");
+            Console.SetCursorPosition(27, 3);
             Console.WriteLine(Program.Chatroom.Chatroom_Name);
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
 
             this.GetMessages().Wait();
+            this.GetUsersInChatroom(Program.Chatroom.Id).Wait();
 
             foreach (MESSAGE item in this.Messages)
             {
-                this.GetUsersInChatroom(item.Id_User_Post).Wait();
-                Console.WriteLine(item.Message_text);
+                string own = this.FindUserPost(item.Id_User_Post);
+                Console.WriteLine(" (" + own + "): " + item.Message_text);
             }
 
-            Console.WriteLine(this.Messages.Count);
-            //Console.WriteLine(this.UsersInChatroom[1].Id);
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("------------Press F5 to refresh--------------");
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Write(" Enter your message: ");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
 
-            Console.ReadLine();
+            MessageAutorization msg = new MessageAutorization();
+            msg.Id_Chatroom = Program.Chatroom.Id;
+            msg.Id_User_Post = Program.LoggedInUser.Id;
+            msg.Send_time = DateTime.Now;
+            msg.token = Program.Token.Token;
+            msg.Message_text = ReadWithESC.ReadLineWithESC();
 
-            for (int i = 0; i < this.UsersInChatroom.Count; i++)
-            {
-                Console.WriteLine("(" + this.UsersInChatroom[i].Nick + "): " + this.Messages[i].Message_text);
-            }
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            if (ReadWithESC.GoBack)
+                return 7;
+            if (ReadWithESC.F5_Pressed)
+                return 11;
 
-            Console.ReadLine();
+            this.CreateMessage(msg).Wait();
 
-            return 0;
+            return 11;
         }
 
         public async Task GetMessages()
         {
             GetTask<List<MESSAGE>> GetMessage = new GetTask<List<MESSAGE>>();
             this.Messages = await GetMessage.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id + "?token=" + Program.Token.Token);
-            //this.Messages = await GetMessage.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id);
         }
 
         public async Task GetUsersInChatroom(int id)
         {
-            //USER u = new USER();
-            GetTask<USER> GetUsersInChat = new GetTask<USER>();
-            //u = await GetUsersInChat.GetAsync($"api/USERs/" + id + "?token=" + Program.Token.Token);
-            this.UsersInChatroom.Add(await GetUsersInChat.GetAsync($"api/USERs/" + id + "?token=" + Program.Token.Token));
-            //this.Messages = await GetUsersInChat.GetAsync($"api/MESSAGEs/" + Program.Chatroom.Id);
+            GetTask<List<USER>> GetUsersInChat = new GetTask<List<USER>>();
+            this.UsersInChatroom = await GetUsersInChat.GetAsync($"api/CHATROOM_MEMBERS/" + id + "?token=" + Program.Token.Token);
+        }
+
+        async Task CreateMessage(MessageAutorization message)
+        {
+            GetTask<MessageAutorization> CreateUser = new GetTask<MessageAutorization>();
+            CreateUser.CreateAsync($"api/MESSAGEs", message).Wait();
+        }
+
+        public string FindUserPost(int id_Post)
+        {
+            foreach (USER item in this.UsersInChatroom)
+            {
+                if (id_Post == item.Id)
+                    return item.Nick;
+            }
+
+            return null;
         }
     }
 }

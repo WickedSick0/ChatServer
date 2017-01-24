@@ -9,7 +9,6 @@ namespace ClientConsole
 {
     public class LogIn
     {
-        public ConsoleKey Key = ConsoleKey.F1;
         public bool IsLoginValid = false;
 
         public static HttpResponseMessage resp { get; set; }
@@ -51,7 +50,7 @@ namespace ClientConsole
 
             Console.WriteLine();
 
-            CheckLogin().Wait();
+            this.CheckLogin().Wait();
 
             Console.BackgroundColor = ConsoleColor.DarkGray;
             Console.ForegroundColor = ConsoleColor.White;
@@ -73,10 +72,11 @@ namespace ClientConsole
                 Console.WriteLine(" Press ESC to go back to menu...             ");
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
-                this.Key = Console.ReadKey().Key;
-                if (this.Key == ConsoleKey.Escape)
+
+                ConsoleKey key = Console.ReadKey().Key;
+                if (key == ConsoleKey.Escape)
                     return 0;
-                else if (this.Key == ConsoleKey.Enter)
+                else if (key == ConsoleKey.Enter)
                     return 1;
             }
 
@@ -87,10 +87,6 @@ namespace ClientConsole
         {
             this.IsLoginValid = false;
 
-            //Console.WriteLine(Program.LoggedInUser.Login);
-            //Console.WriteLine(Program.LoggedInUser.Password);
-
-            //USER user = new USER();
             LoginModel lmodel = new LoginModel();
             lmodel.Username = Program.LoggedInUser.Login;
             lmodel.Password = Program.LoggedInUser.Password;
@@ -102,19 +98,8 @@ namespace ClientConsole
 
                 Program.Token = await resp.Content.ReadAsAsync<USER_TOKENS>();
 
-                //Console.WriteLine(Token.Token);
-                //Console.WriteLine(Token.Id_User);
-                //System.Threading.Thread.Sleep(500);
-
                 GetTask<USER> GetUsers = new GetTask<USER>();
                 Program.LoggedInUser = await GetUsers.GetAsync($"api/USERs/" + Program.Token.Id_User + "?token=" + Program.Token.Token);
-
-                //Console.WriteLine(Program.LoggedInUser.Id);
-                //Console.WriteLine(Program.LoggedInUser.Login);
-                //Console.WriteLine(Program.LoggedInUser.Password);
-                //Console.WriteLine(Program.LoggedInUser.Photo);
-                //Console.WriteLine(Program.LoggedInUser.Nick);
-                //System.Threading.Thread.Sleep(500);
 
                 if (Program.LoggedInUser != null)
                     this.IsLoginValid = true;
@@ -125,25 +110,5 @@ namespace ClientConsole
                 this.IsLoginValid = false;
             }
         }
-
-        //static async Task CheckLogin()
-        //{
-        //    GetTask<List<USER>> GetUsers = new GetTask<List<USER>>();
-        //    foreach (USER item in await GetUsers.GetAsync($"api/USERs/"))
-        //    {
-        //        if (item.Login == Program.LoggedInUser.Login && item.Password == Program.LoggedInUser.Password)
-        //        {
-        //            Program.LoggedInUser.Id = item.Id;
-        //            Program.LoggedInUser.Login = item.Login;
-        //            Program.LoggedInUser.Password = item.Password;
-        //            Program.LoggedInUser.Nick = item.Nick;
-        //            Program.LoggedInUser.Photo = item.Photo;
-        //            IsLoginValid = true;
-        //            break;
-        //        }
-        //        else
-        //            IsLoginValid = false;
-        //    }
-        //}
     }
 }
