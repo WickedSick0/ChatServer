@@ -31,6 +31,29 @@ namespace ChatServerASP.Models
 
             return chatrooms;
         }
+        public CHATROOM FindFriendChatroom(int id_user, int id_friend)
+        {
+            ChatroomRepository rep = new ChatroomRepository();
+            CHATROOM ch = new CHATROOM();
+
+            string values = id_user + "," + id_friend;
+
+            List<CHATROOM_MEMBERS> bothinchatrooms =
+            _context.Chatroom_members.SqlQuery("SELECT * FROM `CHATROOM_MEMBERS` WHERE `Id_Chatroom` IN ( SELECT `Id_Chatroom` FROM `CHATROOM_MEMBERS` where `Id_User` in(" + values + ") GROUP BY `Id_Chatroom` HAVING COUNT(`Id_Chatroom`) > 1 ) and `Id_User` in(" + values + ")").ToList();
+
+            foreach (var item in bothinchatrooms)
+            {
+                if (_context.Chatroom_members.Where(x => x.Id_Chatroom == item.Id_Chatroom).Count() == 2)
+                {
+                    ch = rep.FindById(item.Id_Chatroom);
+                    break;
+                }
+            }
+
+
+            return ch;
+        }
+
 
         public CHATROOM_MEMBERS FindById(int id)
         {

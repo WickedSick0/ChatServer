@@ -48,6 +48,22 @@ namespace ChatServerASP.Controllers
             return Ok(cHATROOM);*/
         }
 
+        ///api/CHATROOMs/1 ?id_friend=2 &token=B4049M2017q1038O01y24QATs4027k10H24mY03b2427D6687
+        [ResponseType(typeof(CHATROOM))]
+        public async Task<IHttpActionResult> GetBothInChatroom(int id,int id_friend, string token)
+        {
+            if (utRepository.CheckToken(token, id) == false)
+            {
+                return NotFound();
+            }
+            CHATROOM result = chMRepository.FindFriendChatroom(id,id_friend);
+            if (result == null)
+            {
+                // na klientovi vypsat konverzace nenalezena, prosim vytvorte si novou, kde budou jen tyto dva
+                return NotFound();
+            }
+            return Ok(result);
+        }
         // PUT: api/CHATROOMs/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutCHATROOM(int id, CHATROOM cHATROOM)
