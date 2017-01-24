@@ -24,6 +24,9 @@ namespace ClientWindowsForms
             InitializeComponent();
             txt_passwd.PasswordChar = '*';
             txt_passwdConfirm.PasswordChar = '*';
+            btn_Close.TabStop = false;
+            btn_Close.FlatStyle = FlatStyle.Flat;
+            btn_Close.FlatAppearance.BorderSize = 0;
         }
 
         private void btn_ok_Click(object sender, EventArgs e)
@@ -72,6 +75,11 @@ namespace ClientWindowsForms
             this.Hide();
             frm.Closed += (s, args) => this.Close();
             frm.Show();
+        }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
