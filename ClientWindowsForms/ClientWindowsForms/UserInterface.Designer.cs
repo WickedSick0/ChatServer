@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserInterface));
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,6 +43,7 @@
             this.btn_Chatrooms = new System.Windows.Forms.Button();
             this.txt_MSGS = new System.Windows.Forms.RichTextBox();
             this.btn_Close = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_Friends)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             this.SuspendLayout();
@@ -119,6 +121,7 @@
             this.txt_MSG_SEND.Name = "txt_MSG_SEND";
             this.txt_MSG_SEND.Size = new System.Drawing.Size(431, 63);
             this.txt_MSG_SEND.TabIndex = 6;
+            this.txt_MSG_SEND.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_MSG_SEND_KeyDown);
             // 
             // btn_Send
             // 
@@ -196,6 +199,10 @@
             this.btn_Close.UseVisualStyleBackColor = false;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // UserInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -222,6 +229,7 @@
             this.Text = "Thunder Chat";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserInterface_FormClosing);
             this.Load += new System.EventHandler(this.UserInterface_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserInterface_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_Friends)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).EndInit();
             this.ResumeLayout(false);
@@ -244,5 +252,6 @@
         private System.Windows.Forms.Button btn_Chatrooms;
         private System.Windows.Forms.RichTextBox txt_MSGS;
         private System.Windows.Forms.Button btn_Close;
+        private System.Windows.Forms.Timer timer1;
     }
 }

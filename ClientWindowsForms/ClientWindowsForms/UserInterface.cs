@@ -27,7 +27,7 @@ namespace ClientWindowsForms
         private HttpResponseMessage responseMSG_SEND;
         private USER_TOKENS uTok;
         private int tab;
-        //private int idChatR;
+        private int idChatR = -1;       
 
         public UserInterface(USER_TOKENS tok)
         {
@@ -59,6 +59,8 @@ namespace ClientWindowsForms
             btn_Close.FlatStyle = FlatStyle.Flat;
             btn_Close.FlatAppearance.BorderSize = 0;
 
+            this.KeyPreview = true;
+
         }
         
         private void UserInterface_Load(object sender, EventArgs e)
@@ -71,12 +73,19 @@ namespace ClientWindowsForms
             this.datagrid_Friends.Columns[3].Visible = false;
             this.datagrid_Friends.Columns[4].Visible = false;
 
+
+            //refresh every 10 sec
+            timer1.Interval = (10000);
+            timer1.Tick += timer1_Tick;
+            timer1.Start();
+
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //logout
         {
             client.DeleteAsync("api/USER_TOKENS/" + uTok.Id_User + "?token=" + uTok.Token);
             usr = null;
+            this.timer1.Stop();
             this.Hide();
             Login frm = new Login();
             frm.Closed += (s, args) => this.Close();
@@ -120,11 +129,13 @@ namespace ClientWindowsForms
         private void UserInterface_FormClosing(object sender, FormClosingEventArgs e)
         {
             client.DeleteAsync("api/USER_TOKENS/" + uTok.Id_User + "?token=" + uTok.Token);
+            this.timer1.Stop();
         }
 
         private void btn_Friends_Click(object sender, EventArgs e)
         {
             this.tab = 0;
+            this.idChatR = -1;
             this.datagrid_Friends.DataSource = friends;
             this.datagrid_Friends.Columns[0].Visible = false;
             this.datagrid_Friends.Columns[1].Visible = false;
@@ -149,6 +160,7 @@ namespace ClientWindowsForms
         private void btn_Close_Click(object sender, EventArgs e)
         {
             client.DeleteAsync("api/USER_TOKENS/" + uTok.Id_User + "?token=" + uTok.Token);
+            this.timer1.Stop();
             this.Close();
         }
 
@@ -156,63 +168,94 @@ namespace ClientWindowsForms
         {
             if (this.tab == 1) //chatroom
             {
-                this.txt_MSGS.Clear();
-
-                int i = this.datagrid_Friends.CurrentRow.Index;
-
-                var idChat = this.datagrid_Friends.Rows[i].Cells[0].Value;
-                //this.idChatR = Convert.ToInt32(idChat);
-
-                responseMsgs = client.GetAsync("api/MESSAGEs/" + idChat + "?token=" + uTok.Token).Result;
-                var emp = responseMsgs.Content.ReadAsAsync<IEnumerable<MESSAGE>>().Result;
-                messages = emp.ToList<MESSAGE>();
-
-                //Add MSGS to rich text box
-                foreach (MESSAGE item in messages)
-                {
-                    foreach (USER item2 in friends)
-                    {
-                        if (item2.Id == item.Id_User_Post)
-                        {
-                            this.txt_MSGS.Text += item2.Nick + ": " + item.Message_text + "\n\r";
-                            break;
-                        }
-                        else if (item.Id_User_Post == this.usr.Id)
-                        {
-                            this.txt_MSGS.Text += this.usr.Nick + ": " + item.Message_text + "\n\r";
-                            break;
-                        }
-
-                    }
-
-                }
-
-                //Change color of logged user
-                if (txt_MSGS.Text.Contains(this.usr.Nick))
-                {
-                    var matchString = Regex.Escape(this.usr.Nick);
-                    foreach (Match match in Regex.Matches(txt_MSGS.Text, matchString))
-                    {
-                        txt_MSGS.Select(match.Index, this.usr.Nick.Length);
-                        txt_MSGS.SelectionColor = Color.Blue;
-                        txt_MSGS.Select(txt_MSGS.TextLength, 0);
-                        txt_MSGS.SelectionColor = txt_MSGS.ForeColor;
-                    }
-                }
+                RefreshChat();
             }
-        } //end
+        } 
 
         private void btn_Send_Click(object sender, EventArgs e)
         {
-            //if(this.idChatR != null) this.SendMessage();
+            if(this.idChatR != -1) this.SendMessage(this.idChatR);
         }
 
-        private void SendMessage(int idChat)
-        {
-            MESSAGE msg = new MESSAGE() {Id_Chatroom = idChat, Id_User_Post = this.uTok.Id_User, Message_text = this.txt_MSG_SEND.Text};
+        private void SendMessage(int idChatR)
+        {            
+            MessageAutorization msg = new MessageAutorization() { Id_Chatroom = idChatR, Id_User_Post = this.uTok.Id_User, Message_text = this.txt_MSG_SEND.Text, token = uTok.Token };
 
             responseMSG_SEND = client.PostAsJsonAsync("/api/MESSAGEs/", msg).Result;
 
+            this.txt_MSG_SEND.Text = null;
+
+            RefreshChat();
+
+
+        }
+
+        private void UserInterface_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.KeyCode == Keys.Enter && this.idChatR != -1) this.SendMessage(this.idChatR); 
+        }
+
+        private void RefreshChat()
+        {
+            this.txt_MSGS.Clear();
+
+            int i = this.datagrid_Friends.CurrentRow.Index;
+
+            var idChat = this.datagrid_Friends.Rows[i].Cells[0].Value;
+
+            this.idChatR = Convert.ToInt32(idChat);
+
+            responseMsgs = client.GetAsync("api/MESSAGEs/" + idChat + "?token=" + uTok.Token).Result;
+            var emp = responseMsgs.Content.ReadAsAsync<IEnumerable<MESSAGE>>().Result;
+            messages = emp.ToList<MESSAGE>();
+
+            //Add MSGS to rich text box
+            foreach (MESSAGE item in messages)
+            {
+                foreach (USER item2 in friends)
+                {
+                    if (item2.Id == item.Id_User_Post)
+                    {
+                        this.txt_MSGS.Text += item2.Nick + ": " + item.Message_text + "\n\r";
+                        break;
+                    }
+                    else if (item.Id_User_Post == this.usr.Id)
+                    {
+                        this.txt_MSGS.Text += this.usr.Nick + ": " + item.Message_text + "\n\r";
+                        break;
+                    }
+
+                }
+
+            }
+
+            //Change color of logged user
+            if (txt_MSGS.Text.Contains(this.usr.Nick))
+            {
+                var matchString = Regex.Escape(this.usr.Nick);
+                foreach (Match match in Regex.Matches(txt_MSGS.Text, matchString))
+                {
+                    txt_MSGS.Select(match.Index, this.usr.Nick.Length);
+                    txt_MSGS.SelectionColor = Color.Blue;
+                    txt_MSGS.Select(txt_MSGS.TextLength, 0);
+                    txt_MSGS.SelectionColor = txt_MSGS.ForeColor;
+                }
+            }
+            this.txt_MSGS.ScrollToCaret();
+        }//end
+
+        private void txt_MSG_SEND_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && this.idChatR != -1)
+            {
+                this.SendMessage(this.idChatR);
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+           if(this.idChatR != - 1 && this.tab == 1) RefreshChat();
         }
     }
 }
