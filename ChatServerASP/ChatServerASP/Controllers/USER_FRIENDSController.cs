@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models;
-using System.Web.Mvc;
 using ChatServerASP.Models.Tables;
 using System.Web;
 using ChatServerASP.Models.Repositories;
@@ -96,7 +95,7 @@ namespace ChatServerASP.Controllers
         {
             if (utRepository.CheckToken(token, uSER_FRIENDS.Id_Friendlist_Owner) == false)
             {
-                return NotFound();
+                return BadRequest("Incorrect Token!");
             }
             if (!ModelState.IsValid)
             {
@@ -115,8 +114,27 @@ namespace ChatServerASP.Controllers
 
         // DELETE: api/USER_FRIENDS/5
         [ResponseType(typeof(USER_FRIENDS))]
-        public async Task<IHttpActionResult> DeleteUSER_FRIENDS(int id)
+        [Route("api/USER_FRIENDS/{id}/{idfriend}/{token}")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteUSER_FRIENDS(int id, int idfriend, string token) //moje id, id frienda, token
         {
+            if (utRepository.CheckToken(token, id) == false)
+            {
+                return BadRequest("Incorrect token!");
+            }
+            USER_FRIENDS uSER_FRIENDS = db.User_friends.Where(x => x.Id_Friendlist_Owner == id && x.Id_Friend == idfriend).FirstOrDefault();
+            if (uSER_FRIENDS == null)
+            {
+                return NotFound();
+            }
+            db.User_friends.Remove(uSER_FRIENDS);
+            await db.SaveChangesAsync();
+
+
+
+
+            return Ok();
+            /*
             USER_FRIENDS uSER_FRIENDS = await db.User_friends.FindAsync(id);
             if (uSER_FRIENDS == null)
             {
@@ -126,7 +144,7 @@ namespace ChatServerASP.Controllers
             db.User_friends.Remove(uSER_FRIENDS);
             await db.SaveChangesAsync();
 
-            return Ok(uSER_FRIENDS);
+            return Ok(uSER_FRIENDS);*/
         }
 
         protected override void Dispose(bool disposing)
