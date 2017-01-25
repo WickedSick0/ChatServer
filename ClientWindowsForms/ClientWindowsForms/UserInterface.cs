@@ -73,7 +73,7 @@ namespace ClientWindowsForms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id);
+            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id_User + "?token=" + uTok.Token);
             usr = null;
             this.Hide();
             Login frm = new Login();
@@ -146,7 +146,7 @@ namespace ClientWindowsForms
 
         private void btn_Close_Click(object sender, EventArgs e)
         {
-            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id);
+            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id_User + "?token=" + uTok.Token);
             this.Close();
         }
 

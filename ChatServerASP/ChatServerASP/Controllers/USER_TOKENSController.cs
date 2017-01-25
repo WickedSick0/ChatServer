@@ -120,7 +120,6 @@ namespace ChatServerASP.Controllers
         public async Task<IHttpActionResult> DeleteUSER_TOKENS(int id,string token)
         {
 
-
             USER_TOKENS user_tokens = utrep.FindByToken(token);
             if (user_tokens == null)
             {
