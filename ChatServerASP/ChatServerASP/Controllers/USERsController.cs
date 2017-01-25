@@ -69,6 +69,25 @@ namespace ChatServerASP.Controllers
             return Ok(uSER);*/
         }
 
+        [ResponseType(typeof(List<USER>))]
+        [HttpGet]
+        [Route("api/USERsearch/{search}")]
+        public async Task<IHttpActionResult> FindforADD(string search /*,string token, int id*/) // search user
+        {
+            /*if (rep.CheckToken(token, id) == false)
+            {
+                return BadRequest("Token is not valid! Please log in again!");
+            }*/
+            string sqlquerystring = string.Format("SELECT * FROM `USER` WHERE `Login` LIKE '%{0}%' or `Nick` LIKE '%{0}%'", search);
+            List<USER> ul = db.Users.SqlQuery(sqlquerystring).ToList();
+            foreach (var item in ul)
+            {
+                item.Password = null;
+            }
+            return Ok(ul);
+        }
+
+
         // PUT: api/USERs/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutUSER(int id, USER uSER)
