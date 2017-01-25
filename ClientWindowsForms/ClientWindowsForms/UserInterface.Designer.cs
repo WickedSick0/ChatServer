@@ -34,7 +34,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.datagrid_Friends = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_MSG_SEND = new System.Windows.Forms.TextBox();
             this.btn_Send = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.profilePic = new System.Windows.Forms.PictureBox();
@@ -111,14 +111,14 @@
             this.button3.TabIndex = 5;
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txt_MSG_SEND
             // 
-            this.textBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(189, 712);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(431, 63);
-            this.textBox1.TabIndex = 6;
+            this.txt_MSG_SEND.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_MSG_SEND.Location = new System.Drawing.Point(189, 712);
+            this.txt_MSG_SEND.Multiline = true;
+            this.txt_MSG_SEND.Name = "txt_MSG_SEND";
+            this.txt_MSG_SEND.Size = new System.Drawing.Size(431, 63);
+            this.txt_MSG_SEND.TabIndex = 6;
             // 
             // btn_Send
             // 
@@ -130,6 +130,7 @@
             this.btn_Send.Size = new System.Drawing.Size(52, 39);
             this.btn_Send.TabIndex = 7;
             this.btn_Send.UseVisualStyleBackColor = true;
+            this.btn_Send.Click += new System.EventHandler(this.btn_Send_Click);
             // 
             // txtSearch
             // 
@@ -207,7 +208,7 @@
             this.Controls.Add(this.btn_Friends);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btn_Send);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_MSG_SEND);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.datagrid_Friends);
             this.Controls.Add(this.button2);
@@ -236,7 +237,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView datagrid_Friends;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_MSG_SEND;
         private System.Windows.Forms.Button btn_Send;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btn_Friends;

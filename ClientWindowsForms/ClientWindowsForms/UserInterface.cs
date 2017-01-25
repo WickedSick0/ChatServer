@@ -16,16 +16,18 @@ namespace ClientWindowsForms
     public partial class UserInterface : Form
     {
         HttpClient client = new HttpClient();
-        USER usr;
+        private USER usr;
         private List<USER> friends;
         private List<CHATROOM> chatrooms;
         private List<MESSAGE> messages;
-        HttpResponseMessage response;
-        HttpResponseMessage responseFriends;
-        HttpResponseMessage responseChrooms;
-        HttpResponseMessage responseMsgs;
-        USER_TOKENS uTok;
+        private HttpResponseMessage response;
+        private HttpResponseMessage responseFriends;
+        private HttpResponseMessage responseChrooms;
+        private HttpResponseMessage responseMsgs;
+        private HttpResponseMessage responseMSG_SEND;
+        private USER_TOKENS uTok;
         private int tab;
+        //private int idChatR;
 
         public UserInterface(USER_TOKENS tok)
         {
@@ -159,7 +161,7 @@ namespace ClientWindowsForms
                 int i = this.datagrid_Friends.CurrentRow.Index;
 
                 var idChat = this.datagrid_Friends.Rows[i].Cells[0].Value;
-
+                //this.idChatR = Convert.ToInt32(idChat);
 
                 responseMsgs = client.GetAsync("api/MESSAGEs/" + idChat + "?token=" + uTok.Token).Result;
                 var emp = responseMsgs.Content.ReadAsAsync<IEnumerable<MESSAGE>>().Result;
@@ -199,5 +201,18 @@ namespace ClientWindowsForms
                 }
             }
         } //end
+
+        private void btn_Send_Click(object sender, EventArgs e)
+        {
+            //if(this.idChatR != null) this.SendMessage();
+        }
+
+        private void SendMessage(int idChat)
+        {
+            MESSAGE msg = new MESSAGE() {Id_Chatroom = idChat, Id_User_Post = this.uTok.Id_User, Message_text = this.txt_MSG_SEND.Text};
+
+            responseMSG_SEND = client.PostAsJsonAsync("/api/MESSAGEs/", msg).Result;
+
+        }
     }
 }
