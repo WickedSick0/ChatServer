@@ -34,13 +34,52 @@ namespace ClientWindowsForms
 
             btn_Cancel.FlatStyle = FlatStyle.Flat;
             btn_Cancel.FlatAppearance.BorderSize = 0;
+
+            this.KeyPreview = true;
         }
 
         private void btn_ok_Click(object sender, EventArgs e)
         {
+            this.RegisterMethod();
             //if (this.txt_ImgPath.Text == "".Trim()) this.imgPath = null;
             //else this.imgPath = this.txt_ImgPath.Text;    
                     
+            
+           /* HttpResponseMessage response = client.PostAsJsonAsync("api/USERs", usr).Result;
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Invalid data");
+            }
+            else this.Close();*/
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            Login frm = new Login();
+            this.Hide();
+            frm.Closed += (s, args) => this.Close();
+            frm.Show();
+        }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Register_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) this.RegisterMethod();
+
+            else if (e.KeyCode == Keys.Escape)
+            {
+                Login frm = new Login();
+                this.Hide();
+                frm.Closed += (s, args) => this.Close();
+                frm.Show();
+            }
+        }
+        private void RegisterMethod()
+        {
             USER usr = new USER() { Login = txt_username.Text, Nick = txt_nick.Text, Password = txt_passwd.Text, Photo = this.imgPath };
 
             try
@@ -68,25 +107,6 @@ namespace ClientWindowsForms
 
                 MessageBox.Show("Server is down");
             }
-           /* HttpResponseMessage response = client.PostAsJsonAsync("api/USERs", usr).Result;
-            if (!response.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Invalid data");
-            }
-            else this.Close();*/
-        }
-
-        private void btn_Cancel_Click(object sender, EventArgs e)
-        {
-            Login frm = new Login();
-            this.Hide();
-            frm.Closed += (s, args) => this.Close();
-            frm.Show();
-        }
-
-        private void btn_Exit_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

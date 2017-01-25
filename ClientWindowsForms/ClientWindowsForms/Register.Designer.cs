@@ -188,6 +188,7 @@
             this.Name = "Register";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Register_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
