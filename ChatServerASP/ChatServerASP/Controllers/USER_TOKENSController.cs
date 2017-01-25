@@ -11,12 +11,14 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models.Tables;
 using ChatServerASP.Models;
+using ChatServerASP.Models.Repositories;
 
 namespace ChatServerASP.Controllers
 {
     public class USER_TOKENSController : ApiController
     {
         private MyContext db = new MyContext();
+        private User_tokensRepository utrep = new User_tokensRepository();
 
         // GET api/USER_TOKENS
         public IQueryable<USER_TOKENS> GetUser_tokens()
@@ -115,18 +117,24 @@ namespace ChatServerASP.Controllers
 
         // DELETE api/USER_TOKENS/5
         [ResponseType(typeof(USER_TOKENS))]
-        public async Task<IHttpActionResult> DeleteUSER_TOKENS(int id)
+        public async Task<IHttpActionResult> DeleteUSER_TOKENS(int id,string token)
         {
-            USER_TOKENS user_tokens = await db.User_tokens.FindAsync(id);
+
+
+            USER_TOKENS user_tokens = utrep.FindByToken(token);
             if (user_tokens == null)
             {
                 return NotFound();
             }
 
-            db.User_tokens.Remove(user_tokens);
-            await db.SaveChangesAsync();
-
-            return Ok(user_tokens);
+            if (utrep.CheckToken(token, id) == false)
+            {
+                return BadRequest("Bad user token.");
+            }
+                      
+            utrep.DeleteUser_tokens(user_tokens.Id);              
+            
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

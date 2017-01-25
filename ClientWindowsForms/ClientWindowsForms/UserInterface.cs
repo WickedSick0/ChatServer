@@ -117,7 +117,7 @@ namespace ClientWindowsForms
 
         private void UserInterface_FormClosing(object sender, FormClosingEventArgs e)
         {
-            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id);
+            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id_User + "?token=" + uTok.Token);
         }
 
         private void btn_Friends_Click(object sender, EventArgs e)
