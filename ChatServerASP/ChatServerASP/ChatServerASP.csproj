@@ -232,6 +232,7 @@
     <Compile Include="AuthorizeAttribute.cs" />
     <Compile Include="Controllers\CHATROOMsController.cs" />
     <Compile Include="Controllers\CHATROOM_MEMBERSController.cs" />
+    <Compile Include="Controllers\FRIEND_REQUESTController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MESSAGEsController.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Models\Repositories\Chatroom_membersRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Tables\FRIEND_REQUEST.cs" />
     <Compile Include="Models\Tables\LoginModel.cs" />
     <Compile Include="Models\Tables\MESSAGE.cs" />
     <Compile Include="Models\Repositories\MessageRepository.cs" />
