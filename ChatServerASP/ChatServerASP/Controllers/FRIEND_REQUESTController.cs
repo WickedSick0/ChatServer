@@ -11,13 +11,14 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models.Tables;
 using ChatServerASP.Models;
+using ChatServerASP.Models.Repositories;
 
 namespace ChatServerASP.Controllers
 {
     public class FRIEND_REQUESTController : ApiController
     {
         private MyContext db = new MyContext();
-
+        User_tokensRepository utr = new User_tokensRepository();
         // GET api/FRIEND_REQUEST
         public IQueryable<FRIEND_REQUEST> GetFriend_Requests()
         {
@@ -25,14 +26,21 @@ namespace ChatServerASP.Controllers
         }
 
         // GET api/FRIEND_REQUEST/5
-        [ResponseType(typeof(FRIEND_REQUEST))]
-        public async Task<IHttpActionResult> GetFRIEND_REQUEST(int id)
+        [ResponseType(typeof(List<FRIEND_REQUEST>))]
+        public async Task<IHttpActionResult> GetFRIEND_REQUEST(int id,string token)
         {
-            FRIEND_REQUEST friend_request = await db.Friend_Requests.FindAsync(id);
-            if (friend_request == null)
+            if (utr.CheckToken(token, id) == false)
             {
                 return NotFound();
             }
+            
+            List<FRIEND_REQUEST> friend_request = db.Friend_Requests.Where(x => x.Id_Friend_receiver == id).ToList();
+
+            if (friend_request == null)
+            {
+                return NotFound();
+            };
+            USERsController uc = new USERsController();
 
             return Ok(friend_request);
         }
@@ -72,9 +80,29 @@ namespace ChatServerASP.Controllers
         }
 
         // POST api/FRIEND_REQUEST
-        [ResponseType(typeof(FRIEND_REQUEST))]
-        public async Task<IHttpActionResult> PostFRIEND_REQUEST(FRIEND_REQUEST friend_request)
+        
+        public class PostRequest
         {
+            public string token { get; set; }
+            public int Id_Friendlist_Owner_sender { get; set; }
+            public int Id_Friend_receiver { get; set; }
+            /*public DateTime Send_Time { get; set; }
+            public bool Accepted { get; set; }*/
+        }
+        [ResponseType(typeof(FRIEND_REQUEST))]
+        public async Task<IHttpActionResult> PostFRIEND_REQUEST(PostRequest Postfriend_request)
+        {
+            if (utr.CheckToken(Postfriend_request.token, Postfriend_request.Id_Friendlist_Owner_sender) == false)
+            {
+                return BadRequest("Incorrect token");
+            }
+
+            FRIEND_REQUEST friend_request = new FRIEND_REQUEST();
+            friend_request.Id_Friend_receiver = Postfriend_request.Id_Friend_receiver;
+            friend_request.Id_Friendlist_Owner_sender = Postfriend_request.Id_Friendlist_Owner_sender;
+            friend_request.Send_Time = DateTime.Now;
+            friend_request.Accepted = false;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

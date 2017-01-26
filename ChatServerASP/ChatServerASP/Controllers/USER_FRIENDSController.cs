@@ -109,6 +109,13 @@ namespace ChatServerASP.Controllers
             db.User_friends.Add(uSER_FRIENDS);
             await db.SaveChangesAsync();
 
+            FRIEND_REQUESTController fr = new FRIEND_REQUESTController();
+            ChatServerASP.Controllers.FRIEND_REQUESTController.PostRequest pr = new FRIEND_REQUESTController.PostRequest();
+            pr.Id_Friendlist_Owner_sender = uSER_FRIENDS.Id_Friendlist_Owner;
+            pr.Id_Friend_receiver = uSER_FRIENDS.Id_Friend;
+            pr.token = token;
+            fr.PostFRIEND_REQUEST(pr);
+
             return CreatedAtRoute("DefaultApi", new { id = uSER_FRIENDS.Id }, uSER_FRIENDS);
         }
 

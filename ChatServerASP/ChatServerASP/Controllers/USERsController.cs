@@ -72,14 +72,34 @@ namespace ChatServerASP.Controllers
         [ResponseType(typeof(List<USER>))]
         [HttpGet]
         [Route("api/USERsearch/{search}")]
-        public async Task<IHttpActionResult> FindforADD(string search /*,string token, int id*/) // search user
+        public async Task<IHttpActionResult> FindforADD(string search ,string token, int id) // search user
         {
-            /*if (rep.CheckToken(token, id) == false)
+            if (rep.CheckToken(token, id) == false)
             {
                 return BadRequest("Token is not valid! Please log in again!");
-            }*/
+            }
             string sqlquerystring = string.Format("SELECT * FROM `USER` WHERE `Login` LIKE '%{0}%' or `Nick` LIKE '%{0}%'", search);
             List<USER> ul = db.Users.SqlQuery(sqlquerystring).ToList();
+            foreach (var item in ul)
+            {
+                item.Password = null;
+            }
+            return Ok(ul);
+        }
+        [ResponseType(typeof(List<USER>))]
+        [HttpGet]
+        [Route("api/USERsearch/{id_user}/{token}")]
+        public async Task<IHttpActionResult> FindforRequest([FromUri]int[] id, string token, int id_user) // search user from request
+        {
+            if (rep.CheckToken(token, id_user) == false)
+            {
+                return BadRequest("Token is not valid! Please log in again!");
+            }
+            List<USER> ul = new List<USER>();
+            foreach (var item in id)
+            {
+                ul.Add(db.Users.Find(item));
+            }
             foreach (var item in ul)
             {
                 item.Password = null;
