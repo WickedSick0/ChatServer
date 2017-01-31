@@ -42,7 +42,8 @@ namespace ClientConsole
                 else if (key == ConsoleKey.Delete)
                 {
                     if (this.DelIt())
-                    this.DelFriend(this.UserFriends[selected].Id).Wait();
+                        this.DelFriend(this.UserFriends[selected].Id).Wait();
+                    return 5;
                 }
                 else if (key == ConsoleKey.Enter)
                 {
@@ -120,7 +121,9 @@ namespace ClientConsole
         {
             Console.BackgroundColor = ConsoleColor.DarkYellow;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(" Are you sure?");
+            Console.WriteLine(" Are you sure?                             ");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
             ConsoleKey key = Console.ReadKey().Key;
 
             if (key == ConsoleKey.Enter)
