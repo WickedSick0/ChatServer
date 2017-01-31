@@ -39,6 +39,11 @@ namespace ClientConsole
                 {
                     return 4;
                 }
+                else if (key == ConsoleKey.Delete)
+                {
+                    if (this.DelIt())
+                    this.DelFriend(this.UserFriends[selected].Id).Wait();
+                }
                 else if (key == ConsoleKey.Enter)
                 {
                     Program.Friend = new USER() { Nick = this.UserFriends[selected].Nick };
@@ -101,12 +106,39 @@ namespace ClientConsole
 
                 step++;
             }
+
+            Console.WriteLine();
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Press DEL to remove friend...               ");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+
+        }
+
+        public bool DelIt()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Are you sure?");
+            ConsoleKey key = Console.ReadKey().Key;
+
+            if (key == ConsoleKey.Enter)
+                return true;
+            else
+                return false;
         }
 
         public async Task GetFriends()
         {
             GetTask<List<USER>> GetUserFriends = new GetTask<List<USER>>();
             this.UserFriends = await GetUserFriends.GetAsync($"api/USER_FRIENDS/" + Program.LoggedInUser.Id + "?token=" + Program.Token.Token);
+        }
+
+        public async Task DelFriend(int id_Friend)
+        {
+            GetTask<USER_FRIENDS> Delfriend = new GetTask<USER_FRIENDS>();
+            await Delfriend.DeleteAsync($"api/USER_FRIENDS/" + Program.LoggedInUser.Id + "/" + id_Friend + "/" + Program.Token.Token);
         }
     }
 }

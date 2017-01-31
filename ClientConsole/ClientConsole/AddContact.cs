@@ -28,7 +28,7 @@ namespace ClientConsole
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine();
 
-            this.GetUsers().Wait();
+            //this.GetUsers().Wait();
 
             USER contact = new USER();
 
@@ -40,6 +40,8 @@ namespace ClientConsole
             Console.ForegroundColor = ConsoleColor.Black;
             if (ReadWithESC.GoBack)
                 return 4;
+
+            this.GetUsers(contact.Nick).Wait();
 
             bool isCreated = false;
 
@@ -91,16 +93,16 @@ namespace ClientConsole
             return 4;
         }
 
-        public async Task GetUsers()
+        public async Task GetUsers(string search)
         {
             GetTask<List<USER>> GetUser = new GetTask<List<USER>>();
-            this.Users = await GetUser.GetAsync($"api/USERs");
+            this.Users = await GetUser.GetAsync($"api/USERsearch/" + search);
         }
 
         public async Task CreateContact(USER_FRIENDS uf)
         {
             GetTask<USER_FRIENDS> CreateCont = new GetTask<USER_FRIENDS>();
-            CreateCont.CreateAsync($"api/USER_FRIENDS", uf).Wait();
+            CreateCont.CreateAsync($"api/USER_FRIENDS?token=" + Program.Token.Token, uf).Wait();
         }
     }
 }
