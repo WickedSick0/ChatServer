@@ -73,7 +73,6 @@ namespace ClientWindowsForms
             this.datagrid_Friends.Columns[3].Visible = false;
             this.datagrid_Friends.Columns[4].Visible = false;
 
-
             //refresh every 10 sec
             timer1.Interval = (10000);
             timer1.Tick += timer1_Tick;
@@ -168,7 +167,13 @@ namespace ClientWindowsForms
         {
             if (this.tab == 1) //chatroom
             {
-                RefreshChat();
+                int i = this.datagrid_Friends.CurrentRow.Index;
+
+                var idChat = this.datagrid_Friends.Rows[i].Cells[0].Value;
+
+                this.idChatR = Convert.ToInt32(idChat);
+
+                RefreshChat(this.idChatR);
             }
         } 
 
@@ -177,15 +182,15 @@ namespace ClientWindowsForms
             if(this.idChatR != -1) this.SendMessage(this.idChatR);
         }
 
-        private void SendMessage(int idChatR)
+        private void SendMessage(int idChatRoom)
         {            
-            MessageAutorization msg = new MessageAutorization() { Id_Chatroom = idChatR, Id_User_Post = this.uTok.Id_User, Message_text = this.txt_MSG_SEND.Text, token = uTok.Token };
+            MessageAutorization msg = new MessageAutorization() { Id_Chatroom = idChatRoom, Id_User_Post = this.uTok.Id_User, Message_text = this.txt_MSG_SEND.Text, token = uTok.Token };
 
             responseMSG_SEND = client.PostAsJsonAsync("/api/MESSAGEs/", msg).Result;
 
             this.txt_MSG_SEND.Text = null;
 
-            RefreshChat();
+            RefreshChat(idChatRoom);
 
 
         }
@@ -195,15 +200,9 @@ namespace ClientWindowsForms
             //if (e.KeyCode == Keys.Enter && this.idChatR != -1) this.SendMessage(this.idChatR); 
         }
 
-        private void RefreshChat()
+        private void RefreshChat(int idChat)
         {
-            this.txt_MSGS.Clear();
-
-            int i = this.datagrid_Friends.CurrentRow.Index;
-
-            var idChat = this.datagrid_Friends.Rows[i].Cells[0].Value;
-
-            this.idChatR = Convert.ToInt32(idChat);
+            this.txt_MSGS.Clear();                      
 
             responseMsgs = client.GetAsync("api/MESSAGEs/" + idChat + "?token=" + uTok.Token).Result;
             var emp = responseMsgs.Content.ReadAsAsync<IEnumerable<MESSAGE>>().Result;
@@ -214,7 +213,7 @@ namespace ClientWindowsForms
             {
                 foreach (USER item2 in friends)
                 {
-                    if (item2.Id == item.Id_User_Post)
+                    if (item2.Id == item.Id_User_Post) //foreach msg get nick + text
                     {
                         this.txt_MSGS.Text += item2.Nick + ": " + item.Message_text + "\n\r";
                         break;
@@ -241,7 +240,7 @@ namespace ClientWindowsForms
                     txt_MSGS.SelectionColor = txt_MSGS.ForeColor;
                 }
             }
-            this.txt_MSGS.ScrollToCaret();
+            this.txt_MSGS.ScrollToCaret(); //scroll to end
         }//end
 
         private void txt_MSG_SEND_KeyDown(object sender, KeyEventArgs e)
@@ -255,7 +254,7 @@ namespace ClientWindowsForms
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-           if(this.idChatR != - 1 && this.tab == 1) RefreshChat();
+           if(this.idChatR != - 1 && this.tab == 1) RefreshChat(this.idChatR);
         }
     }
 }
