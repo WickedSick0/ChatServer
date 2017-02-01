@@ -22,6 +22,7 @@ namespace ChatServerASP.Models
 
         public DbSet<USER_FRIENDS> User_friends { get; set; }
         public DbSet<USER_TOKENS> User_tokens { get; set; }
+        public DbSet<FRIEND_REQUEST> Friend_Requests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

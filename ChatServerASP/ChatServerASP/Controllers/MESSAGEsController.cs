@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ChatServerASP.Models;
+using ChatServerASP.Models.Repositories;
+using ChatServerASP.Models.Tables;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,32 +12,42 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using ChatServerASP.Models;
 
 namespace ChatServerASP.Controllers
 {
     public class MESSAGEsController : ApiController
     {
         private MyContext db = new MyContext();
+        private User_tokensRepository utRepository = new User_tokensRepository();
+        private Chatroom_membersRepository chMRepository = new Chatroom_membersRepository();
 
         // GET: api/MESSAGEs
-        //[Authorize]
-        public IQueryable<MESSAGE> GetMessages()
+        /*public IQueryable<MESSAGE> GetMessages() //nechat zakomentovane jinak uniknou data
         {
             return db.Messages;
-        }
-
+        }*/
+        
         // GET: api/MESSAGEs/5
-        [ResponseType(typeof(MESSAGE))]
-        public async Task<IHttpActionResult> GetMESSAGE(int id)
+        [ResponseType(typeof(List<MESSAGE>))]
+        public async Task<IHttpActionResult> GetMESSAGE(int id, string token)
         {
-            MESSAGE mESSAGE = await db.Messages.FindAsync(id);
-            if (mESSAGE == null)
+            if (utRepository.CheckToken(token,db.User_tokens.Where(x => x.Token == token).Select(x => x.Id_User).FirstOrDefault()) == false)
             {
                 return NotFound();
             }
+            if (chMRepository.CheckChatroomMembership(id, token))
+            {
+                List<MESSAGE> msglist = db.Messages.Where(x => x.Id_Chatroom == id).ToList();
+                if (msglist == null)
+                {
+                    return NotFound();
+                }
 
-            return Ok(mESSAGE);
+                return Ok(msglist);
+            }
+            return NotFound();
+
+
         }
 
         // PUT: api/MESSAGEs/5
@@ -72,19 +85,50 @@ namespace ChatServerASP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/MESSAGEs
-        [ResponseType(typeof(MESSAGE))]
-        public async Task<IHttpActionResult> PostMESSAGE(MESSAGE mESSAGE)
+        public class MessageAutorization // nutno vytvorit, jinak neni mozne vubec vyhledat metodu POST, pokud ma vice jak jeden parameter (PICOVINA ASP!)
         {
-            if (!ModelState.IsValid)
+            public string token { get; set; }
+            public int Id_Chatroom { get; set; }
+
+            public int Id_User_Post { get; set; }
+
+            public string Message_text { get; set; }
+
+            public DateTime Send_time { get; set; }
+        }
+
+
+        // POST: api/MESSAGEs
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> PostMESSAGE(MessageAutorization mAutorization)
+        {
+            if (utRepository.CheckToken(mAutorization.token,mAutorization.Id_User_Post) == false)// overeni tokenu
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
+            if (chMRepository.CheckChatroomMembership(mAutorization.Id_Chatroom, mAutorization.token)) // overeni pravomoci postovat do dane roomky
+            {
+               
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
 
-            db.Messages.Add(mESSAGE);
-            await db.SaveChangesAsync();
+                MESSAGE mESSAGE = new MESSAGE();
+                mESSAGE.Id_Chatroom = mAutorization.Id_Chatroom;
+                mESSAGE.Id_User_Post = mAutorization.Id_User_Post;
+                mESSAGE.Message_text = mAutorization.Message_text;
+                mESSAGE.Send_time = DateTime.Now;
+                
 
-            return CreatedAtRoute("DefaultApi", new { id = mESSAGE.Id }, mESSAGE);
+
+                db.Messages.Add(mESSAGE);
+                await db.SaveChangesAsync();
+
+                return CreatedAtRoute("DefaultApi", new { id = mESSAGE.Id }, mESSAGE);
+
+            }
+            return BadRequest();
         }
 
         // DELETE: api/MESSAGEs/5
@@ -103,7 +147,7 @@ namespace ChatServerASP.Controllers
             return Ok(mESSAGE);
         }
 
-        protected override void Dispose(bool disposing)
+       protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

@@ -74,9 +74,10 @@ ALE FAKT s
     });
 
     $('#btnPost').click(function () {
-        var message = { 'Message_text': $("#textArea").val(), 'Id_Chatroom': (/*THIS.ROOM*/"1"), 'Id_User_Post': (/*THIS.SENDER*/ "1") };
+        var Token = "l6332P2017h8753y01K20DiTa7693p23Q07su27v9993m7434";
+        var message = { 'token': Token, 'Message_text': $("#textArea").val(), 'Id_Chatroom': (/*THIS.ROOM*/"1"), 'Id_User_Post': (/*THIS.SENDER*/ "1")};
         $.ajax({
-            url: '/api/MESSAGEs/',
+            url: '/api/MESSAGEs',
             type: 'post',
             data: message
         }).success(function (response) {

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ClientConsole
 {
-    public class USER_TOKENS
+    public class CHATROOM_MEMBERS
     {
         public int Id { get; set; }
+
+        public int Id_Chatroom { get; set; }
+
         public int Id_User { get; set; }
-        public string Token { get; set; }
     }
 }

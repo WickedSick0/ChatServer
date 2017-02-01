@@ -10,12 +10,16 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models;
+using ChatServerASP.Models.Tables;
+using ChatServerASP.Models.Repositories;
 
 namespace ChatServerASP.Controllers
 {
     public class CHATROOMsController : ApiController
     {
         private MyContext db = new MyContext();
+        private User_tokensRepository utRepository = new User_tokensRepository();
+        private Chatroom_membersRepository chMRepository = new Chatroom_membersRepository();
 
         // GET: api/CHATROOMs
         public IQueryable<CHATROOM> GetChatrooms()
@@ -24,18 +28,42 @@ namespace ChatServerASP.Controllers
         }
 
         // GET: api/CHATROOMs/5
-        [ResponseType(typeof(CHATROOM))]
-        public async Task<IHttpActionResult> GetCHATROOM(int id)
+        [ResponseType(typeof(List<CHATROOM>))]
+        public async Task<IHttpActionResult> GetCHATROOM(int id, string token)
         {
-            CHATROOM cHATROOM = await db.Chatrooms.FindAsync(id);
+            if (utRepository.CheckToken(token,id) == false)
+            {
+                return NotFound();
+            }
+            return Ok(chMRepository.FindChatroomByUser(id).ToList());
+
+
+            //original
+            /*CHATROOM cHATROOM = await db.Chatrooms.FindAsync(id);
             if (cHATROOM == null)
             {
                 return NotFound();
             }
 
-            return Ok(cHATROOM);
+            return Ok(cHATROOM);*/
         }
 
+        ///api/CHATROOMs/1 ?id_friend=2 &token=B4049M2017q1038O01y24QATs4027k10H24mY03b2427D6687
+        [ResponseType(typeof(CHATROOM))]
+        public async Task<IHttpActionResult> GetBothInChatroom(int id,int id_friend, string token)
+        {
+            if (utRepository.CheckToken(token, id) == false)
+            {
+                return NotFound();
+            }
+            CHATROOM result = chMRepository.FindFriendChatroom(id,id_friend);
+            if (result == null)
+            {
+                // na klientovi vypsat konverzace nenalezena, prosim vytvorte si novou, kde budou jen tyto dva
+                return NotFound();
+            }
+            return Ok(result);
+        }
         // PUT: api/CHATROOMs/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutCHATROOM(int id, CHATROOM cHATROOM)

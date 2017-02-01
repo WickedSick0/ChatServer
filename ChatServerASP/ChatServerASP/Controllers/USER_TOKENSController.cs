@@ -11,12 +11,14 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ChatServerASP.Models.Tables;
 using ChatServerASP.Models;
+using ChatServerASP.Models.Repositories;
 
 namespace ChatServerASP.Controllers
 {
     public class USER_TOKENSController : ApiController
     {
         private MyContext db = new MyContext();
+        private User_tokensRepository utrep = new User_tokensRepository();
 
         // GET api/USER_TOKENS
         public IQueryable<USER_TOKENS> GetUser_tokens()
@@ -25,7 +27,7 @@ namespace ChatServerASP.Controllers
         }
 
         // GET api/USER_TOKENS/5
-        //[ResponseType(typeof(USER_TOKENS))]
+        [ResponseType(typeof(USER_TOKENS))]
         public async Task<IHttpActionResult> GetUSER_TOKENS(int id)
         {
             USER_TOKENS user_tokens = await db.User_tokens.FindAsync(id);
@@ -77,7 +79,7 @@ namespace ChatServerASP.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             USER_TOKENS token = new USER_TOKENS();
@@ -85,17 +87,17 @@ namespace ChatServerASP.Controllers
             UserRepository rep = new UserRepository();
             foreach (USER item in rep.FindAll())
             {
-                if (lmodel.Username == item.Login && lmodel.Password == item.Password)
+                if (lmodel.Username.ToLower() == item.Login.ToLower() && lmodel.Password == item.Password)
                 {
-                    char[] chars = "$%#@!*abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ^&".ToCharArray();
+                    char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
                     Random r = new Random();
 
-                    string timestring = DateTime.Now.ToString("{0}{1}yyyy{2}{3}MM{4}dd{5}{6}T{7}{8}HH{9}mm{10}{11}ss{12}ffff{13}");
+                    string timestring = DateTime.Now.ToString("{0}{17}{1}yyyy{2}{16}{3}MM{4}dd{5}{6}T{7}{15}{8}HH{9}mm{10}{11}ss{12}ffff{13}{14}");
                     string hash = string.Format(timestring,
                         chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
                         chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
                         chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], chars[r.Next(chars.Length)],
-                        chars[r.Next(chars.Length)], chars[r.Next(chars.Length)]
+                        chars[r.Next(chars.Length)], chars[r.Next(chars.Length)], r.Next(1000, 9999), r.Next(1000, 9999), r.Next(1000, 9999), r.Next(1000, 9999)
                         );
 
                     token.Id_User = item.Id;
@@ -103,29 +105,35 @@ namespace ChatServerASP.Controllers
 
                     db.User_tokens.Add(token);
                     await db.SaveChangesAsync();
+                    return CreatedAtRoute("DefaultApi", new { id = token.Id }, token);
                 }
-                else return BadRequest(ModelState);
+                
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = token.Id }, token);
+            return BadRequest();
+            //return CreatedAtRoute("DefaultApi", new { id = token.Id }, token);
             //return Ok(token.Token);
             //return await GetUSER_TOKENS(token.Id);
         }
 
         // DELETE api/USER_TOKENS/5
         [ResponseType(typeof(USER_TOKENS))]
-        public async Task<IHttpActionResult> DeleteUSER_TOKENS(int id)
+        public async Task<IHttpActionResult> DeleteUSER_TOKENS(int id,string token)
         {
-            USER_TOKENS user_tokens = await db.User_tokens.FindAsync(id);
+
+            USER_TOKENS user_tokens = utrep.FindByToken(token);
             if (user_tokens == null)
             {
                 return NotFound();
             }
 
-            db.User_tokens.Remove(user_tokens);
-            await db.SaveChangesAsync();
-
-            return Ok(user_tokens);
+            if (utrep.CheckToken(token, id) == false)
+            {
+                return BadRequest("Bad user token.");
+            }
+                      
+            utrep.DeleteUser_tokens(user_tokens.Id);              
+            
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

@@ -18,6 +18,10 @@ namespace ChatServerASP.Models.Repositories
         {
             return this._context.User_tokens.Find(id);
         }
+        public USER_TOKENS FindByToken(string token)
+        {
+            return this._context.User_tokens.Where(x => x.Token == token).FirstOrDefault();
+        }
         public void InsertUser_tokens(USER_TOKENS ut)
         {
             this._context.User_tokens.Add(ut);
@@ -37,6 +41,19 @@ namespace ChatServerASP.Models.Repositories
             USER_TOKENS ut = this.FindById(id);
             this._context.User_tokens.Remove(ut);
             this._context.SaveChanges();
+        }
+        public bool CheckToken(string token, int id_user) //kontroluje spravnost tokenu
+        {
+            USER_TOKENS Ut = _context.User_tokens.Where(x => x.Token == token).FirstOrDefault();
+            if (Ut == null || Ut.Token != token)
+            {
+                return false;
+            }
+            if (id_user != Ut.Id_User)
+            {
+                return false;
+            }
+            return true;
         }
 
 

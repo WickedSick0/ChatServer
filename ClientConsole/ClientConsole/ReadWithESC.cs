@@ -9,6 +9,7 @@ namespace ClientConsole
     public class ReadWithESC
     {
         public static bool GoBack = false;
+        public static bool F5_Pressed = false;
 
         public static string ReadLineWithESC()
         {
@@ -16,7 +17,7 @@ namespace ClientConsole
 
             string result = null;
             ConsoleKeyInfo info = Console.ReadKey(true);
-            while (info.Key != ConsoleKey.Enter && info.Key != ConsoleKey.Escape)
+            while (info.Key != ConsoleKey.Enter && info.Key != ConsoleKey.Escape && info.Key != ConsoleKey.F5)
             {
                 if (info.Key != ConsoleKey.Backspace)
                 {
@@ -35,6 +36,11 @@ namespace ClientConsole
             if (info.Key == ConsoleKey.Escape)
             {
                 GoBack = true;
+            }
+
+            if (info.Key == ConsoleKey.F5)
+            {
+                F5_Pressed = true;
             }
 
             if (info.Key == ConsoleKey.Enter)
