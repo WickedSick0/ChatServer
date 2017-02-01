@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CHATROOM.cs" />
-    <Compile Include="Contact.cs" />
     <Compile Include="LogIn.cs" />
     <Compile Include="LoginModel.cs" />
     <Compile Include="Menu.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="ReadWithESC.cs" />
     <Compile Include="Register.cs" />
     <Compile Include="USER.cs" />
-    <Compile Include="UserMenu.cs" />
     <Compile Include="USER_FRIENDS.cs" />
     <Compile Include="USER_TOKENS.cs" />
   </ItemGroup>

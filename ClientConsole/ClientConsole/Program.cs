@@ -39,10 +39,10 @@ namespace ClientConsole
                     Mod = Register.RegisterMod(); // Mod = OptionsMod()
                 else if (Mod == 3) // Exit 3
                     Mod = -1;
-                else if (Mod == 4) // Skoci do OptionMod 2
-                    Mod = UserMenu.UserMenuMod(); // Mod = OptionsMod()
-                else if (Mod == 5) // Skoci do OptionMod 2
-                    Mod = Contact.ContactMod(); // Mod = OptionsMod()
+                //else if (Mod == 4) // Skoci do OptionMod 2
+                //    Mod = UserMenu.UserMenuMod(); // Mod = OptionsMod()
+                //else if (Mod == 5) // Skoci do OptionMod 2
+                //    Mod = Contact.ContactMod(); // Mod = OptionsMod()
                 else if (Mod == 7) // Skoci do OptionMod 2
                     Mod = ChatroomMod(); // Mod = OptionsMod()
                 else if (Mod == 10) // Skoci do OptionMod 2

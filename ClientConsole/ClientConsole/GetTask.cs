@@ -36,6 +36,7 @@ namespace ClientConsole
         public async Task<Uri> CreateAsync(string path, T var)
         {
             HttpResponseMessage response = await this.client.PostAsJsonAsync(path, var);
+                       
             response.EnsureSuccessStatusCode();
 
             res = response;
