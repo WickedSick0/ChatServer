@@ -11,7 +11,7 @@ namespace ClientConsole
         public static bool GoBack = false;
         public static bool F5_Pressed = false;
 
-        public static string ReadLineWithESC()
+        public static string ReadLineWithESC(bool password = false)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -21,7 +21,10 @@ namespace ClientConsole
             {
                 if (info.Key != ConsoleKey.Backspace)
                 {
-                    Console.Write(info.KeyChar);
+                    if (password)
+                        Console.Write("*");
+                    else
+                        Console.Write(info.KeyChar);
                     sb.Append(info.KeyChar);
                 }
                 else if (sb.Length >= 1)
@@ -45,6 +48,7 @@ namespace ClientConsole
 
             if (info.Key == ConsoleKey.Enter)
             {
+                F5_Pressed = false;
                 GoBack = false;
                 Console.WriteLine();
                 result = sb.ToString();

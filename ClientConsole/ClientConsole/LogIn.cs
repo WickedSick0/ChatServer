@@ -42,7 +42,7 @@ namespace ClientConsole
             Console.Write(" Enter your password: ");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
-            Program.LoggedInUser.Password = ReadWithESC.ReadLineWithESC();
+            Program.LoggedInUser.Password = ReadWithESC.ReadLineWithESC(true);
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             if (ReadWithESC.GoBack)

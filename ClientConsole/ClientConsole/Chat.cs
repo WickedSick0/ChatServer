@@ -57,6 +57,9 @@ namespace ClientConsole
             msg.token = Program.Token.Token;
             msg.Message_text = ReadWithESC.ReadLineWithESC();
 
+            if (ReadWithESC.F5_Pressed != true)
+                this.CreateMessage(msg).Wait();
+
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             if (ReadWithESC.GoBack)
@@ -64,7 +67,6 @@ namespace ClientConsole
             if (ReadWithESC.F5_Pressed)
                 return 11;
 
-            this.CreateMessage(msg).Wait();
 
             return 11;
         }

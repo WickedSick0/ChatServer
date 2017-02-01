@@ -96,7 +96,7 @@ namespace ClientConsole
         public async Task GetUsers(string search)
         {
             GetTask<List<USER>> GetUser = new GetTask<List<USER>>();
-            this.Users = await GetUser.GetAsync($"api/USERsearch/" + search);
+            this.Users = await GetUser.GetAsync($"api/USERsearch/" + search + "?token=" + Program.Token.Token + "&id=" + Program.LoggedInUser.Id);
         }
 
         public async Task CreateContact(USER_FRIENDS uf)
