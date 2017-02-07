@@ -29,22 +29,24 @@ namespace ClientWindowsForms
         private int tab;
         private int idChatR = -1;       
 
-        public UserInterface(USER_TOKENS tok)
+        public UserInterface(USER_TOKENS tok, HttpClient clint)
         {
+            client = clint;
             uTok = tok;
-            client.BaseAddress = new Uri("http://localhost:53098/");
+            //client.BaseAddress = new Uri("http://localhost:53098/");
             client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-
+            //Get logged user
             response = client.GetAsync("api/USERs/" +  uTok.Id_User + "?token=" + uTok.Token).Result;
             usr = response.Content.ReadAsAsync<USER>().Result;
 
+            //Get his friends
+            //responseFriends = client.GetAsync("api/USER_FRIENDS/" + uTok.Id_User + "?token=" + uTok.Token).Result;
+            //var emp = responseFriends.Content.ReadAsAsync<IEnumerable<USER>>().Result;
+            //friends = emp.ToList<USER>();
 
-            responseFriends = client.GetAsync("api/USER_FRIENDS/" + uTok.Id_User + "?token=" + uTok.Token).Result;
-            var emp = responseFriends.Content.ReadAsAsync<IEnumerable<USER>>().Result;
-            friends = emp.ToList<USER>();
-
+            //Get his chrooms
             responseChrooms = client.GetAsync("api/CHATROOMs/" + uTok.Id_User + "?token=" + uTok.Token).Result;
             var emp2 = responseChrooms.Content.ReadAsAsync<IEnumerable<CHATROOM>>().Result;
             chatrooms = emp2.ToList<CHATROOM>();
@@ -67,11 +69,12 @@ namespace ClientWindowsForms
         {
             this.profilePic.Image = ClientWindowsForms.Properties.Resources.profilePic;
             this.label1.Text = usr.Nick;
-            this.datagrid_Friends.DataSource = friends;
-            this.datagrid_Friends.Columns[0].Visible = false;
-            this.datagrid_Friends.Columns[1].Visible = false;
-            this.datagrid_Friends.Columns[3].Visible = false;
-            this.datagrid_Friends.Columns[4].Visible = false;
+            GetFriends();
+            //this.datagrid_Friends.DataSource = friends;
+            //this.datagrid_Friends.Columns[0].Visible = false;
+            //this.datagrid_Friends.Columns[1].Visible = false;
+            //this.datagrid_Friends.Columns[3].Visible = false;
+            //this.datagrid_Friends.Columns[4].Visible = false;
 
             //refresh every 10 sec
             timer1.Interval = (10000);
@@ -82,7 +85,7 @@ namespace ClientWindowsForms
 
         private void button2_Click(object sender, EventArgs e) //logout
         {
-            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id_User + "?token=" + uTok.Token);
+            client.DeleteAsync("api/USER_TOKENS/" + uTok.Id_User + "?token=" + uTok.Token); //delete token
             usr = null;
             this.timer1.Stop();
             this.Hide();
@@ -91,7 +94,7 @@ namespace ClientWindowsForms
             frm.Show();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e) //search
         {
             if (this.tab == 0) //friends
             {
@@ -254,7 +257,28 @@ namespace ClientWindowsForms
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-           if(this.idChatR != - 1 && this.tab == 1) RefreshChat(this.idChatR);
+           if(this.idChatR != - 1 && this.tab == 1 && this.txt_MSGS.Capture == false) RefreshChat(this.idChatR);
+        }
+
+        private void button3_Click(object sender, EventArgs e) //add friend
+        {
+            AddFriend frm = new AddFriend(uTok,client);
+            frm.Show();
+            frm.Closed += (s, args) => GetFriends(); //refresh friends after AddFriend form closed
+
+
+        }
+        private void GetFriends()
+        {
+            responseFriends = client.GetAsync("api/USER_FRIENDS/" + uTok.Id_User + "?token=" + uTok.Token).Result;
+            var emp = responseFriends.Content.ReadAsAsync<IEnumerable<USER>>().Result;
+            friends = emp.ToList<USER>();
+
+            this.datagrid_Friends.DataSource = friends;
+            this.datagrid_Friends.Columns[0].Visible = false;
+            this.datagrid_Friends.Columns[1].Visible = false;
+            this.datagrid_Friends.Columns[3].Visible = false;
+            this.datagrid_Friends.Columns[4].Visible = false;
         }
     }
 }
