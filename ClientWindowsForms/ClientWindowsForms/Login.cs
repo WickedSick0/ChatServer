@@ -75,7 +75,7 @@ namespace ClientWindowsForms
                 USER_TOKENS tok = response.Content.ReadAsAsync<USER_TOKENS>().Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    UserInterface frm = new UserInterface(tok);
+                    UserInterface frm = new UserInterface(tok, client);
                     this.Hide();
                     frm.Closed += (s, args) => this.Close();
                     frm.Show();
