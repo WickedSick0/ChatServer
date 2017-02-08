@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClientWindowsForms.Tables;
 
 namespace ClientWindowsForms
 {
@@ -64,7 +65,8 @@ namespace ClientWindowsForms
 
                     this.dataGridSearched.DataSource = friends;
 
-                    this.idFriend = Convert.ToInt32(dataGridSearched.Rows[0].Cells[0].Value);
+                    if (dataGridSearched.RowCount > 0) this.idFriend = Convert.ToInt32(dataGridSearched.Rows[0].Cells[0].Value); //selects first row ID
+                    else this.idFriend = -1; //user not found
                     this.dataGridSearched.Columns[0].Visible = false;
                     this.dataGridSearched.Columns[3].Visible = false;
                     this.dataGridSearched.Columns[4].Visible = false;
@@ -76,6 +78,7 @@ namespace ClientWindowsForms
         private void btn_Add_Click(object sender, EventArgs e)
         {
             if (this.idFriend != -1) FriendAdd(idFriend);
+            else MessageBox.Show("Select a friend to add!");
         }
 
         private void FriendAdd(int idF)

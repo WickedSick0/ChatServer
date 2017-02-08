@@ -44,6 +44,7 @@
             this.txt_MSGS = new System.Windows.Forms.RichTextBox();
             this.btn_Close = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btn_AddChroom = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_Friends)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             this.SuspendLayout();
@@ -204,12 +205,26 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btn_AddChroom
+            // 
+            this.btn_AddChroom.BackColor = System.Drawing.Color.Transparent;
+            this.btn_AddChroom.BackgroundImage = global::ClientWindowsForms.Properties.Resources.chat_icon__4_;
+            this.btn_AddChroom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_AddChroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_AddChroom.Location = new System.Drawing.Point(13, 698);
+            this.btn_AddChroom.Name = "btn_AddChroom";
+            this.btn_AddChroom.Size = new System.Drawing.Size(42, 39);
+            this.btn_AddChroom.TabIndex = 14;
+            this.btn_AddChroom.UseVisualStyleBackColor = false;
+            this.btn_AddChroom.Click += new System.EventHandler(this.btn_AddChroom_Click);
+            // 
             // UserInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(700, 807);
+            this.Controls.Add(this.btn_AddChroom);
             this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.txt_MSGS);
             this.Controls.Add(this.btn_Chatrooms);
@@ -254,5 +269,6 @@
         private System.Windows.Forms.RichTextBox txt_MSGS;
         private System.Windows.Forms.Button btn_Close;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btn_AddChroom;
     }
 }
