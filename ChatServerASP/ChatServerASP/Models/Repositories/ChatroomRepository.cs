@@ -19,6 +19,12 @@ namespace ChatServerASP.Models
             return this._context.Chatrooms.Find(id);
         }
 
+        public CHATROOM FindByName(string name)
+        {
+            return this._context.Chatrooms.Where(x => x.Chatroom_Name == name).SingleOrDefault();
+        }
+
+
         public void InsertChatroom(CHATROOM cr)
         {
             this._context.Chatrooms.Add(cr);

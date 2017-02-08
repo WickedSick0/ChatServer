@@ -19,6 +19,10 @@ namespace ChatServerASP.Controllers
     {
         private MyContext db = new MyContext();
         User_tokensRepository utr = new User_tokensRepository();
+        Friend_RequestRepository FrR = new Friend_RequestRepository();
+        User_friendsRepository UfR = new User_friendsRepository();
+        ChatroomRepository ChR = new ChatroomRepository();
+        Chatroom_membersRepository ChmR = new Chatroom_membersRepository();
         // GET api/FRIEND_REQUEST
         public IQueryable<FRIEND_REQUEST> GetFriend_Requests()
         {
@@ -34,7 +38,7 @@ namespace ChatServerASP.Controllers
                 return NotFound();
             }
             
-            List<FRIEND_REQUEST> friend_request = db.Friend_Requests.Where(x => x.Id_Friend_receiver == id).ToList();
+            List<FRIEND_REQUEST> friend_request = db.Friend_Requests.Where(x => x.Id_Friend_receiver == id && x.Accepted == null).ToList();
 
             if (friend_request == null)
             {
@@ -101,7 +105,7 @@ namespace ChatServerASP.Controllers
             friend_request.Id_Friend_receiver = Postfriend_request.Id_Friend_receiver;
             friend_request.Id_Friendlist_Owner_sender = Postfriend_request.Id_Friendlist_Owner_sender;
             friend_request.Send_Time = DateTime.Now;
-            friend_request.Accepted = false;
+            friend_request.Accepted = null;
 
             if (!ModelState.IsValid)
             {
@@ -112,6 +116,70 @@ namespace ChatServerASP.Controllers
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = friend_request.Id }, friend_request);
+        }
+
+        public class AcceptUpdateRequest
+        {
+            public string token { get; set; }
+            public int ID { get; set; }
+            public int idfriend_request { get; set; }
+            public bool bitAccept { get; set; }
+        }
+
+
+        //POST api/FRIEND_REQUEST_ACCEPTSTATUS
+        [HttpPost, Route("api/FRIEND_REQUEST_ACCEPTSTATUS")]
+        public async Task<IHttpActionResult> PostFRIEND_REQUEST_ACCEPTSTATUS(AcceptUpdateRequest PostAcceptfriend_request)
+        {
+            if (utr.CheckToken(PostAcceptfriend_request.token, PostAcceptfriend_request.ID) == false)
+            {
+                return BadRequest("Incorrect token");
+            }
+
+            if (FrR.FindById(PostAcceptfriend_request.idfriend_request).Id_Friend_receiver != PostAcceptfriend_request.ID )
+            {
+                return BadRequest();
+            }
+
+            FRIEND_REQUEST friend_request = FrR.FindById(PostAcceptfriend_request.idfriend_request);
+            friend_request.Accepted = PostAcceptfriend_request.bitAccept;
+
+            if (PostAcceptfriend_request.bitAccept == true)
+            {
+                USER_FRIENDS uf = new USER_FRIENDS();
+                uf.Id_Friend = friend_request.Id_Friendlist_Owner_sender;
+                uf.Id_Friendlist_Owner = friend_request.Id_Friend_receiver;
+                UfR.InsertUser_friends(uf);
+
+                CHATROOM chatroom = new CHATROOM();
+                chatroom.Chatroom_Name = "#"+DateTime.Now.Ticks+"-"+db.Users.Find(friend_request.Id_Friendlist_Owner_sender).Login + "&" + db.Users.Find(friend_request.Id_Friend_receiver).Login;
+                ChR.InsertChatroom(chatroom);
+
+                CHATROOM_MEMBERS chrM1 = new CHATROOM_MEMBERS();
+                chrM1.Id_Chatroom = ChR.FindByName(chatroom.Chatroom_Name).Id;
+                chrM1.Id_User = friend_request.Id_Friend_receiver;
+                ChmR.InsertChatroom_members(chrM1);
+
+                chrM1.Id_User = friend_request.Id_Friendlist_Owner_sender;
+                ChmR.InsertChatroom_members(chrM1);
+
+
+            }
+            if (PostAcceptfriend_request.bitAccept == false)
+            {
+                if (db.User_friends.Where(x => x.Id_Friendlist_Owner == friend_request.Id_Friendlist_Owner_sender && x.Id_Friend == friend_request.Id_Friend_receiver).FirstOrDefault() != null)
+                {
+                    db.User_friends.Remove(db.User_friends.Where(x => x.Id_Friendlist_Owner == friend_request.Id_Friendlist_Owner_sender && x.Id_Friend == friend_request.Id_Friend_receiver).FirstOrDefault());
+                }
+                
+            }
+
+
+
+            FrR.UpdateFRIEND_REQUEST(friend_request);
+            await db.SaveChangesAsync();
+
+            return Ok();
         }
 
         // DELETE api/FRIEND_REQUEST/5

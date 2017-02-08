@@ -245,6 +245,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Repositories\Friend_RequestRepository.cs" />
     <Compile Include="Models\Repositories\User_tokensRepository.cs" />
     <Compile Include="Models\Tables\CHATROOM.cs" />
     <Compile Include="Models\Repositories\ChatroomRepository.cs" />
