@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClientWindowsForms.Tables;
 
 namespace ClientWindowsForms
 {

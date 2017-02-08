@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClientWindowsForms.Tables;
 
 namespace ClientWindowsForms
 {
@@ -47,9 +48,9 @@ namespace ClientWindowsForms
             //friends = emp.ToList<USER>();
 
             //Get his chrooms
-            responseChrooms = client.GetAsync("api/CHATROOMs/" + uTok.Id_User + "?token=" + uTok.Token).Result;
-            var emp2 = responseChrooms.Content.ReadAsAsync<IEnumerable<CHATROOM>>().Result;
-            chatrooms = emp2.ToList<CHATROOM>();
+            //responseChrooms = client.GetAsync("api/CHATROOMs/" + uTok.Id_User + "?token=" + uTok.Token).Result;
+            //var emp2 = responseChrooms.Content.ReadAsAsync<IEnumerable<CHATROOM>>().Result;
+            //chatrooms = emp2.ToList<CHATROOM>();
 
             if (!response.IsSuccessStatusCode) Close();
 
@@ -61,6 +62,9 @@ namespace ClientWindowsForms
             btn_Close.FlatStyle = FlatStyle.Flat;
             btn_Close.FlatAppearance.BorderSize = 0;
 
+            btn_AddChroom.FlatStyle = FlatStyle.Flat;
+            btn_AddChroom.FlatAppearance.BorderSize = 0;
+
             this.KeyPreview = true;
 
         }
@@ -68,7 +72,8 @@ namespace ClientWindowsForms
         private void UserInterface_Load(object sender, EventArgs e)
         {
             this.profilePic.Image = ClientWindowsForms.Properties.Resources.profilePic;
-            this.label1.Text = usr.Nick;
+            this.label1.Text = usr.Nick;            
+            GetChrooms();
             GetFriends();
             //this.datagrid_Friends.DataSource = friends;
             //this.datagrid_Friends.Columns[0].Visible = false;
@@ -274,11 +279,34 @@ namespace ClientWindowsForms
             var emp = responseFriends.Content.ReadAsAsync<IEnumerable<USER>>().Result;
             friends = emp.ToList<USER>();
 
-            this.datagrid_Friends.DataSource = friends;
-            this.datagrid_Friends.Columns[0].Visible = false;
-            this.datagrid_Friends.Columns[1].Visible = false;
-            this.datagrid_Friends.Columns[3].Visible = false;
-            this.datagrid_Friends.Columns[4].Visible = false;
+            if (tab == 0)
+            {
+                this.datagrid_Friends.DataSource = friends;
+                this.datagrid_Friends.Columns[0].Visible = false;
+                this.datagrid_Friends.Columns[1].Visible = false;
+                this.datagrid_Friends.Columns[3].Visible = false;
+                this.datagrid_Friends.Columns[4].Visible = false;
+            }
+        }       
+
+        private void btn_AddChroom_Click(object sender, EventArgs e)
+        {
+            AddChatroom frm = new AddChatroom(uTok, client);
+            frm.Show();
+            frm.Closed += (s, args) => GetChrooms(); //refresh chatrooms
+        }
+
+        private void GetChrooms()
+        {
+            responseChrooms = client.GetAsync("api/CHATROOMs/" + uTok.Id_User + "?token=" + uTok.Token).Result;
+            var emp2 = responseChrooms.Content.ReadAsAsync<IEnumerable<CHATROOM>>().Result;
+            chatrooms = emp2.ToList<CHATROOM>();
+
+            if (tab == 1)
+            {
+                this.datagrid_Friends.DataSource = chatrooms;
+                this.datagrid_Friends.Columns[0].Visible = false;
+            }
         }
     }
 }
