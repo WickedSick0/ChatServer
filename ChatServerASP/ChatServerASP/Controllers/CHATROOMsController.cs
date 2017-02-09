@@ -99,7 +99,7 @@ namespace ChatServerASP.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-        class CreateChatroom
+        public class CreateChatroom
         {
             public string chatroomName { get; set; }
             public int[] ChatroomMembersID { get; set; }
@@ -133,7 +133,6 @@ namespace ChatServerASP.Controllers
                 chatroomMember.Id_Chatroom = chatroom.Id;
                 chMRepository.InsertChatroom_members(chatroomMember);
             }
-
             return Ok("Chatroom created");
             /*if (!ModelState.IsValid)
             {
