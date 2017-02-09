@@ -159,12 +159,17 @@ namespace ChatServerASP.Controllers
                 uf.Id_Friendlist_Owner = friend_request.Id_Friend_receiver;
                 UfR.InsertUser_friends(uf);
 
+                uf.Id_Friend = friend_request.Id_Friend_receiver;
+                uf.Id_Friendlist_Owner = friend_request.Id_Friendlist_Owner_sender;
+                UfR.InsertUser_friends(uf);
+
+
                 CHATROOM chatroom = new CHATROOM();
                 chatroom.Chatroom_Name = "#"+DateTime.Now.Ticks+"-"+db.Users.Find(friend_request.Id_Friendlist_Owner_sender).Login + "&" + db.Users.Find(friend_request.Id_Friend_receiver).Login;
                 ChR.InsertChatroom(chatroom);
 
                 CHATROOM_MEMBERS chrM1 = new CHATROOM_MEMBERS();
-                chrM1.Id_Chatroom = ChR.FindByName(chatroom.Chatroom_Name).Id;
+                chrM1.Id_Chatroom = chatroom.Id;
                 chrM1.Id_User = friend_request.Id_Friend_receiver;
                 ChmR.InsertChatroom_members(chrM1);
 
