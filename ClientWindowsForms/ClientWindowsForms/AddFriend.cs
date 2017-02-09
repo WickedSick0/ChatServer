@@ -95,7 +95,7 @@ namespace ClientWindowsForms
             responseAdd = client.PostAsJsonAsync("api/FRIEND_REQUEST", friend).Result;
             //
             if (responseAdd.IsSuccessStatusCode) MessageBox.Show("Request sent!");
-            else MessageBox.Show("User is already in your friend list!");
+            else MessageBox.Show("Request already sent!");
 
         }
 

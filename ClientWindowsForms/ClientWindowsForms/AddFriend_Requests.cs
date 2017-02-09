@@ -18,8 +18,10 @@ namespace ClientWindowsForms
         HttpClient client = new HttpClient();
         private USER_TOKENS uTok;
         HttpResponseMessage responseRequests;
+        HttpResponseMessage respondtoRequest;
         List<FRIEND_REQUEST> requests = new List<FRIEND_REQUEST>();
         private int idRq;
+        bool accept;
         //List<Requestor> requestor = new List<Requestor>();
 
 
@@ -79,6 +81,8 @@ namespace ClientWindowsForms
 
         private void dataGridRequests_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            this.accept = true;
+
             int i = this.dataGridRequests.CurrentRow.Index;
 
             var idRequestOwner = this.dataGridRequests.Rows[i].Cells[0].Value;
@@ -86,8 +90,38 @@ namespace ClientWindowsForms
             //var idRequest = this.dataGridRequests.Rows[i].Cells[0].Value
 
             this.idRq = Convert.ToInt32(idRequestOwner);
-            AcceptUpdateRequest request = new AcceptUpdateRequest() { ID = uTok.Id_User, idfriend_request = this.idRq, token = uTok.Token, bitAccept = true };
-            client.PostAsJsonAsync("api/FRIEND_REQUEST_ACCEPTSTATUS", request);
+            RespondRequest(this.idRq, i, this.accept);
+            
+
+        }
+        private void RespondRequest(int idReq, int index, bool accepted)
+        {
+            AcceptUpdateRequest request = new AcceptUpdateRequest() { ID = uTok.Id_User, idfriend_request = idReq, token = uTok.Token, bitAccept = accepted };
+            respondtoRequest = client.PostAsJsonAsync("api/FRIEND_REQUEST_ACCEPTSTATUS", request).Result;
+            if (respondtoRequest.IsSuccessStatusCode)
+            {
+                this.dataGridRequests.CurrentCell = null;
+                this.dataGridRequests.Rows[index].Visible = false;
+            }
+            else MessageBox.Show("You responded to this request already!");
+        }
+
+        private void dataGridRequests_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                this.accept = false;
+
+
+                int i = dataGridRequests.Rows[e.RowIndex].Index;
+
+                var idRequestOwner = this.dataGridRequests.Rows[i].Cells[0].Value;
+
+                this.idRq = Convert.ToInt32(idRequestOwner);
+
+                RespondRequest(this.idRq, i, this.accept);
+
+            }
         }
     }
 }
