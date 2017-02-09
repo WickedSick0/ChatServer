@@ -45,6 +45,13 @@ namespace ChatServerASP.Models
             return true;
         }
 
+        public bool checkMutualFriendship(int idOwner, int idFriend)
+        {
+            if (_context.User_friends.Where(x => x.Id_Friendlist_Owner == idOwner && x.Id_Friend == idFriend && x.Id_Friendlist_Owner == idFriend && x.Id_Friend == idOwner).FirstOrDefault() == null)
+                return true;
+            return false;
+        }
+
         public USER_FRIENDS FindById(int id)
         {
             return this._context.User_friends.Find(id);
