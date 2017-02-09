@@ -87,17 +87,25 @@ namespace ChatServerASP.Controllers
             }
             return Ok(ul);
         }
-        [ResponseType(typeof(List<USER>))]
-        [HttpGet]
-        [Route("api/USERsearch/{id_user}/{token}")]
-        public async Task<IHttpActionResult> FindforRequest([FromUri]int[] id, string token, int id_user) // search user from request
+        public class GetUsersFromRequest
         {
-            if (rep.CheckToken(token, id_user) == false)
+            public int[] id_users { get; set; }
+            public string token { get; set; }
+            public int ID_User { get; set; }
+        }
+
+
+        [ResponseType(typeof(List<USER>))]
+        [HttpPost]
+        [Route("api/USERsrequesting")]
+        public async Task<IHttpActionResult> FindforRequest(/*[FromUri]int[] id, string token, int id_user*/ GetUsersFromRequest usersrequesting) // search user from request
+        {
+            if (rep.CheckToken(usersrequesting.token, usersrequesting.ID_User) == false)
             {
                 return BadRequest("Token is not valid! Please log in again!");
             }
             List<USER> ul = new List<USER>();
-            foreach (var item in id)
+            foreach (var item in usersrequesting.id_users)
             {
                 ul.Add(db.Users.Find(item));
             }
