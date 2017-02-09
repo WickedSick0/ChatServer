@@ -112,6 +112,11 @@ namespace ChatServerASP.Controllers
         [ResponseType(typeof(CHATROOM))]
         public async Task<IHttpActionResult> PostCHATROOM(CreateChatroom cHATROOM)
         {
+            if (String.IsNullOrWhiteSpace(cHATROOM.chatroomName))
+            {
+                cHATROOM.chatroomName = "#" + DateTime.Now.Ticks;
+            }
+
             CHATROOM chatroom = new CHATROOM();
             chatroom.Chatroom_Name = cHATROOM.chatroomName;
 
