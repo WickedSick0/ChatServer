@@ -13,6 +13,5 @@ namespace ClientWindowsForms.Tables
         public int Id_Friend_receiver { get; set; }
         public DateTime Send_Time { get; set; }
         public Nullable<bool> Accepted { get; set; }
-        public string Sender_Username { get; set; }
     }
 }
