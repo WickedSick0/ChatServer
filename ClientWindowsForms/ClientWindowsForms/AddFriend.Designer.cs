@@ -35,6 +35,7 @@
             this.dataGridSearched = new System.Windows.Forms.DataGridView();
             this.btn_Add = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
+            this.btn_request = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSearched)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,12 +110,28 @@
             this.btn_Cancel.UseVisualStyleBackColor = false;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
+            // btn_request
+            // 
+            this.btn_request.BackColor = System.Drawing.Color.Transparent;
+            this.btn_request.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_request.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_request.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_request.ForeColor = System.Drawing.Color.Gray;
+            this.btn_request.Location = new System.Drawing.Point(181, 76);
+            this.btn_request.Name = "btn_request";
+            this.btn_request.Size = new System.Drawing.Size(85, 23);
+            this.btn_request.TabIndex = 6;
+            this.btn_request.Text = "REQUESTS";
+            this.btn_request.UseVisualStyleBackColor = false;
+            this.btn_request.Click += new System.EventHandler(this.btn_request_Click);
+            // 
             // AddFriend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(420, 516);
+            this.Controls.Add(this.btn_request);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Add);
             this.Controls.Add(this.dataGridSearched);
@@ -139,5 +156,6 @@
         private System.Windows.Forms.DataGridView dataGridSearched;
         private System.Windows.Forms.Button btn_Add;
         private System.Windows.Forms.Button btn_Cancel;
+        private System.Windows.Forms.Button btn_request;
     }
 }

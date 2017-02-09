@@ -36,6 +36,9 @@ namespace ClientWindowsForms
 
             btn_Cancel.FlatStyle = FlatStyle.Flat;
             btn_Cancel.FlatAppearance.BorderSize = 0;
+
+            btn_request.FlatStyle = FlatStyle.Flat;
+            btn_request.FlatAppearance.BorderSize = 0;
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -104,6 +107,14 @@ namespace ClientWindowsForms
 
             this.idFriend = Convert.ToInt32(idF);
 
+        }
+
+        private void btn_request_Click(object sender, EventArgs e)
+        {
+            AddFriend_Requests frm = new AddFriend_Requests(uTok, client);
+            this.Hide();
+            frm.Closed += (s, args) => this.Close();
+            frm.Show();
         }
     }
 }

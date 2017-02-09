@@ -299,8 +299,8 @@ namespace ClientWindowsForms
         private void GetChrooms()
         {
             responseChrooms = client.GetAsync("api/CHATROOMs/" + uTok.Id_User + "?token=" + uTok.Token).Result;
-            var emp2 = responseChrooms.Content.ReadAsAsync<IEnumerable<CHATROOM>>().Result;
-            chatrooms = emp2.ToList<CHATROOM>();
+            var emp = responseChrooms.Content.ReadAsAsync<IEnumerable<CHATROOM>>().Result;
+            chatrooms = emp.ToList<CHATROOM>();
 
             if (tab == 1)
             {

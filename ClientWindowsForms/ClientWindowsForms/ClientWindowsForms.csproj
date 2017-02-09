@@ -66,6 +66,12 @@
     <Compile Include="AddFriend.Designer.cs">
       <DependentUpon>AddFriend.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddFriend_Requests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFriend_Requests.Designer.cs">
+      <DependentUpon>AddFriend_Requests.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tables\CHATROOM.cs" />
     <Compile Include="Tables\CHATROOM_MEMBERS.cs" />
     <Compile Include="Tables\Client.cs" />
@@ -81,6 +87,7 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tables\FRIEND_REQUEST.cs" />
     <Compile Include="Tables\LoginModel.cs" />
     <Compile Include="Tables\MESSAGE.cs" />
     <Compile Include="Tables\MessageAutorization.cs" />
@@ -113,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddFriend.resx">
       <DependentUpon>AddFriend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddFriend_Requests.resx">
+      <DependentUpon>AddFriend_Requests.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
