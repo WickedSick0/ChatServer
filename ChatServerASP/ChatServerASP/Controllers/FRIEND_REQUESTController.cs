@@ -157,7 +157,7 @@ namespace ChatServerASP.Controllers
             }
 
             friend_request.Accepted = PostAcceptfriend_request.bitAccept;
-
+            FrR.UpdateFRIEND_REQUEST(friend_request);
             if (PostAcceptfriend_request.bitAccept == true)
             {
                 USER_FRIENDS uf = new USER_FRIENDS();
@@ -192,10 +192,6 @@ namespace ChatServerASP.Controllers
                 }
                 
             }
-
-
-
-            FrR.UpdateFRIEND_REQUEST(friend_request);
             await db.SaveChangesAsync();
 
             return Ok();
