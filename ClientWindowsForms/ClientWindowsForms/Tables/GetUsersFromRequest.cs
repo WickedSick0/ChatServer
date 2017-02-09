@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClientWindowsForms.Tables
 {
-    public class Requestor
+   public class GetUsersFromRequest
     {
-        public int Id_Request { get; set; }
-        public string Requestor_name { get; set; }
-        public DateTime Send_Time { get; set; }
+        public int[] id_users { get; set; }
+        public string token { get; set; }
+        public int ID_User { get; set; }
     }
 }

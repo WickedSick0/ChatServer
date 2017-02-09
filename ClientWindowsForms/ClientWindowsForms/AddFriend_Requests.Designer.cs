@@ -98,7 +98,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(132, 113);
+            this.label1.Location = new System.Drawing.Point(132, 114);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(177, 15);
             this.label1.TabIndex = 5;
@@ -110,7 +110,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(135, 135);
+            this.label2.Location = new System.Drawing.Point(134, 136);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(167, 15);
             this.label2.TabIndex = 6;
