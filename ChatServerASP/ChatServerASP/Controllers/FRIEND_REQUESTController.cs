@@ -144,12 +144,12 @@ namespace ChatServerASP.Controllers
                 return BadRequest("Incorrect token");
             }
 
-            if (FrR.FindByOwnerSenderId(PostAcceptfriend_request.idfriend_request).Id_Friend_receiver != PostAcceptfriend_request.ID )
+            if (FrR.FindById(PostAcceptfriend_request.idfriend_request).Id_Friend_receiver != PostAcceptfriend_request.ID )
             {
                 return BadRequest();
             }
 
-            FRIEND_REQUEST friend_request = FrR.FindByOwnerSenderId(PostAcceptfriend_request.idfriend_request);
+            FRIEND_REQUEST friend_request = FrR.FindById(PostAcceptfriend_request.idfriend_request);
             friend_request.Accepted = PostAcceptfriend_request.bitAccept;
 
             if (PostAcceptfriend_request.bitAccept == true)
