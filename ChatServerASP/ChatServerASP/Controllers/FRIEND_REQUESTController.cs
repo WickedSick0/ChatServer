@@ -153,7 +153,7 @@ namespace ChatServerASP.Controllers
 
             if (friend_request.Accepted != null)
             {
-                return BadRequest("Already readed request");
+                return BadRequest("Request have been already accepted/declined!");
             }
 
             friend_request.Accepted = PostAcceptfriend_request.bitAccept;
