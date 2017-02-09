@@ -20,6 +20,7 @@ namespace ClientWindowsForms
         HttpResponseMessage responseRequests;
         List<FRIEND_REQUEST> requests = new List<FRIEND_REQUEST>();
         private int idRq;
+        //List<Requestor> requestor = new List<Requestor>();
 
 
         public AddFriend_Requests(USER_TOKENS tok, HttpClient clint)
@@ -80,9 +81,11 @@ namespace ClientWindowsForms
         {
             int i = this.dataGridRequests.CurrentRow.Index;
 
-            var idRequest = this.dataGridRequests.Rows[i].Cells[1].Value;
+            var idRequestOwner = this.dataGridRequests.Rows[i].Cells[0].Value;
 
-            this.idRq = Convert.ToInt32(idRequest);
+            //var idRequest = this.dataGridRequests.Rows[i].Cells[0].Value
+
+            this.idRq = Convert.ToInt32(idRequestOwner);
             AcceptUpdateRequest request = new AcceptUpdateRequest() { ID = uTok.Id_User, idfriend_request = this.idRq, token = uTok.Token, bitAccept = true };
             client.PostAsJsonAsync("api/FRIEND_REQUEST_ACCEPTSTATUS", request);
         }
