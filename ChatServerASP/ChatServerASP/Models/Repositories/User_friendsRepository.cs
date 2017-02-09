@@ -47,7 +47,7 @@ namespace ChatServerASP.Models
 
         public bool checkMutualFriendship(int idOwner, int idFriend)
         {
-            if (_context.User_friends.Where(x => x.Id_Friendlist_Owner == idOwner && x.Id_Friend == idFriend && x.Id_Friendlist_Owner == idFriend && x.Id_Friend == idOwner).FirstOrDefault() == null)
+            if (_context.User_friends.Where(x => x.Id_Friendlist_Owner == idOwner && x.Id_Friend == idFriend).FirstOrDefault() == null && _context.User_friends.Where(x => x.Id_Friendlist_Owner == idFriend && x.Id_Friend == idOwner).FirstOrDefault() == null)
                 return false;
             return true;
         }
