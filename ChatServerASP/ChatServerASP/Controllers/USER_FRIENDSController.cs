@@ -108,7 +108,7 @@ namespace ChatServerASP.Controllers
 
             if (uSER_FRIENDS.Id_Friend == uSER_FRIENDS.Id_Friendlist_Owner) return BadRequest("Can't add yourself");
 
-            db.User_friends.Add(uSER_FRIENDS);
+            //db.User_friends.Add(uSER_FRIENDS);
             await db.SaveChangesAsync();
 
             FRIEND_REQUESTController fr = new FRIEND_REQUESTController();
