@@ -96,16 +96,16 @@ namespace ChatServerASP.Controllers
 
 
         [ResponseType(typeof(List<USER>))]
-        [HttpGet]
-        [Route("api/USERsearch/{id_user}/{token}")]
-        public async Task<IHttpActionResult> FindforRequest(/*[FromUri]int[] id, string token, int id_user*/ GetUsersFromRequest gufr) // search user from request
+        [HttpPost]
+        [Route("api/USERsrequesting")]
+        public async Task<IHttpActionResult> FindforRequest(/*[FromUri]int[] id, string token, int id_user*/ GetUsersFromRequest usersrequesting) // search user from request
         {
-            if (rep.CheckToken(gufr.token, gufr.ID_User) == false)
+            if (rep.CheckToken(usersrequesting.token, usersrequesting.ID_User) == false)
             {
                 return BadRequest("Token is not valid! Please log in again!");
             }
             List<USER> ul = new List<USER>();
-            foreach (var item in gufr.id_users)
+            foreach (var item in usersrequesting.id_users)
             {
                 ul.Add(db.Users.Find(item));
             }
