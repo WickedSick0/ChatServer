@@ -99,7 +99,7 @@ namespace ChatServerASP.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-        class CreateChatroom
+        public class CreateChatroom
         {
             public string chatroomName { get; set; }
             public int[] ChatroomMembersID { get; set; }
@@ -112,6 +112,11 @@ namespace ChatServerASP.Controllers
         [ResponseType(typeof(CHATROOM))]
         public async Task<IHttpActionResult> PostCHATROOM(CreateChatroom cHATROOM)
         {
+            if (String.IsNullOrWhiteSpace(cHATROOM.chatroomName))
+            {
+                cHATROOM.chatroomName = "#" + DateTime.Now.Ticks;
+            }
+
             CHATROOM chatroom = new CHATROOM();
             chatroom.Chatroom_Name = cHATROOM.chatroomName;
 
@@ -128,7 +133,6 @@ namespace ChatServerASP.Controllers
                 chatroomMember.Id_Chatroom = chatroom.Id;
                 chMRepository.InsertChatroom_members(chatroomMember);
             }
-
             return Ok("Chatroom created");
             /*if (!ModelState.IsValid)
             {
