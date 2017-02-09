@@ -104,7 +104,7 @@ namespace ChatServerASP.Controllers
             if (UfR.duplicityfriend(Postfriend_request.Id_Friendlist_Owner_sender, Postfriend_request.Id_Friend_receiver)) return BadRequest("User already in friendlist");
 
             //Can't request more than once
-            if (FrR.duplicityfriend(Postfriend_request.Id_Friendlist_Owner_sender, Postfriend_request.Id_Friend_receiver)) return BadRequest("Request sent already");
+            if (FrR.duplicityrequest(Postfriend_request.Id_Friendlist_Owner_sender, Postfriend_request.Id_Friend_receiver)) return BadRequest("Request sent already");
 
             //Can't request urself
             if (Postfriend_request.Id_Friend_receiver == Postfriend_request.Id_Friendlist_Owner_sender) return BadRequest("Can't add yourself");
