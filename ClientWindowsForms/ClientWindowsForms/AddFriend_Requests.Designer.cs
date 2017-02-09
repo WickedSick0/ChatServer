@@ -88,6 +88,7 @@
             this.dataGridRequests.ReadOnly = true;
             this.dataGridRequests.Size = new System.Drawing.Size(240, 237);
             this.dataGridRequests.TabIndex = 3;
+            this.dataGridRequests.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridRequests_CellDoubleClick);
             // 
             // btn_Add
             // 

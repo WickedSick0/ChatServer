@@ -72,6 +72,7 @@
     <Compile Include="AddFriend_Requests.Designer.cs">
       <DependentUpon>AddFriend_Requests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tables\AcceptUpdateRequest.cs" />
     <Compile Include="Tables\CHATROOM.cs" />
     <Compile Include="Tables\CHATROOM_MEMBERS.cs" />
     <Compile Include="Tables\Client.cs" />

@@ -19,6 +19,7 @@ namespace ClientWindowsForms
         private USER_TOKENS uTok;
         HttpResponseMessage responseRequests;
         List<FRIEND_REQUEST> requests = new List<FRIEND_REQUEST>();
+        private int idRq;
 
 
         public AddFriend_Requests(USER_TOKENS tok, HttpClient clint)
@@ -73,6 +74,17 @@ namespace ClientWindowsForms
 
             }
 
+        }
+
+        private void dataGridRequests_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int i = this.dataGridRequests.CurrentRow.Index;
+
+            var idRequest = this.dataGridRequests.Rows[i].Cells[1].Value;
+
+            this.idRq = Convert.ToInt32(idRequest);
+            AcceptUpdateRequest request = new AcceptUpdateRequest() { ID = uTok.Id_User, idfriend_request = this.idRq, token = uTok.Token, bitAccept = true };
+            client.PostAsJsonAsync("api/FRIEND_REQUEST_ACCEPTSTATUS", request);
         }
     }
 }

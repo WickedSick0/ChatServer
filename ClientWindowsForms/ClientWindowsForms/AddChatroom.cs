@@ -99,7 +99,7 @@ namespace ClientWindowsForms
 
             //this.friendsToAdd.Add(friendtoadd);
 
-            this.chroomMembersID.Add(idU);
+            this.chroomMembersID.Add(idU);            
 
             this.dataGridFriends.CurrentCell = null;
             this.dataGridFriends.Rows[i].Visible = false;
