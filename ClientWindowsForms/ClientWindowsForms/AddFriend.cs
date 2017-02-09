@@ -83,10 +83,16 @@ namespace ClientWindowsForms
 
         private void FriendAdd(int idF)
         {
-            USER_FRIENDS friend = new USER_FRIENDS() {Id_Friend = idF, Id_Friendlist_Owner = uTok.Id_User };
-            responseAdd = client.PostAsJsonAsync("api/USER_FRIENDS" + "?token=" + uTok.Token, friend).Result;
-            if (responseAdd.IsSuccessStatusCode) MessageBox.Show("Friend added");
-            else MessageBox.Show("User is already in your friend list");
+            //OLD
+            //USER_FRIENDS friend = new USER_FRIENDS() {Id_Friend = idF, Id_Friendlist_Owner = uTok.Id_User };
+            //responseAdd = client.PostAsJsonAsync("api/USER_FRIENDS" + "?token=" + uTok.Token, friend).Result;
+            //
+            //NEW
+            PostRequest friend = new PostRequest() { Id_Friendlist_Owner_sender = uTok.Id_User, Id_Friend_receiver = idF, token = uTok.Token };            
+            responseAdd = client.PostAsJsonAsync("api/FRIEND_REQUEST", friend).Result;
+            //
+            if (responseAdd.IsSuccessStatusCode) MessageBox.Show("Request sent!");
+            else MessageBox.Show("User is already in your friend list!");
 
         }
 

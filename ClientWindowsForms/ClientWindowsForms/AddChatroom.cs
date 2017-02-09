@@ -62,7 +62,7 @@ namespace ClientWindowsForms
                 MessageBox.Show("Enter chatroom name!");
             }
 
-            else if (this.txt_ChatName.Enabled == false)
+            else if (this.txt_ChatName.Enabled == false) //reset chroom name
             {
                 this.txt_ChatName.Enabled = true;
                 this.dataGridFriends.DataSource = null;

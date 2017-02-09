@@ -26,6 +26,12 @@ namespace ChatServerASP.Models.Repositories
             this._context.SaveChanges();
         }
 
+        public bool duplicityfriend(int idowner, int idfriend)
+        {
+            if (_context.Friend_Requests.Where(x => x.Id_Friendlist_Owner_sender == idowner && x.Id_Friend_receiver == idfriend).FirstOrDefault() == null) return false;
+
+            return true;
+        }
 
         public void UpdateFRIEND_REQUEST(FRIEND_REQUEST fr)
         {

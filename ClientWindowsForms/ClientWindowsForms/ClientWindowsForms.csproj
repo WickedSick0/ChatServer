@@ -97,6 +97,7 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tables\PostRequest.cs" />
     <Compile Include="Tables\Token.cs" />
     <Compile Include="Tables\USER.cs" />
     <Compile Include="UserInterface.cs">

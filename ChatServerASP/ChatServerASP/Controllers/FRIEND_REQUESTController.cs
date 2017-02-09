@@ -100,6 +100,14 @@ namespace ChatServerASP.Controllers
             {
                 return BadRequest("Incorrect token");
             }
+            //Can't request friend
+            if (UfR.duplicityfriend(Postfriend_request.Id_Friendlist_Owner_sender, Postfriend_request.Id_Friend_receiver)) return BadRequest("User already in friendlist");
+
+            //Can't request more than once
+            if (FrR.duplicityfriend(Postfriend_request.Id_Friendlist_Owner_sender, Postfriend_request.Id_Friend_receiver)) return BadRequest("Request sent already");
+
+            //Can't request urself
+            if (Postfriend_request.Id_Friend_receiver == Postfriend_request.Id_Friendlist_Owner_sender) return BadRequest("Can't add yourself");
 
             FRIEND_REQUEST friend_request = new FRIEND_REQUEST();
             friend_request.Id_Friend_receiver = Postfriend_request.Id_Friend_receiver;
