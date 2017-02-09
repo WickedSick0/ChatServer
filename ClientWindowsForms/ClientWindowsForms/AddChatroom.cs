@@ -15,7 +15,7 @@ namespace ClientWindowsForms
     public partial class AddChatroom : Form
     {
         HttpClient client = new HttpClient();
-        HttpResponseMessage responseChRoom;
+        //HttpResponseMessage responseChRoom;
         HttpResponseMessage responseFriends;
         private List<USER> friends;
         private USER_TOKENS uTok;
