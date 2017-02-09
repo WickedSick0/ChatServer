@@ -150,6 +150,12 @@ namespace ChatServerASP.Controllers
             }
 
             FRIEND_REQUEST friend_request = FrR.FindById(PostAcceptfriend_request.idfriend_request);
+
+            if (friend_request.Accepted != null)
+            {
+                return BadRequest("Already readed request");
+            }
+
             friend_request.Accepted = PostAcceptfriend_request.bitAccept;
 
             if (PostAcceptfriend_request.bitAccept == true)
