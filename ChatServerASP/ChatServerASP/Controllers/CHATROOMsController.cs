@@ -21,6 +21,7 @@ namespace ChatServerASP.Controllers
         private User_tokensRepository utRepository = new User_tokensRepository();
         private Chatroom_membersRepository chMRepository = new Chatroom_membersRepository();
         private ChatroomRepository chR = new ChatroomRepository();
+        private User_friendsRepository ufR = new User_friendsRepository();
 
         // GET: api/CHATROOMs
         public IQueryable<CHATROOM> GetChatrooms()
@@ -129,9 +130,13 @@ namespace ChatServerASP.Controllers
 
             foreach (var item in cHATROOM.ChatroomMembersID)
             {
-                chatroomMember.Id_User = item;
-                chatroomMember.Id_Chatroom = chatroom.Id;
-                chMRepository.InsertChatroom_members(chatroomMember);
+                if (ufR.checkMutualFriendship(chatroom.Id,item))
+                {
+                    chatroomMember.Id_User = item;
+                    chatroomMember.Id_Chatroom = chatroom.Id;
+                    chMRepository.InsertChatroom_members(chatroomMember);
+                }
+                
             }
             return Ok("Chatroom created");
             /*if (!ModelState.IsValid)
