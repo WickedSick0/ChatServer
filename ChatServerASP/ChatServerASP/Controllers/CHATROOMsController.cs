@@ -20,6 +20,7 @@ namespace ChatServerASP.Controllers
         private MyContext db = new MyContext();
         private User_tokensRepository utRepository = new User_tokensRepository();
         private Chatroom_membersRepository chMRepository = new Chatroom_membersRepository();
+        private ChatroomRepository chR = new ChatroomRepository();
 
         // GET: api/CHATROOMs
         public IQueryable<CHATROOM> GetChatrooms()
@@ -98,12 +99,38 @@ namespace ChatServerASP.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+        class CreateChatroom
+        {
+            public string chatroomName { get; set; }
+            public int[] ChatroomMembersID { get; set; }
+            public int IDUser { get; set; }
+            public string Token { get; set; }
+        }
+
 
         // POST: api/CHATROOMs
         [ResponseType(typeof(CHATROOM))]
-        public async Task<IHttpActionResult> PostCHATROOM(CHATROOM cHATROOM)
+        public async Task<IHttpActionResult> PostCHATROOM(CreateChatroom cHATROOM)
         {
-            if (!ModelState.IsValid)
+            CHATROOM chatroom = new CHATROOM();
+            chatroom.Chatroom_Name = cHATROOM.chatroomName;
+
+            chR.InsertChatroom(chatroom);
+
+            CHATROOM_MEMBERS chatroomMember = new CHATROOM_MEMBERS();
+            chatroomMember.Id_User = cHATROOM.IDUser;
+            chatroomMember.Id_Chatroom = chatroom.Id;
+            chMRepository.InsertChatroom_members(chatroomMember);
+
+            foreach (var item in cHATROOM.ChatroomMembersID)
+            {
+                chatroomMember.Id_User = item;
+                chatroomMember.Id_Chatroom = chatroom.Id;
+                chMRepository.InsertChatroom_members(chatroomMember);
+            }
+
+            return Ok("Chatroom created");
+            /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -111,7 +138,7 @@ namespace ChatServerASP.Controllers
             db.Chatrooms.Add(cHATROOM);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = cHATROOM.Id }, cHATROOM);
+            return CreatedAtRoute("DefaultApi", new { id = cHATROOM.Id }, cHATROOM);*/
         }
 
         // DELETE: api/CHATROOMs/5
