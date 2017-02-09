@@ -130,7 +130,7 @@ namespace ChatServerASP.Controllers
 
             foreach (var item in cHATROOM.ChatroomMembersID)
             {
-                if (ufR.checkMutualFriendship(chatroom.Id,item))
+                if (ufR.checkMutualFriendship(cHATROOM.IDUser, item))
                 {
                     chatroomMember.Id_User = item;
                     chatroomMember.Id_Chatroom = chatroom.Id;
