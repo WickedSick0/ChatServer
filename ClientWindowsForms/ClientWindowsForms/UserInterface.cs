@@ -317,13 +317,28 @@ namespace ClientWindowsForms
 
                 int idFriendToDelete = Convert.ToInt32(this.datagrid_Friends.Rows[i].Cells[0].Value);
 
-                string userName = this.datagrid_Friends.Rows[i].Cells[1].Value.ToString();
+                string userName = this.datagrid_Friends.Rows[i].Cells[2].Value.ToString();
 
-                DialogResult dialog = MessageBox.Show("Delete this user:" + userName + "?", "Delete user.", MessageBoxButtons.YesNo);
+                DialogResult dialog = MessageBox.Show("Delete this user from your friendlist: " + userName + "?", "Delete user", MessageBoxButtons.YesNo);
                 if (dialog == DialogResult.Yes)
                 {
-                    client.DeleteAsync("api/USER_FRIENDS/" + uTok.Id_User + "/" + idFriendToDelete + "/" + uTok.Token);
+                    client.DeleteAsync("api/USER_FRIENDS/" + uTok.Id_User + "/" + idFriendToDelete + "/" + uTok.Token).Wait();
                     GetFriends();
+                }
+            }
+            else if(e.Button == MouseButtons.Right && this.tab == 1)
+            {
+                int i = datagrid_Friends.Rows[e.RowIndex].Index;
+
+                int idChroomToDel = Convert.ToInt32(this.datagrid_Friends.Rows[i].Cells[0].Value);
+
+                string chroomName = this.datagrid_Friends.Rows[i].Cells[1].Value.ToString();
+
+                DialogResult dialog = MessageBox.Show("Delete this chatroom: " + chroomName + "?", "Delete chatroom", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes)
+                {
+                    client.DeleteAsync("api/CHATROOMs/" + idChroomToDel).Wait();
+                    GetChrooms();
                 }
             }
         }
