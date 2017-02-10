@@ -317,7 +317,9 @@ namespace ClientWindowsForms
 
                 int idFriendToDelete = Convert.ToInt32(this.datagrid_Friends.Rows[i].Cells[0].Value);
 
-                DialogResult dialog = MessageBox.Show(idFriendToDelete.ToString(), "test2", MessageBoxButtons.YesNo);
+                string userName = this.datagrid_Friends.Rows[i].Cells[1].Value.ToString();
+
+                DialogResult dialog = MessageBox.Show("Delete this user:" + userName + "?", "Delete user.", MessageBoxButtons.YesNo);
                 if (dialog == DialogResult.Yes)
                 {
                     client.DeleteAsync("api/USER_FRIENDS/" + uTok.Id_User + "/" + idFriendToDelete + "/" + uTok.Token);

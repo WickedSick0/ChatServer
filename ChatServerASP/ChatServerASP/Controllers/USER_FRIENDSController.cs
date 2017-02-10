@@ -139,16 +139,15 @@ namespace ChatServerASP.Controllers
                 return NotFound();
             }
             /*one not found (need this for bugged users ONLY - one user has him in friends, but the other doesn't)*/
-            else if(uSER_FRIENDS == null && uSER_FRIENDS2 != null)
-            {
-                db.User_friends.Remove(uSER_FRIENDS2);
-            }
             else if(uSER_FRIENDS != null && uSER_FRIENDS2 == null)
             {
                 db.User_friends.Remove(uSER_FRIENDS);
-            }           
-            /*            */                                                     
-            else if(uSER_FRIENDS != null && uSER_FRIENDS2 != null)//both found
+            }
+            /*else if(uSER_FRIENDS == null && uSER_FRIENDS2 != null) //uSER_FRIENDS will never be null
+            {
+                db.User_friends.Remove(uSER_FRIENDS2);
+            }*/
+            else if (uSER_FRIENDS != null && uSER_FRIENDS2 != null)//both found (friendship exists)
             {
                 db.User_friends.Remove(uSER_FRIENDS);
                 db.User_friends.Remove(uSER_FRIENDS2);
