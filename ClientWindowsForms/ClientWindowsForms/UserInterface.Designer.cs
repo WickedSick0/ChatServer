@@ -101,6 +101,7 @@
             this.datagrid_Friends.TabIndex = 4;
             this.datagrid_Friends.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagrid_Friends_CellClick);
             this.datagrid_Friends.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagrid_Friends_CellDoubleClick);
+            this.datagrid_Friends.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datagrid_Friends_CellMouseDown);
             // 
             // button3
             // 

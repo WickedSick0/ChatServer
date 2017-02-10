@@ -308,5 +308,22 @@ namespace ClientWindowsForms
                 this.datagrid_Friends.Columns[0].Visible = false;
             }
         }
+
+        private void datagrid_Friends_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && this.tab == 0)
+            {
+                int i = datagrid_Friends.Rows[e.RowIndex].Index;
+
+                int idFriendToDelete = Convert.ToInt32(this.datagrid_Friends.Rows[i].Cells[0].Value);
+
+                DialogResult dialog = MessageBox.Show(idFriendToDelete.ToString(), "test2", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes)
+                {
+                    client.DeleteAsync("api/USER_FRIENDS/" + uTok.Id_User + "/" + idFriendToDelete + "/" + uTok.Token);
+                    GetFriends();
+                }
+            }
+        }
     }
 }
