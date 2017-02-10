@@ -113,6 +113,10 @@ namespace ChatServerASP.Controllers
         [ResponseType(typeof(CHATROOM))]
         public async Task<IHttpActionResult> PostCHATROOM(CreateChatroom cHATROOM)
         {
+            if (utRepository.CheckToken(cHATROOM.Token, cHATROOM.IDUser) == false)
+            {
+                return BadRequest("Invalid token. Please login again!");
+            }
             if (String.IsNullOrWhiteSpace(cHATROOM.chatroomName))
             {
                 cHATROOM.chatroomName = "#" + DateTime.Now.Ticks;
@@ -130,7 +134,7 @@ namespace ChatServerASP.Controllers
 
             foreach (var item in cHATROOM.ChatroomMembersID)
             {
-                if (ufR.checkMutualFriendship(cHATROOM.IDUser, item))
+                if (ufR.checkMutualFriendship(cHATROOM.IDUser, item) && item != cHATROOM.IDUser)
                 {
                     chatroomMember.Id_User = item;
                     chatroomMember.Id_Chatroom = chatroom.Id;

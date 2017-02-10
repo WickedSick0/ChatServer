@@ -105,13 +105,12 @@ namespace ChatServerASP.Controllers
                 return BadRequest("Token is not valid! Please log in again!");
             }
             List<USER> ul = new List<USER>();
+            USER u = new USER();
             foreach (var item in usersrequesting.id_users)
             {
-                ul.Add(db.Users.Find(item));
-            }
-            foreach (var item in ul)
-            {
-                item.Password = null;
+                u = db.Users.Find(item);
+                u.Password = null;
+                ul.Add(u);
             }
             return Ok(ul);
         }

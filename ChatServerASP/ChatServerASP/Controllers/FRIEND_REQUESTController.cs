@@ -192,7 +192,6 @@ namespace ChatServerASP.Controllers
                 }
                 
             }
-            await db.SaveChangesAsync();
 
             return Ok();
         }
