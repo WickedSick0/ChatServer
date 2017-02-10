@@ -131,14 +131,28 @@ namespace ChatServerASP.Controllers
             {
                 return BadRequest("Incorrect token!");
             }
-            USER_FRIENDS uSER_FRIENDS = db.User_friends.Where(x => x.Id_Friendlist_Owner == id && x.Id_Friend == idfriend).FirstOrDefault();
-            if (uSER_FRIENDS == null)
+            //need to delete both users from friend list
+            USER_FRIENDS uSER_FRIENDS = db.User_friends.Where(x => x.Id_Friendlist_Owner == id && x.Id_Friend == idfriend).FirstOrDefault();            
+            USER_FRIENDS uSER_FRIENDS2 = db.User_friends.Where(x => x.Id_Friendlist_Owner == idfriend && x.Id_Friend == id).FirstOrDefault();
+            if (uSER_FRIENDS == null && uSER_FRIENDS2 == null) //both not found (friendship doesn't exist)
             {
                 return NotFound();
             }
-            db.User_friends.Remove(uSER_FRIENDS);
+            /*one not found (need this for bugged users ONLY - one user has him in friends, but the other doesn't)*/
+            else if(uSER_FRIENDS != null && uSER_FRIENDS2 == null)
+            {
+                db.User_friends.Remove(uSER_FRIENDS);
+            }
+            /*else if(uSER_FRIENDS == null && uSER_FRIENDS2 != null) //uSER_FRIENDS will never be null
+            {
+                db.User_friends.Remove(uSER_FRIENDS2);
+            }*/
+            else if (uSER_FRIENDS != null && uSER_FRIENDS2 != null)//both found (friendship exists)
+            {
+                db.User_friends.Remove(uSER_FRIENDS);
+                db.User_friends.Remove(uSER_FRIENDS2);
+            }
             await db.SaveChangesAsync();
-
 
 
 

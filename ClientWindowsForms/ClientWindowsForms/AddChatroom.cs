@@ -127,7 +127,7 @@ namespace ClientWindowsForms
                         //  }
 
                     CreateChatroom createchroom = new CreateChatroom() { ChatroomMembersID = chroomMembersID.ToArray(), chatroomName = this.chroomName, IDUser = this.uTok.Id_User, Token = this.uTok.Token};
-                    client.PostAsJsonAsync("api/CHATROOMs", createchroom);
+                    client.PostAsJsonAsync("api/CHATROOMs", createchroom).Wait();
                    // }
                     // }
 

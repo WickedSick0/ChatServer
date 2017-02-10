@@ -33,7 +33,8 @@
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_Friends = new System.Windows.Forms.Button();
             this.dataGridRequests = new System.Windows.Forms.DataGridView();
-            this.btn_Add = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridRequests)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,18 +90,31 @@
             this.dataGridRequests.Size = new System.Drawing.Size(240, 237);
             this.dataGridRequests.TabIndex = 3;
             this.dataGridRequests.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridRequests_CellDoubleClick);
+            this.dataGridRequests.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridRequests_CellMouseDown);
             // 
-            // btn_Add
+            // label1
             // 
-            this.btn_Add.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Add.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Add.BackgroundImage")));
-            this.btn_Add.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Add.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Add.Location = new System.Drawing.Point(286, 414);
-            this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(52, 39);
-            this.btn_Add.TabIndex = 4;
-            this.btn_Add.UseVisualStyleBackColor = false;
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(132, 114);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(177, 15);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "ACCEPT = DOUBLE CLICK";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(134, 136);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(167, 15);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "DECLINE = RIGHT CLICK";
             // 
             // AddFriend_Requests
             // 
@@ -108,7 +122,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(420, 516);
-            this.Controls.Add(this.btn_Add);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridRequests);
             this.Controls.Add(this.btn_Friends);
             this.Controls.Add(this.btn_Cancel);
@@ -120,6 +135,7 @@
             this.Load += new System.EventHandler(this.AddFriend_Requests_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridRequests)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -129,6 +145,7 @@
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Button btn_Friends;
         private System.Windows.Forms.DataGridView dataGridRequests;
-        private System.Windows.Forms.Button btn_Add;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

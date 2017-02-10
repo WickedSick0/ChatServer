@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="Tables\CreateChatroom.cs" />
     <Compile Include="Tables\FRIEND_REQUEST.cs" />
+    <Compile Include="Tables\GetUsersFromRequest.cs" />
     <Compile Include="Tables\LoginModel.cs" />
     <Compile Include="Tables\MESSAGE.cs" />
     <Compile Include="Tables\MessageAutorization.cs" />
