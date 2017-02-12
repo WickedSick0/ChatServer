@@ -166,7 +166,7 @@ namespace ChatServerASP.Controllers
             if (uSER.Login == "" || uSER.Password == "" || uSER.Login == "" && uSER.Password == ""|| uSER.Login == null || uSER.Password == null || uSER.Login == null && uSER.Password == null || uSER.Login.Contains(" ") || uSER.Password.Contains(" "))
                 return BadRequest();
 
-            if (uSER.Photo == null) uSER.Photo = @"\Content\Photos\profilePic.png";
+            if (uSER.Photo == null) uSER.Photo = @"/Content/Photos/default-avatar.jpg";
 
             foreach (USER item in uRep.FindAll())
             {
