@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClientWindowsForms.Tables;
+using System.IO;
 
 namespace ClientWindowsForms
 {
@@ -27,6 +28,7 @@ namespace ClientWindowsForms
         private HttpResponseMessage responseMsgs;
         private HttpResponseMessage responseMSG_SEND;
         private USER_TOKENS uTok;
+        OpenFileDialog ofd = new OpenFileDialog();
         private int tab;
         private int idChatR = -1;       
 
@@ -65,16 +67,19 @@ namespace ClientWindowsForms
             btn_AddChroom.FlatStyle = FlatStyle.Flat;
             btn_AddChroom.FlatAppearance.BorderSize = 0;
 
+            this.txt_MSGS.Font = new Font("Arial", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0, false);
+
             this.KeyPreview = true;
 
         }
         
         private void UserInterface_Load(object sender, EventArgs e)
         {
-            this.profilePic.Image = ClientWindowsForms.Properties.Resources.profilePic;
+            this.profilePic.ImageLocation = "http://localhost:53098/Content/Photos/default-avatar.jpg";
             this.label1.Text = usr.Nick;            
             GetChrooms();
             GetFriends();
+
             //this.datagrid_Friends.DataSource = friends;
             //this.datagrid_Friends.Columns[0].Visible = false;
             //this.datagrid_Friends.Columns[1].Visible = false;
@@ -355,6 +360,21 @@ namespace ClientWindowsForms
             response = client.GetAsync("api/USERs/" + uTok.Id_User + "?token=" + uTok.Token).Result;
             usr = response.Content.ReadAsAsync<USER>().Result;
             this.label1.Text = usr.Nick;
+        }
+
+        private void btn_Upload_Click(object sender, EventArgs e)
+        {
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                MultipartFormDataContent form = new MultipartFormDataContent();
+
+                form.Add(new StringContent(uTok.Token), "token");
+                form.Add(new StringContent(uTok.Id_User.ToString()), "id");
+                form.Add(new ByteArrayContent(File.ReadAllBytes(ofd.FileName), 0, File.ReadAllBytes(ofd.FileName).Count()), "profile_pic", "hello1.jpg");
+                
+
+                client.PostAsJsonAsync("api/Upload/", form);
+            }
         }
     }
 }

@@ -45,6 +45,7 @@
             this.btn_Close = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btn_AddChroom = new System.Windows.Forms.Button();
+            this.btn_Upload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_Friends)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             this.SuspendLayout();
@@ -151,7 +152,7 @@
             // profilePic
             // 
             this.profilePic.Cursor = System.Windows.Forms.Cursors.Default;
-            this.profilePic.Location = new System.Drawing.Point(69, 19);
+            this.profilePic.Location = new System.Drawing.Point(69, 20);
             this.profilePic.Name = "profilePic";
             this.profilePic.Size = new System.Drawing.Size(100, 109);
             this.profilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -220,12 +221,28 @@
             this.btn_AddChroom.UseVisualStyleBackColor = false;
             this.btn_AddChroom.Click += new System.EventHandler(this.btn_AddChroom_Click);
             // 
+            // btn_Upload
+            // 
+            this.btn_Upload.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Upload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Upload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Upload.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Upload.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btn_Upload.Location = new System.Drawing.Point(94, 106);
+            this.btn_Upload.Name = "btn_Upload";
+            this.btn_Upload.Size = new System.Drawing.Size(75, 23);
+            this.btn_Upload.TabIndex = 15;
+            this.btn_Upload.Text = "Upload";
+            this.btn_Upload.UseVisualStyleBackColor = false;
+            this.btn_Upload.Click += new System.EventHandler(this.btn_Upload_Click);
+            // 
             // UserInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(700, 807);
+            this.Controls.Add(this.btn_Upload);
             this.Controls.Add(this.btn_AddChroom);
             this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.txt_MSGS);
@@ -272,5 +289,6 @@
         private System.Windows.Forms.Button btn_Close;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btn_AddChroom;
+        private System.Windows.Forms.Button btn_Upload;
     }
 }
