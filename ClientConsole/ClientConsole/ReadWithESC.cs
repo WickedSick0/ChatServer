@@ -10,10 +10,11 @@ namespace ClientConsole
     {
         public static bool GoBack = false;
         public static bool F5_Pressed = false;
+        public static StringBuilder sb = new StringBuilder();
 
         public static string ReadLineWithESC(bool password = false)
         {
-            StringBuilder sb = new StringBuilder();
+            //StringBuilder sb = new StringBuilder();
 
             string result = null;
             ConsoleKeyInfo info = Console.ReadKey(true);
@@ -53,6 +54,8 @@ namespace ClientConsole
                 Console.WriteLine();
                 result = sb.ToString();
             }
+
+            sb = new StringBuilder();
 
             return result;
         }

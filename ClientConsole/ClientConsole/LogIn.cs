@@ -83,7 +83,7 @@ namespace ClientConsole
             return 0;
         }
 
-        async Task CheckLogin()
+        public async Task CheckLogin()
         {
             this.IsLoginValid = false;
 

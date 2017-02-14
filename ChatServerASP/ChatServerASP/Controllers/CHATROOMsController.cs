@@ -50,15 +50,15 @@ namespace ChatServerASP.Controllers
             return Ok(cHATROOM);*/
         }
 
-        ///api/CHATROOMs/1 ?id_friend=2 &token=B4049M2017q1038O01y24QATs4027k10H24mY03b2427D6687
+        //api/CHATROOMs/1 ?id_friend=2 &token=B4049M2017q1038O01y24QATs4027k10H24mY03b2427D6687
         [ResponseType(typeof(CHATROOM))]
-        public async Task<IHttpActionResult> GetBothInChatroom(int id,int id_friend, string token)
+        public async Task<IHttpActionResult> GetBothInChatroom(int id, int id_friend, string token)
         {
             if (utRepository.CheckToken(token, id) == false)
             {
                 return NotFound();
             }
-            CHATROOM result = chMRepository.FindFriendChatroom(id,id_friend);
+            CHATROOM result = chMRepository.FindFriendChatroom(id, id_friend);
             if (result == null)
             {
                 // na klientovi vypsat konverzace nenalezena, prosim vytvorte si novou, kde budou jen tyto dva
@@ -140,7 +140,7 @@ namespace ChatServerASP.Controllers
                     chatroomMember.Id_Chatroom = chatroom.Id;
                     chMRepository.InsertChatroom_members(chatroomMember);
                 }
-                
+
             }
             return Ok("Chatroom created");
             /*if (!ModelState.IsValid)
@@ -167,7 +167,7 @@ namespace ChatServerASP.Controllers
             //db.Chatroom_members.RemoveRange(db.Chatroom_members.Where(x => x.Id_Chatroom == id));
             List<CHATROOM_MEMBERS> chrMembers = db.Chatroom_members.Where(x => x.Id_Chatroom == id).ToList<CHATROOM_MEMBERS>();
             //db.Chatroom_members.RemoveRange(chrMembers);
-            
+
 
             Chatroom_membersRepository chmR = new Chatroom_membersRepository();
             foreach (var item in chrMembers)
