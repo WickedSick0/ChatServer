@@ -41,7 +41,6 @@ namespace ClientConsole
             //if (response != null)
             LogIn.resp = response;
 
-            // return URI of the created resource.
             return response.Headers.Location;
         }
 

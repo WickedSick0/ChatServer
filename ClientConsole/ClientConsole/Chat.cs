@@ -13,7 +13,7 @@ namespace ClientConsole
         public List<MESSAGE> Messages = new List<MESSAGE>();
         public List<USER> UsersInChatroom = new List<USER>();
 
-        //test
+        //thread
         public List<MESSAGE> NewMessages = new List<MESSAGE>();
         public bool Refresh = true;
         public Thread worker { get; set; }
@@ -42,21 +42,13 @@ namespace ClientConsole
             this.GetMessages().Wait();
             this.GetUsersInChatroom(Program.Chatroom.Id).Wait();
 
-            //foreach (USER item in this.UsersInChatroom)
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Black;
-            //    Console.WriteLine(item.Nick);
-            //}
-
-            //Console.ReadLine();
-
             foreach (MESSAGE item in this.Messages)
             {
                 string own = this.FindUserPost(item.Id_User_Post);
                 Console.WriteLine(" (" + own + "): " + item.Message_text);
             }
 
-            //test
+            //thread
             this.worker = new Thread(() =>
                 {
                     while (this.Refresh)

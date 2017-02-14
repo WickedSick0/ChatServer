@@ -14,8 +14,6 @@ namespace ClientConsole
 
         public static string ReadLineWithESC(bool password = false)
         {
-            //StringBuilder sb = new StringBuilder();
-
             string result = null;
             ConsoleKeyInfo info = Console.ReadKey(true);
             while (info.Key != ConsoleKey.Enter && info.Key != ConsoleKey.Escape && info.Key != ConsoleKey.F5)
