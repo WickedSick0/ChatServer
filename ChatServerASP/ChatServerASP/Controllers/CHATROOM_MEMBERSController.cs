@@ -22,12 +22,24 @@ namespace ChatServerASP.Controllers
         private Chatroom_membersRepository chmR = new Chatroom_membersRepository();
         private User_friendsRepository ufR = new User_friendsRepository();
         UserRepository uRep = new UserRepository();
+
+        /// <summary>
+        /// return all chatroom_members
+        /// </summary>
+        /// <returns>all chatroom_members</returns>
         // GET: api/CHATROOM_MEMBERS
         public IQueryable<CHATROOM_MEMBERS> GetChatroom_members()
         {
             return db.Chatroom_members;
         }
 
+        /// <summary>
+        /// return list of users in chatroom
+        /// </summary>
+        /// <param name="id">id of chatroom</param>
+        /// <param name="token">token of logged user</param>
+        /// <param name="IDUser">id of logged user</param>
+        /// <returns>list of users in chatroom</returns>
         // GET: api/CHATROOM_MEMBERS/5?token=fdsakfjl
         [ResponseType(typeof(List<USER>))]
         public async Task<IHttpActionResult> GetCHATROOM_MEMBERS(int id, string token, int IDUser)

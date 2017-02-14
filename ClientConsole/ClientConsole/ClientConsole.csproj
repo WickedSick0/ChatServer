@@ -51,9 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcceptUpdateRequest.cs" />
     <Compile Include="AddContact.cs" />
     <Compile Include="Chat.cs" />
     <Compile Include="CreateChatroom.cs" />
+    <Compile Include="FRIEND_REQUEST.cs" />
+    <Compile Include="GetUsersFromRequest.cs" />
+    <Compile Include="Request.cs" />
     <Compile Include="Tables\CHATROOM_MEMBERS.cs" />
     <Compile Include="Tables\MessageAutorization.cs" />
     <Compile Include="Tables\CHATROOM.cs" />

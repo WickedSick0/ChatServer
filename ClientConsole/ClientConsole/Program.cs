@@ -60,6 +60,11 @@ namespace ClientConsole
                 }
                 else if (Mod == 8)
                 {
+                    Request requests = new Request();
+                    Mod = requests.RequestMod();
+                }
+                else if (Mod == 9)
+                {
                     CreateChatroom createchatrooms = new CreateChatroom();
                     Mod = createchatrooms.CreateChatroomMod();
                 }

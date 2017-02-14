@@ -45,25 +45,25 @@ namespace ClientConsole
                         this.DelFriend(this.UserFriends[selected].Id).Wait();
                     return 5;
                 }
-                else if (key == ConsoleKey.Enter)
-                {
-                    Program.Friend = new USER() { Nick = this.UserFriends[selected].Nick };
+                //else if (key == ConsoleKey.Enter)
+                //{
+                //    Program.Friend = new USER() { Nick = this.UserFriends[selected].Nick };
 
-                    foreach (USER item in this.UserFriends)
-                    {
-                        if (item.Nick == Program.Friend.Nick)
-                        {
-                            Program.Friend.Id = item.Id;
-                            Program.Friend.Login = item.Login;
-                            Program.Friend.Password = item.Password;
-                            Program.Friend.Nick = item.Nick;
-                            Program.Friend.Photo = item.Photo;
-                            return 8;
-                        }
-                    }
+                //    foreach (USER item in this.UserFriends)
+                //    {
+                //        if (item.Nick == Program.Friend.Nick)
+                //        {
+                //            Program.Friend.Id = item.Id;
+                //            Program.Friend.Login = item.Login;
+                //            Program.Friend.Password = item.Password;
+                //            Program.Friend.Nick = item.Nick;
+                //            Program.Friend.Photo = item.Photo;
+                //            return 8;
+                //        }
+                //    }
 
-                    return 10;
-                }
+                //    return 10;
+                //}
             }
         }
 
