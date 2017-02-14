@@ -89,7 +89,8 @@
             this.btn_Add.BackColor = System.Drawing.Color.Transparent;
             this.btn_Add.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Add.BackgroundImage")));
             this.btn_Add.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Add.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Add.FlatAppearance.BorderSize = 0;
+            this.btn_Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Add.Location = new System.Drawing.Point(286, 414);
             this.btn_Add.Name = "btn_Add";
             this.btn_Add.Size = new System.Drawing.Size(52, 39);
@@ -102,7 +103,8 @@
             this.btn_Cancel.BackColor = System.Drawing.Color.Transparent;
             this.btn_Cancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.BackgroundImage")));
             this.btn_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Cancel.FlatAppearance.BorderSize = 0;
+            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Cancel.Location = new System.Drawing.Point(98, 435);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(63, 18);

@@ -69,7 +69,8 @@
             // 
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(175, 44);
             this.button1.Name = "button1";
@@ -82,7 +83,8 @@
             // 
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(175, 89);
             this.button2.Name = "button2";
@@ -109,7 +111,8 @@
             // 
             this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(103, 698);
             this.button3.Name = "button3";
@@ -132,7 +135,8 @@
             // 
             this.btn_Send.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Send.BackgroundImage")));
             this.btn_Send.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Send.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Send.FlatAppearance.BorderSize = 0;
+            this.btn_Send.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Send.Location = new System.Drawing.Point(636, 726);
             this.btn_Send.Name = "btn_Send";
             this.btn_Send.Size = new System.Drawing.Size(52, 39);
@@ -196,7 +200,8 @@
             this.btn_Close.BackColor = System.Drawing.Color.Transparent;
             this.btn_Close.BackgroundImage = global::ClientWindowsForms.Properties.Resources.close_grey_192x192;
             this.btn_Close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Close.FlatAppearance.BorderSize = 0;
+            this.btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Close.Location = new System.Drawing.Point(658, 12);
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.Size = new System.Drawing.Size(30, 30);
@@ -213,6 +218,7 @@
             this.btn_AddChroom.BackColor = System.Drawing.Color.Transparent;
             this.btn_AddChroom.BackgroundImage = global::ClientWindowsForms.Properties.Resources.chat_icon__4_;
             this.btn_AddChroom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_AddChroom.FlatAppearance.BorderSize = 0;
             this.btn_AddChroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_AddChroom.Location = new System.Drawing.Point(13, 698);
             this.btn_AddChroom.Name = "btn_AddChroom";
