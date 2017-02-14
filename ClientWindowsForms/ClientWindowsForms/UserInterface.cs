@@ -326,7 +326,7 @@ namespace ClientWindowsForms
                     GetFriends();
                 }
             }
-            else if(e.Button == MouseButtons.Right && this.tab == 1)
+           /* else if(e.Button == MouseButtons.Right && this.tab == 1)
             {
                 int i = datagrid_Friends.Rows[e.RowIndex].Index;
 
@@ -340,7 +340,21 @@ namespace ClientWindowsForms
                     client.DeleteAsync("api/CHATROOMs/" + idChroomToDel).Wait();
                     GetChrooms();
                 }
-            }
+            }*/
+        }
+
+        private void button1_Click(object sender, EventArgs e) //Update user
+        {
+            UpdateUser frm = new UpdateUser(this.uTok, this.client, usr.Nick);
+            frm.Show();
+            frm.Closed += (s, args) => refreshUserNick();
+        }
+
+        private void refreshUserNick()
+        {
+            response = client.GetAsync("api/USERs/" + uTok.Id_User + "?token=" + uTok.Token).Result;
+            usr = response.Content.ReadAsAsync<USER>().Result;
+            this.label1.Text = usr.Nick;
         }
     }
 }
