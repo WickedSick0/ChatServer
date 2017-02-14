@@ -66,7 +66,6 @@ namespace ClientConsole
 
                     this.CreateContact(uf).Wait();
 
-
                     return 6;
                 }
             }

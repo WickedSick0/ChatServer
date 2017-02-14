@@ -16,9 +16,8 @@ namespace ClientConsole
                 "              Contacts                     ",
                 "              Add contact                  ",
                 "              Chatrooms                    ",
-
                 "              Requests                     ",
-                                "              Logout                       "
+                "              Logout                       "
             };
 
             int selected = 0;
