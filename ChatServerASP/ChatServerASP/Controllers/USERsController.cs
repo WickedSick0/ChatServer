@@ -151,6 +151,42 @@ namespace ChatServerASP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [ResponseType(typeof(USER))]
+        [HttpPost]
+        [Route("api/USERsupdate")]
+        public async Task<IHttpActionResult> UpdateUSER(USER u, string token, string password) //old password needed for changing password
+        {
+           // UserRepository urep = new UserRepository();
+            USER utemp = await db.Users.FindAsync(u.Id);
+
+            if (this.rep.CheckToken(token, u.Id) == false)
+                return BadRequest("Invalid token");
+
+            if ((u.Password == null || u.Password.Trim() == "") && (password == null || password.Trim() == "")) //user wants to change only his nick, not his password
+            {
+                utemp.Nick = u.Nick;
+                await db.SaveChangesAsync();
+                return Ok(u);
+            }
+
+            if (password != (db.Users.FindAsync(u.Id).Result.Password)) //old password didn't match
+                return BadRequest("Incorrect password");
+
+            if (u.Nick == null || u.Nick.Trim() == "")
+                return BadRequest("Invalid nick");
+
+            if (u.Password == null || u.Password.Trim() == "")
+                return BadRequest("Invalid password");
+                     
+                utemp.Nick = u.Nick;
+                utemp.Password = u.Password;
+
+                await db.SaveChangesAsync();
+
+                return Ok(u);
+            
+        }
+
         // POST: api/USERs
         [ResponseType(typeof(USER))]
        // [Route("api/USERs/Register")]

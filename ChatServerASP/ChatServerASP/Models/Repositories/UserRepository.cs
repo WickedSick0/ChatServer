@@ -29,7 +29,7 @@ namespace ChatServerASP.Models
         {
             USER utemp = this.FindById(u.Id);
 
-            utemp.Login = u.Login;
+          //  utemp.Login = u.Login;
             utemp.Nick = u.Nick;
             utemp.Password = u.Password;
             utemp.Photo = u.Photo;
