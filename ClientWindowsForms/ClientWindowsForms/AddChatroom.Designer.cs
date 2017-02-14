@@ -85,7 +85,8 @@
             this.btn_Confirm.BackColor = System.Drawing.Color.Transparent;
             this.btn_Confirm.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Confirm.BackgroundImage")));
             this.btn_Confirm.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Confirm.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Confirm.FlatAppearance.BorderSize = 0;
+            this.btn_Confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Confirm.Location = new System.Drawing.Point(131, 423);
             this.btn_Confirm.Name = "btn_Confirm";
             this.btn_Confirm.Size = new System.Drawing.Size(169, 36);
@@ -98,7 +99,8 @@
             this.btn_Cancel.BackColor = System.Drawing.Color.Transparent;
             this.btn_Cancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.BackgroundImage")));
             this.btn_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Cancel.FlatAppearance.BorderSize = 0;
+            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Cancel.Location = new System.Drawing.Point(179, 465);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(63, 18);

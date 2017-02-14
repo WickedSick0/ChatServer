@@ -331,7 +331,7 @@ namespace ClientWindowsForms
                     GetFriends();
                 }
             }
-           /* else if(e.Button == MouseButtons.Right && this.tab == 1)
+           /* else if(e.Button == MouseButtons.Right && this.tab == 1) //delete chroom
             {
                 int i = datagrid_Friends.Rows[e.RowIndex].Index;
 
@@ -366,14 +366,14 @@ namespace ClientWindowsForms
         {
             if(ofd.ShowDialog() == DialogResult.OK)
             {
-                MultipartFormDataContent form = new MultipartFormDataContent();
+              /*  MultipartFormDataContent form = new MultipartFormDataContent();
 
                 form.Add(new StringContent(uTok.Token), "token");
                 form.Add(new StringContent(uTok.Id_User.ToString()), "id");
-                form.Add(new ByteArrayContent(File.ReadAllBytes(ofd.FileName), 0, File.ReadAllBytes(ofd.FileName).Count()), "profile_pic", "hello1.jpg");
+                form.Add(new ByteArrayContent(File.ReadAllBytes(ofd.FileName), 0, File.ReadAllBytes(ofd.FileName).Count()));
                 
 
-                client.PostAsJsonAsync("api/Upload/", form);
+                client.PostAsJsonAsync("api/Upload/", form);*/
             }
         }
     }
