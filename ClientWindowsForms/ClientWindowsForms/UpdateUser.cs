@@ -28,6 +28,7 @@ namespace ClientWindowsForms
 
             this.txt_Nick.Text = nick;
 
+            txt_OldPass.PasswordChar = '*';
             txt_PassConf.PasswordChar = '*';
             txt_Pass.PasswordChar = '*';
 
@@ -59,12 +60,6 @@ namespace ClientWindowsForms
                 
             }
             else MessageBox.Show("Confirmed password didn't match!");
-        }
-
-        private bool CheckEmpty(string check)
-        {
-            if (check.Trim() == null || check.Trim() == "") return false;
-            else return true;
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)

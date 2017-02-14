@@ -177,13 +177,9 @@ namespace ChatServerASP.Controllers
 
             if (u.Password == null || u.Password.Trim() == "")
                 return BadRequest("Invalid password");
-
-            if (u.Photo == null) u.Photo = @"/Content/Photos/default-avatar.jpg";
-
                      
                 utemp.Nick = u.Nick;
                 utemp.Password = u.Password;
-                utemp.Photo = u.Photo;
 
                 await db.SaveChangesAsync();
 

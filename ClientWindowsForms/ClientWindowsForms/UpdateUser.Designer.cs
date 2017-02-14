@@ -83,6 +83,7 @@
             // 
             // txt_Nick
             // 
+            this.txt_Nick.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Nick.Location = new System.Drawing.Point(237, 145);
             this.txt_Nick.Name = "txt_Nick";
             this.txt_Nick.Size = new System.Drawing.Size(116, 20);
@@ -90,6 +91,7 @@
             // 
             // txt_OldPass
             // 
+            this.txt_OldPass.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_OldPass.Location = new System.Drawing.Point(237, 206);
             this.txt_OldPass.Name = "txt_OldPass";
             this.txt_OldPass.Size = new System.Drawing.Size(116, 20);
@@ -97,6 +99,7 @@
             // 
             // txt_Pass
             // 
+            this.txt_Pass.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Pass.Location = new System.Drawing.Point(237, 260);
             this.txt_Pass.Name = "txt_Pass";
             this.txt_Pass.Size = new System.Drawing.Size(116, 20);
@@ -152,6 +155,7 @@
             // 
             // txt_PassConf
             // 
+            this.txt_PassConf.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_PassConf.Location = new System.Drawing.Point(237, 318);
             this.txt_PassConf.Name = "txt_PassConf";
             this.txt_PassConf.Size = new System.Drawing.Size(116, 20);
