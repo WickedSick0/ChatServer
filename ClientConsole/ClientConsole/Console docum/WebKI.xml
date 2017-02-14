@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="Accepted property" Url="html/6b6421d4-9fc4-47ee-e330-4187bef848e9.htm" />
+  <HelpKINode Title="AcceptUpdateRequest class">
+    <HelpKINode Title="AcceptUpdateRequest Class" Url="html/7287165c-66f5-feb0-12d3-a7a6c84a6a3f.htm" />
+    <HelpKINode Title="about AcceptUpdateRequest class" Url="html/7287165c-66f5-feb0-12d3-a7a6c84a6a3f.htm" />
+    <HelpKINode Title="constructor" Url="html/49287485-5b4c-c7ed-0588-5b62647b674c.htm" />
+    <HelpKINode Title="methods" Url="html/8239861e-f08b-a024-02f1-40d015ef5519.htm" />
+    <HelpKINode Title="properties" Url="html/8303c999-bfd4-1a4f-18d0-49ef2c58fbbc.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AcceptUpdateRequest.AcceptUpdateRequest constructor" Url="html/49287485-5b4c-c7ed-0588-5b62647b674c.htm" />
+  <HelpKINode Title="AcceptUpdateRequest.bitAccept property" Url="html/331ed647-6282-f6b8-9614-8ad9fa7eb5aa.htm" />
+  <HelpKINode Title="AcceptUpdateRequest.ID property" Url="html/0c833452-63ef-fb57-5f11-6f3b2743acf2.htm" />
+  <HelpKINode Title="AcceptUpdateRequest.idfriend_request property" Url="html/5db8d7af-6bf7-7674-9512-2355cea1f8f6.htm" />
+  <HelpKINode Title="AcceptUpdateRequest.token property" Url="html/988703af-84bf-5ee4-e3ca-28a57f112e62.htm" />
+  <HelpKINode Title="AddContact class">
+    <HelpKINode Title="AddContact Class" Url="html/66fc67b2-fb94-47a1-fed3-4e782cf21d79.htm" />
+    <HelpKINode Title="about AddContact class" Url="html/66fc67b2-fb94-47a1-fed3-4e782cf21d79.htm" />
+    <HelpKINode Title="constructor" Url="html/871061e6-288a-fa59-3075-b267cbaf6db8.htm" />
+    <HelpKINode Title="fields" Url="html/e3cb9cc6-d83f-180e-7368-49ba1758f814.htm" />
+    <HelpKINode Title="methods" Url="html/1c6acf98-c17e-c7cb-2470-3f22d0859e56.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AddContact.AddContact constructor" Url="html/871061e6-288a-fa59-3075-b267cbaf6db8.htm" />
+  <HelpKINode Title="AddContact.AddContactMod method" Url="html/221a3bcb-d348-9d11-b573-500b796150a5.htm" />
+  <HelpKINode Title="AddContact.CreateContact method" Url="html/81d415ec-c50b-abf6-8611-e0c8eed9f084.htm" />
+  <HelpKINode Title="AddContact.GetUsers method" Url="html/d7eef7b0-1b76-d295-82e4-f65d64e6505d.htm" />
+  <HelpKINode Title="AddContact.RenderContact method" Url="html/45d0057e-dd8e-fa6d-9e69-cefaa99517e5.htm" />
+  <HelpKINode Title="AddContact.Users field" Url="html/e3c33746-a9e9-ba89-6f3e-9d4c12e4db38.htm" />
+  <HelpKINode Title="AddContactMod method" Url="html/221a3bcb-d348-9d11-b573-500b796150a5.htm" />
+  <HelpKINode Title="AddMembers method" Url="html/44c9b1d3-8f8f-5465-05e4-1310d56703e5.htm" />
+  <HelpKINode Title="bitAccept property" Url="html/331ed647-6282-f6b8-9614-8ad9fa7eb5aa.htm" />
+  <HelpKINode Title="Chat class">
+    <HelpKINode Title="Chat Class" Url="html/d810278f-710e-1aea-fcb3-11042e3cbb3b.htm" />
+    <HelpKINode Title="about Chat class" Url="html/d810278f-710e-1aea-fcb3-11042e3cbb3b.htm" />
+    <HelpKINode Title="constructor" Url="html/57de1e0f-c088-c16a-6c95-a946cf78e94a.htm" />
+    <HelpKINode Title="fields" Url="html/82fd5e8c-0190-7402-1282-60505c78464a.htm" />
+    <HelpKINode Title="methods" Url="html/1084a435-6c71-92dc-3128-e0159266afc8.htm" />
+    <HelpKINode Title="properties" Url="html/ece67fc5-7ef0-f6eb-37cf-7cbea06804c0.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Chat.Chat constructor" Url="html/57de1e0f-c088-c16a-6c95-a946cf78e94a.htm" />
+  <HelpKINode Title="Chat.ChatMod method" Url="html/793e4e4b-1e6e-96be-b390-ca92e935bb88.htm" />
+  <HelpKINode Title="Chat.FindUserPost method" Url="html/fcc801d5-9e5f-ad1e-d1b9-20f7bc76b36c.htm" />
+  <HelpKINode Title="Chat.GetMessages method" Url="html/7a40c68f-2210-d600-ca32-9300591dc914.htm" />
+  <HelpKINode Title="Chat.GetNewMessages method" Url="html/576c5f03-6722-87e0-290c-29065d3ca5b6.htm" />
+  <HelpKINode Title="Chat.GetUsersInChatroom method" Url="html/ae4ffd34-77ca-3937-1e5e-28aebc4139ed.htm" />
+  <HelpKINode Title="Chat.Messages field" Url="html/45d8a8d6-0933-1d85-a4fa-8bc0dcb5fbc9.htm" />
+  <HelpKINode Title="Chat.NewMessages field" Url="html/acc69e3c-bf52-25fe-f928-3434967fb5a9.htm" />
+  <HelpKINode Title="Chat.Refresh field" Url="html/5a49cba4-cc48-fd85-483a-09de8ce2d446.htm" />
+  <HelpKINode Title="Chat.UsersInChatroom field" Url="html/fb007d6c-7af9-0474-9db8-7c56dcbea7b5.htm" />
+  <HelpKINode Title="Chat.worker property" Url="html/c25bf43e-8e42-bd87-707c-de835188862d.htm" />
+  <HelpKINode Title="ChatMod method" Url="html/793e4e4b-1e6e-96be-b390-ca92e935bb88.htm" />
+  <HelpKINode Title="CHATROOM class">
+    <HelpKINode Title="CHATROOM Class" Url="html/c8e51d8c-e6cd-fac8-5272-606174edcea0.htm" />
+    <HelpKINode Title="about CHATROOM class" Url="html/c8e51d8c-e6cd-fac8-5272-606174edcea0.htm" />
+    <HelpKINode Title="constructor" Url="html/1b07038d-344f-37b8-b045-3f7944ace3ea.htm" />
+    <HelpKINode Title="methods" Url="html/ba645df1-269b-e042-240d-7341807d1740.htm" />
+    <HelpKINode Title="properties" Url="html/1be82853-3aea-1ae0-fcf4-d8cf89f79a05.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Chatroom field" Url="html/30b5fc45-9dde-24ff-49b2-4c7c47661a56.htm" />
+  <HelpKINode Title="CHATROOM.CHATROOM constructor" Url="html/1b07038d-344f-37b8-b045-3f7944ace3ea.htm" />
+  <HelpKINode Title="CHATROOM.Chatroom_Name property" Url="html/b5d15e71-6d82-5716-29d8-0065ff0eac3f.htm" />
+  <HelpKINode Title="CHATROOM.Id property" Url="html/3b61aff9-8260-7ea0-9af9-195d7cee6276.htm" />
+  <HelpKINode Title="ChatroomMod method" Url="html/f7b0dd1f-2c55-839c-ee6f-28517a7cd19d.htm" />
+  <HelpKINode Title="Chatrooms class">
+    <HelpKINode Title="Chatrooms Class" Url="html/06c192b9-e486-0a0f-9ed3-02204468ebb4.htm" />
+    <HelpKINode Title="about Chatrooms class" Url="html/06c192b9-e486-0a0f-9ed3-02204468ebb4.htm" />
+    <HelpKINode Title="constructor" Url="html/1e72c329-4936-ae46-c78c-820cf3a8adfe.htm" />
+    <HelpKINode Title="fields" Url="html/ae0920dd-ab5b-aefd-52ea-edc3baf42c88.htm" />
+    <HelpKINode Title="methods" Url="html/904f9254-7de8-9316-396b-8b00c1b036bc.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Chatrooms.ChatroomMod method" Url="html/f7b0dd1f-2c55-839c-ee6f-28517a7cd19d.htm" />
+  <HelpKINode Title="Chatrooms.Chatrooms constructor" Url="html/1e72c329-4936-ae46-c78c-820cf3a8adfe.htm" />
+  <HelpKINode Title="Chatrooms.Chat_room field" Url="html/bb246b35-6cc4-e9d8-2902-d3f311dcb180.htm" />
+  <HelpKINode Title="Chatrooms.GetChatrooms method" Url="html/23e676e3-2de0-0b44-3018-03da2a6e2d68.htm" />
+  <HelpKINode Title="Chatrooms.RenderChatroom method" Url="html/2aaa9d2a-6c26-3693-c52f-39d82edd4df3.htm" />
+  <HelpKINode Title="CHATROOM_MEMBERS class">
+    <HelpKINode Title="CHATROOM_MEMBERS Class" Url="html/63aee5d4-a6f7-aba8-6b9b-eb1ca1cbf7f1.htm" />
+    <HelpKINode Title="about CHATROOM_MEMBERS class" Url="html/63aee5d4-a6f7-aba8-6b9b-eb1ca1cbf7f1.htm" />
+    <HelpKINode Title="constructor" Url="html/433ac02f-53e5-ec54-8386-51f24e3bd475.htm" />
+    <HelpKINode Title="methods" Url="html/3a019f23-628d-a1d7-efdb-76ab6761e8e8.htm" />
+    <HelpKINode Title="properties" Url="html/e23d694c-27e0-fa54-f3f9-bd5aa009bc63.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CHATROOM_MEMBERS.CHATROOM_MEMBERS constructor" Url="html/433ac02f-53e5-ec54-8386-51f24e3bd475.htm" />
+  <HelpKINode Title="CHATROOM_MEMBERS.Id property" Url="html/6a375783-4e32-49fd-7ea2-882588de84ce.htm" />
+  <HelpKINode Title="CHATROOM_MEMBERS.Id_Chatroom property" Url="html/c7adb1da-6fbd-c7fe-97e2-7f3d40d9e3da.htm" />
+  <HelpKINode Title="CHATROOM_MEMBERS.Id_User property" Url="html/1d3ee915-1170-4130-e841-80585f62931d.htm" />
+  <HelpKINode Title="Chatroom_Name property" Url="html/b5d15e71-6d82-5716-29d8-0065ff0eac3f.htm" />
+  <HelpKINode Title="Chat_room field" Url="html/bb246b35-6cc4-e9d8-2902-d3f311dcb180.htm" />
+  <HelpKINode Title="CheckLogin method" Url="html/d617512e-5ed6-d4fb-4c8b-3ea4dcf9a77b.htm" />
+  <HelpKINode Title="Client field">
+    <HelpKINode Title="GetTask(T).Client Field" Url="html/d278cdb9-a8d5-4629-0727-59eb852e2199.htm" />
+    <HelpKINode Title="Program.Client Field" Url="html/c1d84660-98ad-3683-3455-d25fa113c2c4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClientConsole namespace" Url="html/0941f811-3d1e-8ff3-c9f5-338511c42a66.htm" />
+  <HelpKINode Title="ClientConsole.AcceptUpdateRequest class" Url="html/7287165c-66f5-feb0-12d3-a7a6c84a6a3f.htm" />
+  <HelpKINode Title="ClientConsole.AddContact class" Url="html/66fc67b2-fb94-47a1-fed3-4e782cf21d79.htm" />
+  <HelpKINode Title="ClientConsole.Chat class" Url="html/d810278f-710e-1aea-fcb3-11042e3cbb3b.htm" />
+  <HelpKINode Title="ClientConsole.CHATROOM class" Url="html/c8e51d8c-e6cd-fac8-5272-606174edcea0.htm" />
+  <HelpKINode Title="ClientConsole.Chatrooms class" Url="html/06c192b9-e486-0a0f-9ed3-02204468ebb4.htm" />
+  <HelpKINode Title="ClientConsole.CHATROOM_MEMBERS class" Url="html/63aee5d4-a6f7-aba8-6b9b-eb1ca1cbf7f1.htm" />
+  <HelpKINode Title="ClientConsole.Contact class" Url="html/f558738a-c5dc-1c5d-b78b-afc342580cd3.htm" />
+  <HelpKINode Title="ClientConsole.CreateChatroom class" Url="html/45adb0f0-d967-3fc1-975f-ccdd2249f4c8.htm" />
+  <HelpKINode Title="ClientConsole.FRIEND_REQUEST class" Url="html/c77f43f3-3fa6-3679-1131-2d2375492c99.htm" />
+  <HelpKINode Title="ClientConsole.GetTask(Of T) class" Url="html/722f370f-4c53-7810-ca83-46163f33387a.htm" />
+  <HelpKINode Title="ClientConsole.GetTask&lt;T&gt; class" Url="html/722f370f-4c53-7810-ca83-46163f33387a.htm" />
+  <HelpKINode Title="ClientConsole.GetUsersFromRequest class" Url="html/c2cd1849-bcbf-0bdc-51a8-aeb9336ff1cc.htm" />
+  <HelpKINode Title="ClientConsole.LogIn class" Url="html/9ffa94f5-115f-9f4e-661b-3c854340a085.htm" />
+  <HelpKINode Title="ClientConsole.LoginModel class" Url="html/2813ab17-c5a8-0c95-7a78-5341105dd4df.htm" />
+  <HelpKINode Title="ClientConsole.Menu class" Url="html/1c8db3cb-1e49-bd96-6257-53e54a96685f.htm" />
+  <HelpKINode Title="ClientConsole.MESSAGE class" Url="html/4f39aa72-0ced-6513-768b-dd12d641011a.htm" />
+  <HelpKINode Title="ClientConsole.MessageAutorization class" Url="html/fac2d09d-3e8a-afbe-8ffc-46ca2ec566ef.htm" />
+  <HelpKINode Title="ClientConsole.Program class" Url="html/d86ae526-6749-0bc2-7ade-c9322aaae2a8.htm" />
+  <HelpKINode Title="ClientConsole.ReadWithESC class" Url="html/fc5d6df4-eda6-94d3-b313-603d15a8a4b6.htm" />
+  <HelpKINode Title="ClientConsole.Registration class" Url="html/d0d5b924-181c-531f-0809-560fd94ff968.htm" />
+  <HelpKINode Title="ClientConsole.Request class" Url="html/db38f937-afae-1ae5-ce98-729424e4f839.htm" />
+  <HelpKINode Title="ClientConsole.USER class" Url="html/71c8767b-5307-c793-31c6-6d85ca859746.htm" />
+  <HelpKINode Title="ClientConsole.UserMenu class" Url="html/dcef346d-3b68-7585-bd0a-fd5843d338b2.htm" />
+  <HelpKINode Title="ClientConsole.USER_FRIENDS class" Url="html/babdfba6-0840-9460-b974-e90b2b26340a.htm" />
+  <HelpKINode Title="ClientConsole.USER_TOKENS class" Url="html/efce5213-3d0b-eb3b-abe0-47a8854c76e2.htm" />
+  <HelpKINode Title="Contact class">
+    <HelpKINode Title="Contact Class" Url="html/f558738a-c5dc-1c5d-b78b-afc342580cd3.htm" />
+    <HelpKINode Title="about Contact class" Url="html/f558738a-c5dc-1c5d-b78b-afc342580cd3.htm" />
+    <HelpKINode Title="constructor" Url="html/9f9072aa-990a-4f99-ef29-410ab29325f5.htm" />
+    <HelpKINode Title="fields" Url="html/39cca83e-819e-09ea-5cb0-3c8abf939e00.htm" />
+    <HelpKINode Title="methods" Url="html/166ce593-c2fa-b1aa-c316-9d3e66a2e90c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Contact.Contact constructor" Url="html/9f9072aa-990a-4f99-ef29-410ab29325f5.htm" />
+  <HelpKINode Title="Contact.ContactMod method" Url="html/88aeeb9d-c89a-d27d-8666-2e63f7e26cf7.htm" />
+  <HelpKINode Title="Contact.DelFriend method" Url="html/7761deaf-b286-7b35-04eb-cd595d0d494d.htm" />
+  <HelpKINode Title="Contact.DelIt method" Url="html/34eba0de-d219-b116-f709-d4b180dc051c.htm" />
+  <HelpKINode Title="Contact.GetFriends method" Url="html/70bfcfe1-dc52-85a7-e720-9e864a0e626c.htm" />
+  <HelpKINode Title="Contact.RenderContactMod method" Url="html/6c0ae8f2-5e04-3dc0-bf6e-13961561c939.htm" />
+  <HelpKINode Title="Contact.UserFriends field" Url="html/a93e834c-2931-d466-4145-7896eaa24e70.htm" />
+  <HelpKINode Title="ContactMod method" Url="html/88aeeb9d-c89a-d27d-8666-2e63f7e26cf7.htm" />
+  <HelpKINode Title="CreateAsync method" Url="html/72282919-802e-7106-f125-d4b7727b13a5.htm" />
+  <HelpKINode Title="CreateChat method" Url="html/e1ead585-0c62-3565-cfae-67573b4ba460.htm" />
+  <HelpKINode Title="CreateChatroom class">
+    <HelpKINode Title="CreateChatroom Class" Url="html/45adb0f0-d967-3fc1-975f-ccdd2249f4c8.htm" />
+    <HelpKINode Title="about CreateChatroom class" Url="html/45adb0f0-d967-3fc1-975f-ccdd2249f4c8.htm" />
+    <HelpKINode Title="constructor" Url="html/e3f123eb-4e42-9720-b74c-e48fc8c63f35.htm" />
+    <HelpKINode Title="fields" Url="html/63549dfd-18de-cc47-74ed-f523d4992050.htm" />
+    <HelpKINode Title="methods" Url="html/0b69549d-a651-6f98-ef37-c5f3c88cdd46.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CreateChatroom.AddMembers method" Url="html/44c9b1d3-8f8f-5465-05e4-1310d56703e5.htm" />
+  <HelpKINode Title="CreateChatroom.CreateChat method" Url="html/e1ead585-0c62-3565-cfae-67573b4ba460.htm" />
+  <HelpKINode Title="CreateChatroom.CreateChatroom constructor" Url="html/e3f123eb-4e42-9720-b74c-e48fc8c63f35.htm" />
+  <HelpKINode Title="CreateChatroom.CreateChatroomMod method" Url="html/483436c9-bd4f-0b8b-945d-8558d8f23356.htm" />
+  <HelpKINode Title="CreateChatroom.NewChat field" Url="html/8b7c2004-2491-e057-6b96-8fd84cb91d3d.htm" />
+  <HelpKINode Title="CreateChatroomMod method" Url="html/483436c9-bd4f-0b8b-945d-8558d8f23356.htm" />
+  <HelpKINode Title="CreateContact method" Url="html/81d415ec-c50b-abf6-8611-e0c8eed9f084.htm" />
+  <HelpKINode Title="CreateUser method" Url="html/4fc73a45-8fa0-84a0-fbe8-69143446f4f5.htm" />
+  <HelpKINode Title="DeleteAsync method" Url="html/6004346f-02f1-9432-fe8a-a8ece16a22d2.htm" />
+  <HelpKINode Title="DelFriend method" Url="html/7761deaf-b286-7b35-04eb-cd595d0d494d.htm" />
+  <HelpKINode Title="DelIt method" Url="html/34eba0de-d219-b116-f709-d4b180dc051c.htm" />
+  <HelpKINode Title="F5_Pressed field" Url="html/b41452ba-66f7-6636-4b07-fecb2e665869.htm" />
+  <HelpKINode Title="FindUserPost method" Url="html/fcc801d5-9e5f-ad1e-d1b9-20f7bc76b36c.htm" />
+  <HelpKINode Title="Friend field" Url="html/1ff5278b-1c3a-52ed-56dc-66e951ce2ef9.htm" />
+  <HelpKINode Title="FRIEND_REQUEST class">
+    <HelpKINode Title="FRIEND_REQUEST Class" Url="html/c77f43f3-3fa6-3679-1131-2d2375492c99.htm" />
+    <HelpKINode Title="about FRIEND_REQUEST class" Url="html/c77f43f3-3fa6-3679-1131-2d2375492c99.htm" />
+    <HelpKINode Title="constructor" Url="html/2b9c35b4-e89b-5313-825a-684f7b0448dd.htm" />
+    <HelpKINode Title="methods" Url="html/39fa49eb-3219-6c71-0714-a412611e88c4.htm" />
+    <HelpKINode Title="properties" Url="html/1ad14e55-266e-3978-fc2e-2ca71a83b482.htm" />
+  </HelpKINode>
+  <HelpKINode Title="FRIEND_REQUEST.Accepted property" Url="html/6b6421d4-9fc4-47ee-e330-4187bef848e9.htm" />
+  <HelpKINode Title="FRIEND_REQUEST.FRIEND_REQUEST constructor" Url="html/2b9c35b4-e89b-5313-825a-684f7b0448dd.htm" />
+  <HelpKINode Title="FRIEND_REQUEST.Id property" Url="html/37ff7564-1c61-b27d-4d68-131dda7f2d5d.htm" />
+  <HelpKINode Title="FRIEND_REQUEST.Id_Friendlist_Owner_sender property" Url="html/35ada590-2001-000f-d0c2-6eb9a5748066.htm" />
+  <HelpKINode Title="FRIEND_REQUEST.Id_Friend_receiver property" Url="html/24268d16-8ba5-c420-b900-b054f1fecc89.htm" />
+  <HelpKINode Title="FRIEND_REQUEST.Send_Time property" Url="html/8ee099ac-5464-e45d-28f2-dff005d5a701.htm" />
+  <HelpKINode Title="GetAsync method" Url="html/affa26a9-8d82-0693-ac62-b34313d1aaa0.htm" />
+  <HelpKINode Title="GetChatrooms method" Url="html/23e676e3-2de0-0b44-3018-03da2a6e2d68.htm" />
+  <HelpKINode Title="GetFriends method" Url="html/70bfcfe1-dc52-85a7-e720-9e864a0e626c.htm" />
+  <HelpKINode Title="GetMessages method" Url="html/7a40c68f-2210-d600-ca32-9300591dc914.htm" />
+  <HelpKINode Title="GetNewMessages method" Url="html/576c5f03-6722-87e0-290c-29065d3ca5b6.htm" />
+  <HelpKINode Title="GetRequests method" Url="html/8ac50332-e5bb-c5e0-0da5-55fa0733ded0.htm" />
+  <HelpKINode Title="GetTask(Of T) class">
+    <HelpKINode Title="GetTask(T) Class" Url="html/722f370f-4c53-7810-ca83-46163f33387a.htm" />
+    <HelpKINode Title="about GetTask(Of T) class" Url="html/722f370f-4c53-7810-ca83-46163f33387a.htm" />
+    <HelpKINode Title="constructor" Url="html/24059dc4-cd90-6fb1-3d46-fd849ce5a0e0.htm" />
+    <HelpKINode Title="fields" Url="html/6261b723-f7c2-6a05-d2db-07fc85bd62c5.htm" />
+    <HelpKINode Title="methods" Url="html/a117f042-cb2c-c7ea-7b85-c7ef0abbcdd2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetTask(Of T).Client field" Url="html/d278cdb9-a8d5-4629-0727-59eb852e2199.htm" />
+  <HelpKINode Title="GetTask(Of T).CreateAsync method" Url="html/72282919-802e-7106-f125-d4b7727b13a5.htm" />
+  <HelpKINode Title="GetTask(Of T).DeleteAsync method" Url="html/6004346f-02f1-9432-fe8a-a8ece16a22d2.htm" />
+  <HelpKINode Title="GetTask(Of T).GetAsync method" Url="html/affa26a9-8d82-0693-ac62-b34313d1aaa0.htm" />
+  <HelpKINode Title="GetTask(Of T).GetTask constructor" Url="html/24059dc4-cd90-6fb1-3d46-fd849ce5a0e0.htm" />
+  <HelpKINode Title="GetTask(Of T).res field" Url="html/bb8a165c-6e05-6dc6-aeb3-cd2b41f253d5.htm" />
+  <HelpKINode Title="GetTask&lt;T&gt; class">
+    <HelpKINode Title="GetTask(T) Class" Url="html/722f370f-4c53-7810-ca83-46163f33387a.htm" />
+    <HelpKINode Title="about GetTask&lt;T&gt; class" Url="html/722f370f-4c53-7810-ca83-46163f33387a.htm" />
+    <HelpKINode Title="constructor" Url="html/24059dc4-cd90-6fb1-3d46-fd849ce5a0e0.htm" />
+    <HelpKINode Title="fields" Url="html/6261b723-f7c2-6a05-d2db-07fc85bd62c5.htm" />
+    <HelpKINode Title="methods" Url="html/a117f042-cb2c-c7ea-7b85-c7ef0abbcdd2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetTask&lt;T&gt;.Client field" Url="html/d278cdb9-a8d5-4629-0727-59eb852e2199.htm" />
+  <HelpKINode Title="GetTask&lt;T&gt;.CreateAsync method" Url="html/72282919-802e-7106-f125-d4b7727b13a5.htm" />
+  <HelpKINode Title="GetTask&lt;T&gt;.DeleteAsync method" Url="html/6004346f-02f1-9432-fe8a-a8ece16a22d2.htm" />
+  <HelpKINode Title="GetTask&lt;T&gt;.GetAsync method" Url="html/affa26a9-8d82-0693-ac62-b34313d1aaa0.htm" />
+  <HelpKINode Title="GetTask&lt;T&gt;.GetTask constructor" Url="html/24059dc4-cd90-6fb1-3d46-fd849ce5a0e0.htm" />
+  <HelpKINode Title="GetTask&lt;T&gt;.res field" Url="html/bb8a165c-6e05-6dc6-aeb3-cd2b41f253d5.htm" />
+  <HelpKINode Title="GetUsers method" Url="html/d7eef7b0-1b76-d295-82e4-f65d64e6505d.htm" />
+  <HelpKINode Title="GetUsersFromRequest class">
+    <HelpKINode Title="GetUsersFromRequest Class" Url="html/c2cd1849-bcbf-0bdc-51a8-aeb9336ff1cc.htm" />
+    <HelpKINode Title="about GetUsersFromRequest class" Url="html/c2cd1849-bcbf-0bdc-51a8-aeb9336ff1cc.htm" />
+    <HelpKINode Title="constructor" Url="html/090ad2bc-bf1c-1049-21e1-aa44bd5abf09.htm" />
+    <HelpKINode Title="methods" Url="html/72dd31de-9eb7-c9db-6b62-ce19a53d2252.htm" />
+    <HelpKINode Title="properties" Url="html/da013aec-0ecc-df25-74e2-0f999b812521.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetUsersFromRequest.GetUsersFromRequest constructor" Url="html/090ad2bc-bf1c-1049-21e1-aa44bd5abf09.htm" />
+  <HelpKINode Title="GetUsersFromRequest.ID_User property" Url="html/ecbd4a1a-b7ba-4155-4da8-e028866c5bad.htm" />
+  <HelpKINode Title="GetUsersFromRequest.id_users property" Url="html/133fd4d2-3bab-869f-26a3-16ed63347e86.htm" />
+  <HelpKINode Title="GetUsersFromRequest.token property" Url="html/e3b3992b-1117-5cad-1b8e-4ae66811299c.htm" />
+  <HelpKINode Title="GetUsersInChatroom method" Url="html/ae4ffd34-77ca-3937-1e5e-28aebc4139ed.htm" />
+  <HelpKINode Title="GoBack field" Url="html/67f1b971-181a-a0a0-f2d0-ac6522cac472.htm" />
+  <HelpKINode Title="Id property">
+    <HelpKINode Title="CHATROOM.Id Property " Url="html/3b61aff9-8260-7ea0-9af9-195d7cee6276.htm" />
+    <HelpKINode Title="CHATROOM_MEMBERS.Id Property " Url="html/6a375783-4e32-49fd-7ea2-882588de84ce.htm" />
+    <HelpKINode Title="FRIEND_REQUEST.Id Property " Url="html/37ff7564-1c61-b27d-4d68-131dda7f2d5d.htm" />
+    <HelpKINode Title="MESSAGE.Id Property " Url="html/a7a41763-b2a2-1c80-9093-fd30270add5b.htm" />
+    <HelpKINode Title="USER.Id Property " Url="html/98dc57a3-6a47-a362-50f7-7cf1077dd7ff.htm" />
+    <HelpKINode Title="USER_FRIENDS.Id Property " Url="html/d47986d7-6506-8829-b775-49171f1f8d35.htm" />
+    <HelpKINode Title="USER_TOKENS.Id Property " Url="html/07cb2fa3-300c-fab5-e550-25ed657e35dc.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ID property" Url="html/0c833452-63ef-fb57-5f11-6f3b2743acf2.htm" />
+  <HelpKINode Title="idfriend_request property" Url="html/5db8d7af-6bf7-7674-9512-2355cea1f8f6.htm" />
+  <HelpKINode Title="Id_Chatroom property">
+    <HelpKINode Title="CHATROOM_MEMBERS.Id_Chatroom Property " Url="html/c7adb1da-6fbd-c7fe-97e2-7f3d40d9e3da.htm" />
+    <HelpKINode Title="MESSAGE.Id_Chatroom Property " Url="html/a42635d0-8ac3-b736-6b64-f00fd2f16366.htm" />
+    <HelpKINode Title="MessageAutorization.Id_Chatroom Property " Url="html/53c9a579-1935-c6e4-c1fc-1c0c98a0a586.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Id_Friend property" Url="html/a93436c2-59b1-3e56-e70c-5f9490437286.htm" />
+  <HelpKINode Title="Id_Friendlist_Owner property" Url="html/f63fdad8-d12c-e820-747f-1ea9674d8942.htm" />
+  <HelpKINode Title="Id_Friendlist_Owner_sender property" Url="html/35ada590-2001-000f-d0c2-6eb9a5748066.htm" />
+  <HelpKINode Title="Id_Friend_receiver property" Url="html/24268d16-8ba5-c420-b900-b054f1fecc89.htm" />
+  <HelpKINode Title="Id_User property">
+    <HelpKINode Title="CHATROOM_MEMBERS.Id_User Property " Url="html/1d3ee915-1170-4130-e841-80585f62931d.htm" />
+    <HelpKINode Title="USER_TOKENS.Id_User Property " Url="html/732766f1-86fa-66f4-a013-aeb895e00b29.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ID_User property" Url="html/ecbd4a1a-b7ba-4155-4da8-e028866c5bad.htm" />
+  <HelpKINode Title="id_users property" Url="html/133fd4d2-3bab-869f-26a3-16ed63347e86.htm" />
+  <HelpKINode Title="Id_User_Post property">
+    <HelpKINode Title="MESSAGE.Id_User_Post Property " Url="html/80d5249d-65d9-d724-b2e6-115f4ac073ec.htm" />
+    <HelpKINode Title="MessageAutorization.Id_User_Post Property " Url="html/dd4b1a2c-89c8-2d5d-a846-e6286b08873d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsCreated field" Url="html/28eeff99-a281-fc89-564b-4b0b2d0c3dd6.htm" />
+  <HelpKINode Title="IsLoginValid field" Url="html/c535c831-18d4-3a0d-2e6a-ead448692e41.htm" />
+  <HelpKINode Title="Key field" Url="html/56a36a5b-ea3e-5195-f310-02515f7e44ab.htm" />
+  <HelpKINode Title="LoggedInUser field" Url="html/fc370006-82d5-c7ff-fa01-90e03c6f5dcf.htm" />
+  <HelpKINode Title="LogIn class">
+    <HelpKINode Title="LogIn Class" Url="html/9ffa94f5-115f-9f4e-661b-3c854340a085.htm" />
+    <HelpKINode Title="about LogIn class" Url="html/9ffa94f5-115f-9f4e-661b-3c854340a085.htm" />
+    <HelpKINode Title="constructor" Url="html/eb36910e-0051-3de0-32cf-7290d8411f1c.htm" />
+    <HelpKINode Title="fields" Url="html/c19db013-7314-ecbf-31f4-9b6695e78d47.htm" />
+    <HelpKINode Title="methods" Url="html/744533a5-75bf-6bdd-bd0e-7d3d41cad0e4.htm" />
+    <HelpKINode Title="properties" Url="html/5cfb1b34-44a1-f96c-289d-836747cdb32b.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Login property" Url="html/cdf680a7-d357-8fb3-df60-e69b3f60ed40.htm" />
+  <HelpKINode Title="LogIn.CheckLogin method" Url="html/d617512e-5ed6-d4fb-4c8b-3ea4dcf9a77b.htm" />
+  <HelpKINode Title="LogIn.IsLoginValid field" Url="html/c535c831-18d4-3a0d-2e6a-ead448692e41.htm" />
+  <HelpKINode Title="LogIn.LogIn constructor" Url="html/eb36910e-0051-3de0-32cf-7290d8411f1c.htm" />
+  <HelpKINode Title="LogIn.LogInMod method" Url="html/56208d6d-9f84-4608-c15c-ee45a521a0a8.htm" />
+  <HelpKINode Title="LogIn.resp property" Url="html/80eb1cd8-225f-87ab-a2dc-ed4b5f1aa004.htm" />
+  <HelpKINode Title="LogInMod method" Url="html/56208d6d-9f84-4608-c15c-ee45a521a0a8.htm" />
+  <HelpKINode Title="LoginModel class">
+    <HelpKINode Title="LoginModel Class" Url="html/2813ab17-c5a8-0c95-7a78-5341105dd4df.htm" />
+    <HelpKINode Title="about LoginModel class" Url="html/2813ab17-c5a8-0c95-7a78-5341105dd4df.htm" />
+    <HelpKINode Title="constructor" Url="html/e7a5a911-e789-8c54-cee1-a2a4c0494d06.htm" />
+    <HelpKINode Title="methods" Url="html/94fb3e1a-0167-c59d-f29a-aeb772bf0197.htm" />
+    <HelpKINode Title="properties" Url="html/4bae73ad-7352-7e29-8f3a-ef2c260ffcad.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LoginModel.LoginModel constructor" Url="html/e7a5a911-e789-8c54-cee1-a2a4c0494d06.htm" />
+  <HelpKINode Title="LoginModel.Password property" Url="html/cd274f82-0b1c-e1cc-2da0-761db8c3f315.htm" />
+  <HelpKINode Title="LoginModel.Username property" Url="html/e8319d9d-03b5-ab01-de06-0647c32a65a6.htm" />
+  <HelpKINode Title="Menu class">
+    <HelpKINode Title="Menu Class" Url="html/1c8db3cb-1e49-bd96-6257-53e54a96685f.htm" />
+    <HelpKINode Title="about Menu class" Url="html/1c8db3cb-1e49-bd96-6257-53e54a96685f.htm" />
+    <HelpKINode Title="constructor" Url="html/a859397c-3629-0eec-2e59-bd02ae682917.htm" />
+    <HelpKINode Title="methods" Url="html/669af898-8a3a-3fbc-b828-ec48589b1115.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Menu.Menu constructor" Url="html/a859397c-3629-0eec-2e59-bd02ae682917.htm" />
+  <HelpKINode Title="Menu.MenuMod method" Url="html/41aea0c0-f87f-d17d-bb39-7940996c509a.htm" />
+  <HelpKINode Title="Menu.RenderMenu method" Url="html/eae7bb40-7cd9-6582-4f27-09ee6c36664c.htm" />
+  <HelpKINode Title="MenuMod method" Url="html/41aea0c0-f87f-d17d-bb39-7940996c509a.htm" />
+  <HelpKINode Title="MESSAGE class">
+    <HelpKINode Title="MESSAGE Class" Url="html/4f39aa72-0ced-6513-768b-dd12d641011a.htm" />
+    <HelpKINode Title="about MESSAGE class" Url="html/4f39aa72-0ced-6513-768b-dd12d641011a.htm" />
+    <HelpKINode Title="constructor" Url="html/415668b3-dbb8-38a2-5eac-e01980e3a0c4.htm" />
+    <HelpKINode Title="methods" Url="html/a2725a60-7925-71fb-b206-fda25bfed8a6.htm" />
+    <HelpKINode Title="properties" Url="html/159a557b-a330-4f85-15ea-d539f683c3d8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MESSAGE.Id property" Url="html/a7a41763-b2a2-1c80-9093-fd30270add5b.htm" />
+  <HelpKINode Title="MESSAGE.Id_Chatroom property" Url="html/a42635d0-8ac3-b736-6b64-f00fd2f16366.htm" />
+  <HelpKINode Title="MESSAGE.Id_User_Post property" Url="html/80d5249d-65d9-d724-b2e6-115f4ac073ec.htm" />
+  <HelpKINode Title="MESSAGE.MESSAGE constructor" Url="html/415668b3-dbb8-38a2-5eac-e01980e3a0c4.htm" />
+  <HelpKINode Title="MESSAGE.Message_text property" Url="html/8daf6222-2d14-4129-2f81-7e1a0ebc76c4.htm" />
+  <HelpKINode Title="MESSAGE.Send_time property" Url="html/4854272a-2c46-f053-b029-3e4256e1faf6.htm" />
+  <HelpKINode Title="MessageAutorization class">
+    <HelpKINode Title="MessageAutorization Class" Url="html/fac2d09d-3e8a-afbe-8ffc-46ca2ec566ef.htm" />
+    <HelpKINode Title="about MessageAutorization class" Url="html/fac2d09d-3e8a-afbe-8ffc-46ca2ec566ef.htm" />
+    <HelpKINode Title="constructor" Url="html/5b7510f0-fd23-8237-617d-6282443f9180.htm" />
+    <HelpKINode Title="methods" Url="html/5e0520cf-b723-ff9f-1301-08a0f5188dc7.htm" />
+    <HelpKINode Title="properties" Url="html/4e35963c-f9b6-6d82-6977-c38220d990aa.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MessageAutorization.Id_Chatroom property" Url="html/53c9a579-1935-c6e4-c1fc-1c0c98a0a586.htm" />
+  <HelpKINode Title="MessageAutorization.Id_User_Post property" Url="html/dd4b1a2c-89c8-2d5d-a846-e6286b08873d.htm" />
+  <HelpKINode Title="MessageAutorization.MessageAutorization constructor" Url="html/5b7510f0-fd23-8237-617d-6282443f9180.htm" />
+  <HelpKINode Title="MessageAutorization.Message_text property" Url="html/9adcff36-c8bb-1e1b-f75a-40fa684b2498.htm" />
+  <HelpKINode Title="MessageAutorization.Send_time property" Url="html/8d390349-723f-bd1c-362f-3b90c49c9d9f.htm" />
+  <HelpKINode Title="MessageAutorization.token property" Url="html/5214954c-ebc8-3136-d4f4-a256ce15d62d.htm" />
+  <HelpKINode Title="Messages field" Url="html/45d8a8d6-0933-1d85-a4fa-8bc0dcb5fbc9.htm" />
+  <HelpKINode Title="Message_text property">
+    <HelpKINode Title="MESSAGE.Message_text Property " Url="html/8daf6222-2d14-4129-2f81-7e1a0ebc76c4.htm" />
+    <HelpKINode Title="MessageAutorization.Message_text Property " Url="html/9adcff36-c8bb-1e1b-f75a-40fa684b2498.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Mod field" Url="html/d3e4175b-39ad-123e-8c63-6d07189d6472.htm" />
+  <HelpKINode Title="NewChat field" Url="html/8b7c2004-2491-e057-6b96-8fd84cb91d3d.htm" />
+  <HelpKINode Title="NewMessages field" Url="html/acc69e3c-bf52-25fe-f928-3434967fb5a9.htm" />
+  <HelpKINode Title="Nick property" Url="html/f7a35857-1dcf-2cad-1d9c-0c439d9d820e.htm" />
+  <HelpKINode Title="Password property">
+    <HelpKINode Title="LoginModel.Password Property " Url="html/cd274f82-0b1c-e1cc-2da0-761db8c3f315.htm" />
+    <HelpKINode Title="USER.Password Property " Url="html/a61b5ca4-e7e2-e25c-8016-72233911bf49.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Photo property" Url="html/6ca47d7f-6b76-198b-4cb3-b02b11446fb4.htm" />
+  <HelpKINode Title="PostAsync method" Url="html/f3165181-2c1e-259e-d69f-f1ecd968e4d0.htm" />
+  <HelpKINode Title="Program class">
+    <HelpKINode Title="Program Class" Url="html/d86ae526-6749-0bc2-7ade-c9322aaae2a8.htm" />
+    <HelpKINode Title="about Program class" Url="html/d86ae526-6749-0bc2-7ade-c9322aaae2a8.htm" />
+    <HelpKINode Title="constructor" Url="html/e7c96579-4f8f-6ff6-616f-30c3baedaf90.htm" />
+    <HelpKINode Title="fields" Url="html/4a020388-4d71-68e3-89f4-79a3d763a4a2.htm" />
+    <HelpKINode Title="methods" Url="html/a0ebe033-878e-b1de-18ec-9b4a09b5250a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Program.Chatroom field" Url="html/30b5fc45-9dde-24ff-49b2-4c7c47661a56.htm" />
+  <HelpKINode Title="Program.Client field" Url="html/c1d84660-98ad-3683-3455-d25fa113c2c4.htm" />
+  <HelpKINode Title="Program.Friend field" Url="html/1ff5278b-1c3a-52ed-56dc-66e951ce2ef9.htm" />
+  <HelpKINode Title="Program.LoggedInUser field" Url="html/fc370006-82d5-c7ff-fa01-90e03c6f5dcf.htm" />
+  <HelpKINode Title="Program.Mod field" Url="html/d3e4175b-39ad-123e-8c63-6d07189d6472.htm" />
+  <HelpKINode Title="Program.Program constructor" Url="html/e7c96579-4f8f-6ff6-616f-30c3baedaf90.htm" />
+  <HelpKINode Title="Program.Token field" Url="html/5a0deff2-04a1-466d-0dab-27e8a4c6111c.htm" />
+  <HelpKINode Title="ReadLineWithESC method" Url="html/7c4233bb-8511-c0f2-5209-f9f63c79d60d.htm" />
+  <HelpKINode Title="ReadWithESC class">
+    <HelpKINode Title="ReadWithESC Class" Url="html/fc5d6df4-eda6-94d3-b313-603d15a8a4b6.htm" />
+    <HelpKINode Title="about ReadWithESC class" Url="html/fc5d6df4-eda6-94d3-b313-603d15a8a4b6.htm" />
+    <HelpKINode Title="constructor" Url="html/f66b4b82-6b54-1d51-ecfe-1823b1730e2b.htm" />
+    <HelpKINode Title="fields" Url="html/cfcaa7fd-7409-c00b-7a19-b7dfe604d7f5.htm" />
+    <HelpKINode Title="methods" Url="html/bc8bf577-0fca-ba12-1b87-e503e45b505f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReadWithESC.F5_Pressed field" Url="html/b41452ba-66f7-6636-4b07-fecb2e665869.htm" />
+  <HelpKINode Title="ReadWithESC.GoBack field" Url="html/67f1b971-181a-a0a0-f2d0-ac6522cac472.htm" />
+  <HelpKINode Title="ReadWithESC.ReadLineWithESC method" Url="html/7c4233bb-8511-c0f2-5209-f9f63c79d60d.htm" />
+  <HelpKINode Title="ReadWithESC.ReadWithESC constructor" Url="html/f66b4b82-6b54-1d51-ecfe-1823b1730e2b.htm" />
+  <HelpKINode Title="ReadWithESC.sb field" Url="html/b6178e96-bb8e-90ec-5d1c-c091165868eb.htm" />
+  <HelpKINode Title="Refresh field" Url="html/5a49cba4-cc48-fd85-483a-09de8ce2d446.htm" />
+  <HelpKINode Title="RegisterMod method" Url="html/ce9d8b3f-a483-8d50-cff6-9688edaaab44.htm" />
+  <HelpKINode Title="Registration class">
+    <HelpKINode Title="Registration Class" Url="html/d0d5b924-181c-531f-0809-560fd94ff968.htm" />
+    <HelpKINode Title="about Registration class" Url="html/d0d5b924-181c-531f-0809-560fd94ff968.htm" />
+    <HelpKINode Title="constructor" Url="html/221b270a-027b-afd4-2657-c297fe75e2aa.htm" />
+    <HelpKINode Title="fields" Url="html/0ca94f9c-f6c3-52c4-67c8-ec43cea4fa6f.htm" />
+    <HelpKINode Title="methods" Url="html/a636b1e8-e020-9674-3ba9-987acc59b09f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Registration.CreateUser method" Url="html/4fc73a45-8fa0-84a0-fbe8-69143446f4f5.htm" />
+  <HelpKINode Title="Registration.IsCreated field" Url="html/28eeff99-a281-fc89-564b-4b0b2d0c3dd6.htm" />
+  <HelpKINode Title="Registration.RegisterMod method" Url="html/ce9d8b3f-a483-8d50-cff6-9688edaaab44.htm" />
+  <HelpKINode Title="Registration.Registration constructor" Url="html/221b270a-027b-afd4-2657-c297fe75e2aa.htm" />
+  <HelpKINode Title="Registration.User field" Url="html/85bf8374-c060-cab8-734b-50d5b71d02c6.htm" />
+  <HelpKINode Title="RenderChatroom method" Url="html/2aaa9d2a-6c26-3693-c52f-39d82edd4df3.htm" />
+  <HelpKINode Title="RenderContact method" Url="html/45d0057e-dd8e-fa6d-9e69-cefaa99517e5.htm" />
+  <HelpKINode Title="RenderContactMod method" Url="html/6c0ae8f2-5e04-3dc0-bf6e-13961561c939.htm" />
+  <HelpKINode Title="RenderMenu method" Url="html/eae7bb40-7cd9-6582-4f27-09ee6c36664c.htm" />
+  <HelpKINode Title="RenderRequest method" Url="html/c4e8849a-2506-90e4-cd6d-1421132304bf.htm" />
+  <HelpKINode Title="RenderUserMenu method" Url="html/78ab09ae-8e84-991c-007a-cf05510df814.htm" />
+  <HelpKINode Title="Request class">
+    <HelpKINode Title="Request Class" Url="html/db38f937-afae-1ae5-ce98-729424e4f839.htm" />
+    <HelpKINode Title="about Request class" Url="html/db38f937-afae-1ae5-ce98-729424e4f839.htm" />
+    <HelpKINode Title="constructor" Url="html/05640d77-5f35-d0ea-6180-aacb176ba607.htm" />
+    <HelpKINode Title="fields" Url="html/7ff1a3cd-821d-b17b-6e4a-294323e15204.htm" />
+    <HelpKINode Title="methods" Url="html/b6a6b60d-fdf8-676b-34e4-28df741298d2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Request.GetRequests method" Url="html/8ac50332-e5bb-c5e0-0da5-55fa0733ded0.htm" />
+  <HelpKINode Title="Request.PostAsync method" Url="html/f3165181-2c1e-259e-d69f-f1ecd968e4d0.htm" />
+  <HelpKINode Title="Request.RenderRequest method" Url="html/c4e8849a-2506-90e4-cd6d-1421132304bf.htm" />
+  <HelpKINode Title="Request.Request constructor" Url="html/05640d77-5f35-d0ea-6180-aacb176ba607.htm" />
+  <HelpKINode Title="Request.RequestMod method" Url="html/5b944cd4-efec-b1cc-5a76-f6d2db2831f3.htm" />
+  <HelpKINode Title="Request.Requests field" Url="html/6416ac0e-150a-4c4a-cdf1-d922ee5cd0b9.htm" />
+  <HelpKINode Title="Request.Response field" Url="html/3134581e-047a-3226-237e-66acca3f56ef.htm" />
+  <HelpKINode Title="RequestMod method" Url="html/5b944cd4-efec-b1cc-5a76-f6d2db2831f3.htm" />
+  <HelpKINode Title="Requests field" Url="html/6416ac0e-150a-4c4a-cdf1-d922ee5cd0b9.htm" />
+  <HelpKINode Title="res field" Url="html/bb8a165c-6e05-6dc6-aeb3-cd2b41f253d5.htm" />
+  <HelpKINode Title="resp property" Url="html/80eb1cd8-225f-87ab-a2dc-ed4b5f1aa004.htm" />
+  <HelpKINode Title="Response field" Url="html/3134581e-047a-3226-237e-66acca3f56ef.htm" />
+  <HelpKINode Title="sb field" Url="html/b6178e96-bb8e-90ec-5d1c-c091165868eb.htm" />
+  <HelpKINode Title="Send_time property">
+    <HelpKINode Title="MESSAGE.Send_time Property " Url="html/4854272a-2c46-f053-b029-3e4256e1faf6.htm" />
+    <HelpKINode Title="MessageAutorization.Send_time Property " Url="html/8d390349-723f-bd1c-362f-3b90c49c9d9f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Send_Time property" Url="html/8ee099ac-5464-e45d-28f2-dff005d5a701.htm" />
+  <HelpKINode Title="TestLogIn method" Url="html/28e49468-3274-45e8-3fdd-fb607f30faa6.htm" />
+  <HelpKINode Title="TestRegistration method" Url="html/0d7afd08-8c16-7751-e634-4e569583b7f4.htm" />
+  <HelpKINode Title="Token field" Url="html/5a0deff2-04a1-466d-0dab-27e8a4c6111c.htm" />
+  <HelpKINode Title="Token property" Url="html/9779eaf3-215a-a017-e6ab-dbfc7820b40c.htm" />
+  <HelpKINode Title="token property">
+    <HelpKINode Title="AcceptUpdateRequest.token Property " Url="html/988703af-84bf-5ee4-e3ca-28a57f112e62.htm" />
+    <HelpKINode Title="GetUsersFromRequest.token Property " Url="html/e3b3992b-1117-5cad-1b8e-4ae66811299c.htm" />
+    <HelpKINode Title="MessageAutorization.token Property " Url="html/5214954c-ebc8-3136-d4f4-a256ce15d62d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UnitTest1 class">
+    <HelpKINode Title="UnitTest1 Class" Url="html/489f37ba-feac-d0d7-57ca-66ed618af50a.htm" />
+    <HelpKINode Title="about UnitTest1 class" Url="html/489f37ba-feac-d0d7-57ca-66ed618af50a.htm" />
+    <HelpKINode Title="constructor" Url="html/bee5b9d3-f5b6-475d-e3e5-78c435bd29fa.htm" />
+    <HelpKINode Title="methods" Url="html/828fe39b-41d0-0246-ddf5-81470beb1bf7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UnitTest1.TestLogIn method" Url="html/28e49468-3274-45e8-3fdd-fb607f30faa6.htm" />
+  <HelpKINode Title="UnitTest1.TestRegistration method" Url="html/0d7afd08-8c16-7751-e634-4e569583b7f4.htm" />
+  <HelpKINode Title="UnitTest1.UnitTest1 constructor" Url="html/bee5b9d3-f5b6-475d-e3e5-78c435bd29fa.htm" />
+  <HelpKINode Title="UnitTestClientConsole namespace" Url="html/3f809585-03fb-7bc9-3ed7-11edfd60c12c.htm" />
+  <HelpKINode Title="UnitTestClientConsole.UnitTest1 class" Url="html/489f37ba-feac-d0d7-57ca-66ed618af50a.htm" />
+  <HelpKINode Title="USER class">
+    <HelpKINode Title="USER Class" Url="html/71c8767b-5307-c793-31c6-6d85ca859746.htm" />
+    <HelpKINode Title="about USER class" Url="html/71c8767b-5307-c793-31c6-6d85ca859746.htm" />
+    <HelpKINode Title="constructor" Url="html/e84b9d40-201c-dba9-95c6-6e92640314f0.htm" />
+    <HelpKINode Title="methods" Url="html/7119c60d-9a70-2d90-3529-76b913a0b4bd.htm" />
+    <HelpKINode Title="properties" Url="html/2f52dbc9-74c1-8232-b4ca-158742e6cb45.htm" />
+  </HelpKINode>
+  <HelpKINode Title="User field" Url="html/85bf8374-c060-cab8-734b-50d5b71d02c6.htm" />
+  <HelpKINode Title="USER.Id property" Url="html/98dc57a3-6a47-a362-50f7-7cf1077dd7ff.htm" />
+  <HelpKINode Title="USER.Login property" Url="html/cdf680a7-d357-8fb3-df60-e69b3f60ed40.htm" />
+  <HelpKINode Title="USER.Nick property" Url="html/f7a35857-1dcf-2cad-1d9c-0c439d9d820e.htm" />
+  <HelpKINode Title="USER.Password property" Url="html/a61b5ca4-e7e2-e25c-8016-72233911bf49.htm" />
+  <HelpKINode Title="USER.Photo property" Url="html/6ca47d7f-6b76-198b-4cb3-b02b11446fb4.htm" />
+  <HelpKINode Title="USER.USER constructor" Url="html/e84b9d40-201c-dba9-95c6-6e92640314f0.htm" />
+  <HelpKINode Title="UserFriends field" Url="html/a93e834c-2931-d466-4145-7896eaa24e70.htm" />
+  <HelpKINode Title="UserMenu class">
+    <HelpKINode Title="UserMenu Class" Url="html/dcef346d-3b68-7585-bd0a-fd5843d338b2.htm" />
+    <HelpKINode Title="about UserMenu class" Url="html/dcef346d-3b68-7585-bd0a-fd5843d338b2.htm" />
+    <HelpKINode Title="constructor" Url="html/7c60cd48-e19d-c557-534d-c08ea2cebafc.htm" />
+    <HelpKINode Title="fields" Url="html/511c49d5-6ea9-51d3-3644-676030fe0631.htm" />
+    <HelpKINode Title="methods" Url="html/712ba727-9c2f-6cd9-0d3a-ca4dddb8de0d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UserMenu.Key field" Url="html/56a36a5b-ea3e-5195-f310-02515f7e44ab.htm" />
+  <HelpKINode Title="UserMenu.RenderUserMenu method" Url="html/78ab09ae-8e84-991c-007a-cf05510df814.htm" />
+  <HelpKINode Title="UserMenu.UserMenu constructor" Url="html/7c60cd48-e19d-c557-534d-c08ea2cebafc.htm" />
+  <HelpKINode Title="UserMenu.UserMenuMod method" Url="html/4c242668-4158-4812-3594-bce9cfa18e25.htm" />
+  <HelpKINode Title="UserMenuMod method" Url="html/4c242668-4158-4812-3594-bce9cfa18e25.htm" />
+  <HelpKINode Title="Username property" Url="html/e8319d9d-03b5-ab01-de06-0647c32a65a6.htm" />
+  <HelpKINode Title="Users field" Url="html/e3c33746-a9e9-ba89-6f3e-9d4c12e4db38.htm" />
+  <HelpKINode Title="UsersInChatroom field" Url="html/fb007d6c-7af9-0474-9db8-7c56dcbea7b5.htm" />
+  <HelpKINode Title="USER_FRIENDS class">
+    <HelpKINode Title="USER_FRIENDS Class" Url="html/babdfba6-0840-9460-b974-e90b2b26340a.htm" />
+    <HelpKINode Title="about USER_FRIENDS class" Url="html/babdfba6-0840-9460-b974-e90b2b26340a.htm" />
+    <HelpKINode Title="constructor" Url="html/aaac366c-0761-ef25-c1b2-c98fae40b7ad.htm" />
+    <HelpKINode Title="methods" Url="html/a4185151-0916-87c9-8ee7-adcb7e43e3a0.htm" />
+    <HelpKINode Title="properties" Url="html/416ef0dc-d4e6-0ca1-7127-9041e33181bc.htm" />
+  </HelpKINode>
+  <HelpKINode Title="USER_FRIENDS.Id property" Url="html/d47986d7-6506-8829-b775-49171f1f8d35.htm" />
+  <HelpKINode Title="USER_FRIENDS.Id_Friend property" Url="html/a93436c2-59b1-3e56-e70c-5f9490437286.htm" />
+  <HelpKINode Title="USER_FRIENDS.Id_Friendlist_Owner property" Url="html/f63fdad8-d12c-e820-747f-1ea9674d8942.htm" />
+  <HelpKINode Title="USER_FRIENDS.USER_FRIENDS constructor" Url="html/aaac366c-0761-ef25-c1b2-c98fae40b7ad.htm" />
+  <HelpKINode Title="USER_TOKENS class">
+    <HelpKINode Title="USER_TOKENS Class" Url="html/efce5213-3d0b-eb3b-abe0-47a8854c76e2.htm" />
+    <HelpKINode Title="about USER_TOKENS class" Url="html/efce5213-3d0b-eb3b-abe0-47a8854c76e2.htm" />
+    <HelpKINode Title="constructor" Url="html/7f8c3cd1-9e3f-fe63-db27-c5429e0af5a8.htm" />
+    <HelpKINode Title="methods" Url="html/68de858c-2fdc-6ea8-bb2b-2132a586161a.htm" />
+    <HelpKINode Title="properties" Url="html/55120561-66db-98b0-b62a-1378562f9c43.htm" />
+  </HelpKINode>
+  <HelpKINode Title="USER_TOKENS.Id property" Url="html/07cb2fa3-300c-fab5-e550-25ed657e35dc.htm" />
+  <HelpKINode Title="USER_TOKENS.Id_User property" Url="html/732766f1-86fa-66f4-a013-aeb895e00b29.htm" />
+  <HelpKINode Title="USER_TOKENS.Token property" Url="html/9779eaf3-215a-a017-e6ab-dbfc7820b40c.htm" />
+  <HelpKINode Title="USER_TOKENS.USER_TOKENS constructor" Url="html/7f8c3cd1-9e3f-fe63-db27-c5429e0af5a8.htm" />
+  <HelpKINode Title="worker property" Url="html/c25bf43e-8e42-bd87-707c-de835188862d.htm" />
+</HelpKI>
