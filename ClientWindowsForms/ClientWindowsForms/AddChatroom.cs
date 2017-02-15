@@ -55,7 +55,7 @@ namespace ClientWindowsForms
         private void button3_Click(object sender, EventArgs e) //create chroom
         {
 
-            if (this.txt_ChatName.Text.Trim() == null || this.txt_ChatName.Text.Trim() == "")
+            if (this.txt_ChatName.Text == null || this.txt_ChatName.Text.Trim() == "")
             {
                 MessageBox.Show("Enter chatroom name!");
             }

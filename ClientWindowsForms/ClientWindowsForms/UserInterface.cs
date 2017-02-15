@@ -65,7 +65,7 @@ namespace ClientWindowsForms
         {
             this.profilePic.ImageLocation = "http://localhost:53098/Content/Photos/default-avatar.jpg";
             this.label1.Text = usr.Nick;            
-            GetChrooms();
+            //GetChrooms();
             GetFriends();
 
             this.datagrid_Friends.Columns[0].Visible = false;

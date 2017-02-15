@@ -53,7 +53,7 @@ namespace ClientWindowsForms
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (this.textBox1.Text.Trim() == null || this.textBox1.Text.Trim() == "")
+            if (this.textBox1.Text == null || this.textBox1.Text.Trim() == "")
             {
                 this.dataGridSearched.DataSource = null;
                 this.idFriend = -1;
