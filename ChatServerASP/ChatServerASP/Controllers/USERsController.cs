@@ -151,39 +151,47 @@ namespace ChatServerASP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        public class UpdateUser
+        {
+            public USER u { get; set; }
+            public string token { get; set; }
+            public string password { get; set; }
+        }
+
+
         [ResponseType(typeof(USER))]
         [HttpPost]
         [Route("api/USERsupdate")]
-        public async Task<IHttpActionResult> UpdateUSER(USER u, string token, string password) //old password needed for changing password
+        public async Task<IHttpActionResult> UpdateUSER(UpdateUser UU) //old password needed for changing password
         {
            // UserRepository urep = new UserRepository();
-            USER utemp = await db.Users.FindAsync(u.Id);
+            USER utemp = await db.Users.FindAsync(UU.u.Id);
 
-            if (this.rep.CheckToken(token, u.Id) == false)
+            if (this.rep.CheckToken(UU.token, UU.u.Id) == false)
                 return BadRequest("Invalid token");
 
-            if ((u.Password == null || u.Password.Trim() == "") && (password == null || password.Trim() == "")) //user wants to change only his nick, not his password
+            if ((UU.u.Password == null || UU.u.Password.Trim() == "") && (UU.password == null || UU.password.Trim() == "")) //user wants to change only his nick, not his password
             {
-                utemp.Nick = u.Nick;
+                if (UU.u.Nick == null || UU.u.Nick.Trim() == "")
+                {
+                    return BadRequest("Invalid Nick for change.");
+                }
+                utemp.Nick = UU.u.Nick;
                 await db.SaveChangesAsync();
-                return Ok(u);
+                return Ok(UU.u);
             }
 
-            if (password != (db.Users.FindAsync(u.Id).Result.Password)) //old password didn't match
+            if (UU.password != (db.Users.FindAsync(UU.u.Id).Result.Password)) //old password didn't match
                 return BadRequest("Incorrect password");
 
-            if (u.Nick == null || u.Nick.Trim() == "")
-                return BadRequest("Invalid nick");
-
-            if (u.Password == null || u.Password.Trim() == "")
+            if (UU.u.Password == null || UU.u.Password.Trim() == "")
                 return BadRequest("Invalid password");
-                     
-                utemp.Nick = u.Nick;
-                utemp.Password = u.Password;
+
+            utemp.Password = UU.u.Password;
 
                 await db.SaveChangesAsync();
 
-                return Ok(u);
+                return Ok();
             
         }
 
