@@ -42,16 +42,6 @@ namespace ClientWindowsForms
         private void btn_ok_Click(object sender, EventArgs e)
         {
             this.RegisterMethod();
-            //if (this.txt_ImgPath.Text == "".Trim()) this.imgPath = null;
-            //else this.imgPath = this.txt_ImgPath.Text;    
-                    
-            
-           /* HttpResponseMessage response = client.PostAsJsonAsync("api/USERs", usr).Result;
-            if (!response.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Invalid data");
-            }
-            else this.Close();*/
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
