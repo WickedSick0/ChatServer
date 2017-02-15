@@ -117,7 +117,7 @@ namespace ChatServerASP.Controllers
                 MESSAGE mESSAGE = new MESSAGE();
                 mESSAGE.Id_Chatroom = mAutorization.Id_Chatroom;
                 mESSAGE.Id_User_Post = mAutorization.Id_User_Post;
-                mESSAGE.Message_text = mAutorization.Message_text;
+                mESSAGE.Message_text = mAutorization.Message_text.TrimStart('\r', '\n');
                 mESSAGE.Send_time = DateTime.Now;
                 
 

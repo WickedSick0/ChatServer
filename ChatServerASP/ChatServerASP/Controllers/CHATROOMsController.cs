@@ -107,8 +107,6 @@ namespace ChatServerASP.Controllers
             public int IDUser { get; set; }
             public string Token { get; set; }
         }
-
-
         // POST: api/CHATROOMs
         [ResponseType(typeof(CHATROOM))]
         public async Task<IHttpActionResult> PostCHATROOM(CreateChatroom cHATROOM)
@@ -153,6 +151,39 @@ namespace ChatServerASP.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = cHATROOM.Id }, cHATROOM);*/
         }
+
+        public class RenameChatroomPost
+        {
+            public int Id_Chatroom { get; set; }
+            public string NewName { get; set; }
+            public string token { get; set; }
+            public int ID_User { get; set; }
+        }
+
+        [HttpPost]
+        [Route("api/ChatroomRename")]
+        public async Task<IHttpActionResult> RenameChatroom(RenameChatroomPost RCP)
+        {
+            if (utRepository.CheckToken(RCP.token, RCP.ID_User) == false)
+            {
+                return BadRequest("Token is not valid! Please log in again!");
+            }
+            if (db.Chatroom_members.Where(x => x.Id_Chatroom == RCP.Id_Chatroom && x.Id_User == RCP.ID_User).FirstOrDefault() == null)
+            {
+                return BadRequest("You dont have permissions for this!");
+            }
+            CHATROOM ctemp = await db.Chatrooms.FindAsync(RCP.Id_Chatroom);
+            if (ctemp == null)
+            {
+                return BadRequest("Bad Chatroom ID.");
+            }
+            ctemp.Chatroom_Name = RCP.NewName;
+            await db.SaveChangesAsync();
+
+            return Ok();
+        }
+
+
 
         // DELETE: api/CHATROOMs/5
         [ResponseType(typeof(CHATROOM))]
