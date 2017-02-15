@@ -15,14 +15,10 @@ namespace ClientWindowsForms
     public partial class AddChatroom : Form
     {
         HttpClient client = new HttpClient();
-        //HttpResponseMessage responseChRoom;
         HttpResponseMessage responseFriends;
         private List<USER> friends;
         private USER_TOKENS uTok;
-        //private CHATROOM chroom = new CHATROOM();
-        //private List<CHATROOM_MEMBERS> friendsToAdd = new List<CHATROOM_MEMBERS>();
         private List<int> chroomMembersID = new List<int>();
-        //private int idChat;
         private string chroomName;
 
         public AddChatroom(USER_TOKENS tok, HttpClient clint)
@@ -68,12 +64,10 @@ namespace ClientWindowsForms
             {
                 this.txt_ChatName.Enabled = true;
                 this.dataGridFriends.DataSource = null;
-                //friendsToAdd = new List<CHATROOM_MEMBERS>(); //reset added friends
-                chroomMembersID = new List<int>(); //reset
+                chroomMembersID = new List<int>(); //reset added members
             }
             else
             {
-                //this.chroom.Chatroom_Name = txt_ChatName.Text;
                 this.chroomName = txt_ChatName.Text;
 
                 this.txt_ChatName.Enabled = false;
@@ -95,10 +89,6 @@ namespace ClientWindowsForms
 
             int idU = Convert.ToInt32(this.dataGridFriends.Rows[i].Cells[0].Value);
 
-            //CHATROOM_MEMBERS friendtoadd = new CHATROOM_MEMBERS() { Id_User = idU, Id_Chatroom = idChat };
-
-            //this.friendsToAdd.Add(friendtoadd);
-
             this.chroomMembersID.Add(idU);            
 
             this.dataGridFriends.CurrentCell = null;
@@ -111,25 +101,8 @@ namespace ClientWindowsForms
             {
                 if (chroomMembersID.Count != 0) //atleast 1 friend required
                 {
-                    //responseChRoom = client.PostAsJsonAsync("api/CHATROOMs", chroom).Result;
-                    //CHATROOM addedChroom = responseChRoom.Content.ReadAsAsync<CHATROOM>().Result;
-                    //this.idChat = addedChroom.Id; //get addedChroom ID
-                    //if (responseChRoom.IsSuccessStatusCode)
-                    //{
-                    //CHATROOM_MEMBERS chroomCreator = new CHATROOM_MEMBERS() { Id_User = this.uTok.Id_User, Id_Chatroom = this.idChat }; //adds creator to chroom
-                    //client.PostAsJsonAsync("api/CHATROOM_MEMBERS", chroomCreator);
-                    // if (friendsToAdd.Count != 0)
-                    // {
-                        //  foreach (var item in friendsToAdd) //adds all selected friends to chroom
-                        //  {
-                        //      item.Id_Chatroom = idChat;
-                        //      client.PostAsJsonAsync("api/CHATROOM_MEMBERS", item);
-                        //  }
-
                     CreateChatroom createchroom = new CreateChatroom() { ChatroomMembersID = chroomMembersID.ToArray(), chatroomName = this.chroomName, IDUser = this.uTok.Id_User, Token = this.uTok.Token};
                     client.PostAsJsonAsync("api/CHATROOMs", createchroom).Wait();
-                   // }
-                    // }
 
                     this.Close();
                 }

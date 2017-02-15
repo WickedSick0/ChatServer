@@ -105,10 +105,6 @@ namespace ClientWindowsForms
 
                     }
 
-                    //this.dataGridRequests.DataSource = requests;
-                    //this.dataGridRequests.Columns[0].Visible = false;
-                    //this.dataGridRequests.Columns[2].Visible = false;
-                    //this.dataGridRequests.Columns[4].Visible = false;  
                 }             
 
             }
@@ -122,8 +118,6 @@ namespace ClientWindowsForms
             int i = this.dataGridRequests.CurrentRow.Index;
 
             var idRequestOwner = this.dataGridRequests.Rows[i].Cells[0].Value;
-
-            //var idRequest = this.dataGridRequests.Rows[i].Cells[0].Value
 
             this.idRq = Convert.ToInt32(idRequestOwner);
             RespondRequest(this.idRq, i, this.accept);

@@ -36,23 +36,11 @@ namespace ClientWindowsForms
         {
             client = clint;
             uTok = tok;
-            //client.BaseAddress = new Uri("http://localhost:53098/");
             client.DefaultRequestHeaders.Accept.Clear();
-            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             //Get logged user
             response = client.GetAsync("api/USERs/" +  uTok.Id_User + "?token=" + uTok.Token).Result;
             usr = response.Content.ReadAsAsync<USER>().Result;
-
-            //Get his friends
-            //responseFriends = client.GetAsync("api/USER_FRIENDS/" + uTok.Id_User + "?token=" + uTok.Token).Result;
-            //var emp = responseFriends.Content.ReadAsAsync<IEnumerable<USER>>().Result;
-            //friends = emp.ToList<USER>();
-
-            //Get his chrooms
-            //responseChrooms = client.GetAsync("api/CHATROOMs/" + uTok.Id_User + "?token=" + uTok.Token).Result;
-            //var emp2 = responseChrooms.Content.ReadAsAsync<IEnumerable<CHATROOM>>().Result;
-            //chatrooms = emp2.ToList<CHATROOM>();
 
             if (!response.IsSuccessStatusCode) Close();
 
@@ -80,11 +68,10 @@ namespace ClientWindowsForms
             GetChrooms();
             GetFriends();
 
-            //this.datagrid_Friends.DataSource = friends;
-            //this.datagrid_Friends.Columns[0].Visible = false;
-            //this.datagrid_Friends.Columns[1].Visible = false;
-            //this.datagrid_Friends.Columns[3].Visible = false;
-            //this.datagrid_Friends.Columns[4].Visible = false;
+            this.datagrid_Friends.Columns[0].Visible = false;
+            this.datagrid_Friends.Columns[1].Visible = false;
+            this.datagrid_Friends.Columns[3].Visible = false;
+            this.datagrid_Friends.Columns[4].Visible = false;
 
             //refresh every 10 sec
             timer1.Interval = (10000);
@@ -160,7 +147,6 @@ namespace ClientWindowsForms
         {
             this.tab = 1;
             this.datagrid_Friends.DataSource = chatrooms;
-            this.datagrid_Friends.Columns[0].Visible = false;
 
         }
 
@@ -178,7 +164,7 @@ namespace ClientWindowsForms
 
         private void datagrid_Friends_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.tab == 1) //chatroom
+            if (this.tab == 1) //click on chatroom
             {
                 int i = this.datagrid_Friends.CurrentRow.Index;
 
@@ -220,6 +206,7 @@ namespace ClientWindowsForms
             responseMsgs = client.GetAsync("api/MESSAGEs/" + idChat + "?token=" + uTok.Token).Result;
             var emp = responseMsgs.Content.ReadAsAsync<IEnumerable<MESSAGE>>().Result;
             messages = emp.ToList<MESSAGE>();
+            StringBuilder sb = new StringBuilder();
 
             //Add MSGS to rich text box
             foreach (MESSAGE item in messages)
@@ -228,32 +215,32 @@ namespace ClientWindowsForms
                 {
                     if (item2.Id == item.Id_User_Post) //foreach msg get nick + text
                     {
-                        this.txt_MSGS.Text += item2.Nick + ": " + item.Message_text + "\n\r";
+                        sb.Append(item2.Nick + ": " + item.Message_text + "\n\r");
                         break;
                     }
                     else if (item.Id_User_Post == this.usr.Id)
                     {
-                        this.txt_MSGS.Text += this.usr.Nick + ": " + item.Message_text + "\n\r";
+                        sb.Append(this.usr.Nick + ": " + item.Message_text + "\n\r");
                         break;
                     }
 
                 }
 
             }
+            this.txt_MSGS.Text = sb.ToString();
+            this.txt_MSGS.Select(txt_MSGS.TextLength, 0);
+            this.txt_MSGS.ScrollToCaret(); //scroll to end
 
             //Change color of logged user
-            if (txt_MSGS.Text.Contains(this.usr.Nick))
-            {
-                var matchString = Regex.Escape(this.usr.Nick);
-                foreach (Match match in Regex.Matches(txt_MSGS.Text, matchString))
-                {
-                    txt_MSGS.Select(match.Index, this.usr.Nick.Length);
-                    txt_MSGS.SelectionColor = Color.Blue;
-                    txt_MSGS.Select(txt_MSGS.TextLength, 0);
-                    txt_MSGS.SelectionColor = txt_MSGS.ForeColor;
-                }
-            }
-            this.txt_MSGS.ScrollToCaret(); //scroll to end
+             if (txt_MSGS.Text.Contains(this.usr.Nick))
+             {
+                 var matchString = Regex.Escape(this.usr.Nick);
+                 foreach (Match match in Regex.Matches(txt_MSGS.Text, matchString))
+                 {
+                     txt_MSGS.Select(match.Index, this.usr.Nick.Length);
+                     txt_MSGS.SelectionColor = Color.Blue;
+                 }
+             }
         }//end
 
         private void txt_MSG_SEND_KeyDown(object sender, KeyEventArgs e)
@@ -287,10 +274,6 @@ namespace ClientWindowsForms
             if (tab == 0)
             {
                 this.datagrid_Friends.DataSource = friends;
-                this.datagrid_Friends.Columns[0].Visible = false;
-                this.datagrid_Friends.Columns[1].Visible = false;
-                this.datagrid_Friends.Columns[3].Visible = false;
-                this.datagrid_Friends.Columns[4].Visible = false;
             }
         }       
 
@@ -310,7 +293,6 @@ namespace ClientWindowsForms
             if (tab == 1)
             {
                 this.datagrid_Friends.DataSource = chatrooms;
-                this.datagrid_Friends.Columns[0].Visible = false;
             }
         }
 
@@ -331,21 +313,6 @@ namespace ClientWindowsForms
                     GetFriends();
                 }
             }
-           /* else if(e.Button == MouseButtons.Right && this.tab == 1) //delete chroom
-            {
-                int i = datagrid_Friends.Rows[e.RowIndex].Index;
-
-                int idChroomToDel = Convert.ToInt32(this.datagrid_Friends.Rows[i].Cells[0].Value);
-
-                string chroomName = this.datagrid_Friends.Rows[i].Cells[1].Value.ToString();
-
-                DialogResult dialog = MessageBox.Show("Delete this chatroom: " + chroomName + "?", "Delete chatroom", MessageBoxButtons.YesNo);
-                if (dialog == DialogResult.Yes)
-                {
-                    client.DeleteAsync("api/CHATROOMs/" + idChroomToDel).Wait();
-                    GetChrooms();
-                }
-            }*/
         }
 
         private void button1_Click(object sender, EventArgs e) //Update user
