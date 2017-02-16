@@ -33,18 +33,6 @@ namespace ClientWindowsForms
         {
 
             this.LoginMethod();
-            /*HttpResponseMessage response = client.PostAsJsonAsync("api/USER_TOKENS", usr).Result;
-            USER_TOKENS tok = response.Content.ReadAsAsync<USER_TOKENS>().Result;
-            if (response.IsSuccessStatusCode)
-            {
-                UserInterface frm = new UserInterface(tok);
-                this.Close();
-                frm.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Username / Password");
-            }*/
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -63,8 +51,6 @@ namespace ClientWindowsForms
         private void Login_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) this.LoginMethod();
-
-            //else if (e.KeyCode == Keys.Escape) this.Close();
         }
 
         private void LoginMethod()
@@ -80,14 +66,13 @@ namespace ClientWindowsForms
                     this.Hide();
                     frm.Closed += (s, args) => this.Close();
                     frm.Show();
-                    // frm.Show();
                 }
                 else
                 {
                     MessageBox.Show("Invalid Username / Password");
                 }
             }
-            catch (Exception)
+            catch (Exception) //cannot connect to server
             {
 
                 MessageBox.Show("Server is down");

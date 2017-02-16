@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientWindowsForms.Tables;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,7 +50,8 @@ namespace ClientWindowsForms
             if (this.txt_PassConf.Text == this.txt_Pass.Text)
             {
                 USER updateUser = new USER() {Id = uTok.Id_User, Nick = this.txt_Nick.Text, Password = this.txt_Pass.Text };
-                responseUpdate = client.PostAsJsonAsync("api/USERsupdate" + "?token=" + uTok.Token + "&password=" + this.txt_OldPass.Text, updateUser).Result;
+                UpdateUserSend UU = new UpdateUserSend() {u = updateUser, password = this.txt_OldPass.Text, token = uTok.Token };               
+                responseUpdate = client.PostAsJsonAsync("api/USERsupdate", UU).Result;
                 if (responseUpdate.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Succesfully updated!");

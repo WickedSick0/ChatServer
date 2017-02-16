@@ -56,17 +56,17 @@ namespace ClientWindowsForms
             if (this.textBox1.Text == null || this.textBox1.Text.Trim() == "")
             {
                 this.dataGridSearched.DataSource = null;
-                this.idFriend = -1;
+                this.idFriend = -1; //user not selected
             }
-            if (this.dataGridSearched.SelectedCells == null) this.idFriend = -1;
+            if (this.dataGridSearched.SelectedCells == null) this.idFriend = -1; //user not selected
 
-            responseSearched = client.GetAsync("api/USERsearch/" + textBox1.Text + "?token=" + uTok.Token + "&id=" + uTok.Id_User).Result;
+            responseSearched = client.GetAsync("api/USERsearch/" + textBox1.Text + "?token=" + uTok.Token + "&id=" + uTok.Id_User).Result; //find user
             if (responseSearched.IsSuccessStatusCode)
             {
                     var emp = responseSearched.Content.ReadAsAsync<IEnumerable<USER>>().Result;
-                    this.friends = emp.ToList<USER>();
+                    this.friends = emp.ToList<USER>(); //searched users to list USER
 
-                    this.dataGridSearched.DataSource = friends;
+                    this.dataGridSearched.DataSource = friends; //get searched users to datagrid
 
                     if (dataGridSearched.RowCount > 0) this.idFriend = Convert.ToInt32(dataGridSearched.Rows[0].Cells[0].Value); //selects first row ID
                     else this.idFriend = -1; //user not found
@@ -94,7 +94,7 @@ namespace ClientWindowsForms
 
         }
 
-        private void dataGridSearched_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridSearched_CellClick(object sender, DataGridViewCellEventArgs e) //on cell click get user id
         {
             int i = this.dataGridSearched.CurrentRow.Index;
 
@@ -104,7 +104,7 @@ namespace ClientWindowsForms
 
         }
 
-        private void btn_request_Click(object sender, EventArgs e)
+        private void btn_request_Click(object sender, EventArgs e) //go to requests
         {
             AddFriend_Requests frm = new AddFriend_Requests(uTok, client);
             this.Hide();

@@ -83,6 +83,7 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Tables\CreateChatroom.cs" />
+    <Compile Include="Tables\DeleteAddMember.cs" />
     <Compile Include="Tables\FRIEND_REQUEST.cs" />
     <Compile Include="Tables\GetUsersFromRequest.cs" />
     <Compile Include="Tables\LoginModel.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Tables\PostRequest.cs" />
     <Compile Include="Tables\Requestor.cs" />
     <Compile Include="Tables\Token.cs" />
+    <Compile Include="Tables\UpdateUserSend.cs" />
     <Compile Include="Tables\USER.cs" />
     <Compile Include="UpdateUser.cs">
       <SubType>Form</SubType>

@@ -71,7 +71,7 @@ namespace ClientWindowsForms
                 this.chroomName = txt_ChatName.Text;
 
                 this.txt_ChatName.Enabled = false;
-                responseFriends = client.GetAsync("api/USER_FRIENDS/" + uTok.Id_User + "?token=" + uTok.Token).Result;
+                responseFriends = client.GetAsync("api/USER_FRIENDS/" + uTok.Id_User + "?token=" + uTok.Token).Result; //get all friends
                 var emp = responseFriends.Content.ReadAsAsync<IEnumerable<USER>>().Result;
                 friends = emp.ToList<USER>();
 
@@ -83,16 +83,16 @@ namespace ClientWindowsForms
         }
 
 
-        private void dataGridFriends_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridFriends_CellDoubleClick(object sender, DataGridViewCellEventArgs e) //add friend to chatroom
         {
             int i = this.dataGridFriends.CurrentRow.Index;
 
             int idU = Convert.ToInt32(this.dataGridFriends.Rows[i].Cells[0].Value);
 
-            this.chroomMembersID.Add(idU);            
+            this.chroomMembersID.Add(idU);  //add friend.id to list<int>          
 
-            this.dataGridFriends.CurrentCell = null;
-            this.dataGridFriends.Rows[i].Visible = false;
+            this.dataGridFriends.CurrentCell = null; //deselect current row
+            this.dataGridFriends.Rows[i].Visible = false; //remove clicked friend from datagrid
         }
 
         private void btn_Confirm_Click(object sender, EventArgs e)

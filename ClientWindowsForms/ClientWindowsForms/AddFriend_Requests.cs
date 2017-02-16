@@ -61,7 +61,7 @@ namespace ClientWindowsForms
             this.Close();
         }
 
-        private void btn_Friends_Click(object sender, EventArgs e)
+        private void btn_Friends_Click(object sender, EventArgs e) //go to friends
         {
             AddFriend frm = new AddFriend(uTok, client);
             this.Hide();
@@ -92,7 +92,7 @@ namespace ClientWindowsForms
                     {                        
                         var emp2 = responseGetUsers.Content.ReadAsAsync<IEnumerable<USER>>().Result;
                         listusers = emp2.ToList<USER>();
-                        foreach (var item in listusers) //get requestor info - idrequest, name, sendtime
+                        foreach (var item in listusers) //foreach user that send request get his info - idrequest, name, sendtime and add to list<requestor>
                         {
                             this.requestor.Add(new Requestor { Id_Request = idrequests[index], Send_Time = daterequests[index], Requestor_name = item.Login });
                             this.index++; //go to next request (and user)
@@ -130,8 +130,8 @@ namespace ClientWindowsForms
             respondtoRequest = client.PostAsJsonAsync("api/FRIEND_REQUEST_ACCEPTSTATUS", request).Result;
             if (respondtoRequest.IsSuccessStatusCode)
             {
-                this.dataGridRequests.CurrentCell = null;
-                this.dataGridRequests.Rows[index].Visible = false;
+                this.dataGridRequests.CurrentCell = null; //deselect current row
+                this.dataGridRequests.Rows[index].Visible = false; //remove request from datagrid
             }
             else MessageBox.Show("You responded to this request already!");
         }

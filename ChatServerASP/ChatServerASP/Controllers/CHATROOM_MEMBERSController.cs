@@ -158,6 +158,33 @@ namespace ChatServerASP.Controllers
             return Ok("Members added.");
         }
 
+        [ResponseType(typeof(DeleteAddMember))]
+        [HttpPost]
+        [Route("api/CHATleave")]
+        public async Task<IHttpActionResult> CHATROOM_MEMBERSleave(DeleteAddMember cHATROOM_MEMBERS_Delete) //need this for forms
+        {
+            if (utRepository.CheckToken(cHATROOM_MEMBERS_Delete.Token, cHATROOM_MEMBERS_Delete.IDUser) == false)
+            {
+                return BadRequest("Invalid token. Please login again!");
+            }
+            if (db.Chatroom_members.Where(x => x.Id_Chatroom == cHATROOM_MEMBERS_Delete.chatroomID && x.Id_User == cHATROOM_MEMBERS_Delete.IDUser).FirstOrDefault() == null)
+            {
+                return BadRequest("You dont have permissions to remove user from this chatroom!");
+            }
+            List<CHATROOM_MEMBERS> cHATROOM_MEMBERS = db.Chatroom_members.Where(x => x.Id_Chatroom == cHATROOM_MEMBERS_Delete.chatroomID && cHATROOM_MEMBERS_Delete.ChatroomMembersID.Contains(x.Id_User)).ToList();
+            if (cHATROOM_MEMBERS == null)
+            {
+                return NotFound();
+            }
+            foreach (var item in cHATROOM_MEMBERS)
+            {
+                db.Chatroom_members.Remove(item);
+                db.SaveChanges();
+            }
+
+            return Ok(cHATROOM_MEMBERS + "deleted");
+        }
+
         // DELETE: api/CHATROOM_MEMBERS/5
         [ResponseType(typeof(DeleteAddMember))]
         public async Task<IHttpActionResult> DeleteCHATROOM_MEMBERS(DeleteAddMember cHATROOM_MEMBERS_Delete)
@@ -168,7 +195,7 @@ namespace ChatServerASP.Controllers
             }
             if (db.Chatroom_members.Where(x => x.Id_Chatroom == cHATROOM_MEMBERS_Delete.chatroomID && x.Id_User == cHATROOM_MEMBERS_Delete.IDUser).FirstOrDefault() == null)
             {
-                return BadRequest("You dont have permissions for remove user from this chatroom!");
+                return BadRequest("You dont have permissions to remove user from this chatroom!");
             }
             List<CHATROOM_MEMBERS> cHATROOM_MEMBERS = db.Chatroom_members.Where(x => x.Id_Chatroom == cHATROOM_MEMBERS_Delete.chatroomID && cHATROOM_MEMBERS_Delete.ChatroomMembersID.Contains(x.Id_User)).ToList();
             if (cHATROOM_MEMBERS == null)

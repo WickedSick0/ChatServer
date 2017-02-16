@@ -93,7 +93,7 @@ namespace ClientWindowsForms
                 }
                 else MessageBox.Show("Confirmed password didn't match.");
             }
-            catch (Exception)
+            catch (Exception) //cannot connect to server
             {
 
                 MessageBox.Show("Server is down");
