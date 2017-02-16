@@ -272,7 +272,8 @@ namespace ClientWindowsForms
         {
             AddFriend frm = new AddFriend(uTok,client);
             frm.Show();
-            frm.Closed += (s, args) => GetFriends(); //refresh friends after AddFriend form closed
+            frm.Closed += (s, args) => GetFriends(); //refresh friends and chatrooms after AddFriend form closed
+            frm.Closed += (s, args) => GetChrooms();
 
 
         }
