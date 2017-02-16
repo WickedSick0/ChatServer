@@ -44,7 +44,8 @@
             this.btn_Close.BackColor = System.Drawing.Color.Transparent;
             this.btn_Close.BackgroundImage = global::ClientWindowsForms.Properties.Resources.close_grey_192x192;
             this.btn_Close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Close.FlatAppearance.BorderSize = 0;
+            this.btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Close.Location = new System.Drawing.Point(378, 12);
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.Size = new System.Drawing.Size(30, 30);
@@ -116,6 +117,7 @@
             // 
             this.btn_request.BackColor = System.Drawing.Color.Transparent;
             this.btn_request.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_request.FlatAppearance.BorderSize = 0;
             this.btn_request.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_request.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_request.ForeColor = System.Drawing.Color.Gray;

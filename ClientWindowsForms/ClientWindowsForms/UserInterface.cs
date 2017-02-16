@@ -49,11 +49,6 @@ namespace ClientWindowsForms
             InitializeComponent();
 
             btn_Close.TabStop = false;
-            btn_Close.FlatStyle = FlatStyle.Flat;
-            btn_Close.FlatAppearance.BorderSize = 0;
-
-            btn_AddChroom.FlatStyle = FlatStyle.Flat;
-            btn_AddChroom.FlatAppearance.BorderSize = 0;
 
             this.txt_MSGS.Font = new Font("Arial", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0, false);
 
@@ -308,7 +303,7 @@ namespace ClientWindowsForms
             }
         }
 
-        private void datagrid_Friends_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        private void datagrid_Friends_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e) //delete friend or leave chatroom
         {
             if (e.Button == MouseButtons.Right && this.tab == 0) //tab = friends => delete user from friendlist
             {

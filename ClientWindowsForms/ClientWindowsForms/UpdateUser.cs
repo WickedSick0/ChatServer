@@ -34,8 +34,6 @@ namespace ClientWindowsForms
             txt_Pass.PasswordChar = '*';
 
             btn_Close.TabStop = false;
-            btn_Close.FlatStyle = FlatStyle.Flat;
-            btn_Close.FlatAppearance.BorderSize = 0;
 
 
         }

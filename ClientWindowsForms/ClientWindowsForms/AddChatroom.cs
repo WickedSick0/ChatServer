@@ -32,14 +32,7 @@ namespace ClientWindowsForms
             client.DefaultRequestHeaders.Accept.Clear();
 
             btn_Close.TabStop = false;
-            btn_Close.FlatStyle = FlatStyle.Flat;
-            btn_Close.FlatAppearance.BorderSize = 0;
 
-            btn_Cancel.FlatStyle = FlatStyle.Flat;
-            btn_Cancel.FlatAppearance.BorderSize = 0;
-
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.FlatAppearance.BorderSize = 0;
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)

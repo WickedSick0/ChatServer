@@ -24,8 +24,6 @@ namespace ClientWindowsForms
             InitializeComponent();
             txt_passwd.PasswordChar = '*';
             btn_Close.TabStop = false;
-            btn_Close.FlatStyle = FlatStyle.Flat;
-            btn_Close.FlatAppearance.BorderSize = 0;
             this.KeyPreview = true;
         }
 

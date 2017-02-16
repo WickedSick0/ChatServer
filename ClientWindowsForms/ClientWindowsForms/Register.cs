@@ -27,14 +27,6 @@ namespace ClientWindowsForms
             txt_passwdConfirm.PasswordChar = '*';
 
             btn_Close.TabStop = false;
-            btn_Close.FlatStyle = FlatStyle.Flat;
-            btn_Close.FlatAppearance.BorderSize = 0;
-
-            btn_ok.FlatStyle = FlatStyle.Flat;
-            btn_ok.FlatAppearance.BorderSize = 0;
-
-            btn_Cancel.FlatStyle = FlatStyle.Flat;
-            btn_Cancel.FlatAppearance.BorderSize = 0;
 
             this.KeyPreview = true;
         }
