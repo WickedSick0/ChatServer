@@ -25,6 +25,7 @@ namespace ClientWindowsForms
             txt_passwd.PasswordChar = '*';
             btn_Close.TabStop = false;
             this.KeyPreview = true;
+            this.label_IncorrectPass.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -67,7 +68,7 @@ namespace ClientWindowsForms
                 }
                 else
                 {
-                    MessageBox.Show("Invalid Username / Password");
+                    this.label_IncorrectPass.Visible = true;
                 }
             }
             catch (Exception) //cannot connect to server

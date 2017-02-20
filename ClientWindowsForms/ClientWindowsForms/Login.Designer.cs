@@ -37,6 +37,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btn_Close = new System.Windows.Forms.Button();
+            this.label_IncorrectPass = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -129,6 +130,18 @@
             this.btn_Close.UseVisualStyleBackColor = false;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
+            // label_IncorrectPass
+            // 
+            this.label_IncorrectPass.AutoSize = true;
+            this.label_IncorrectPass.BackColor = System.Drawing.Color.Transparent;
+            this.label_IncorrectPass.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_IncorrectPass.ForeColor = System.Drawing.Color.Red;
+            this.label_IncorrectPass.Location = new System.Drawing.Point(239, 393);
+            this.label_IncorrectPass.Name = "label_IncorrectPass";
+            this.label_IncorrectPass.Size = new System.Drawing.Size(118, 12);
+            this.label_IncorrectPass.TabIndex = 10;
+            this.label_IncorrectPass.Text = "Incorrect password!";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,6 +149,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(462, 535);
+            this.Controls.Add(this.label_IncorrectPass);
             this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
@@ -168,5 +182,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btn_Close;
+        private System.Windows.Forms.Label label_IncorrectPass;
     }
 }
